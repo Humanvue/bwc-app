@@ -41,6 +41,23 @@
 
   var listeners = [];
 
+  // Live boards (local version): one localStorage key per code.
+  var liveListeners = [];
+  function randomCode() {
+    var letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    var c = '';
+    for (var i = 0; i < 4; i++) c += letters[Math.floor(Math.random() * letters.length)];
+    return c;
+  }
+  function readLive(code) {
+    try { var raw = window.localStorage.getItem('bwc.live.' + code); return raw ? JSON.parse(raw) : null; } catch (e) { return null; }
+  }
+  function writeLive(code, data) {
+    try { window.localStorage.setItem('bwc.live.' + code, JSON.stringify(data)); } catch (e) { /* ignore */ }
+    // The storage event only fires in other tabs; notify this tab too.
+    liveListeners.forEach(function (l) { if (l.code === code) setTimeout(function () { l.cb(readLive(code)); }, 0); });
+  }
+
   window.BWC = window.BWC || {};
   BWC.Store = {
     cloud: false,
@@ -113,6 +130,37 @@
       db.workouts.forEach(function (w) { if (w.id === workoutId) { w.review = review; w.reviewedBy = db.profile.uid; } });
       save();
       return Promise.resolve();
+    },
+
+    // ---------- linked sponsor board ----------
+    // On this device, live boards sync between browser tabs through localStorage events,
+    // so the sponsor and Soldier screens can be tested side by side.
+
+    createLive: function (fields) {
+      var code = randomCode();
+      writeLive(code, Object.assign({ code: code, sponsorUid: db.profile.uid, createdAt: Date.now() }, fields));
+      return Promise.resolve(code);
+    },
+
+    getLive: function (code) { return Promise.resolve(readLive(code)); },
+
+    updateLive: function (code, fields) {
+      var cur = readLive(code);
+      if (!cur) return Promise.reject(new Error('not found'));
+      writeLive(code, Object.assign(cur, fields));
+      return Promise.resolve();
+    },
+
+    watchLive: function (code, cb) {
+      var key = 'bwc.live.' + code;
+      var handler = function (e) { if (e.key === key) cb(readLive(code)); };
+      window.addEventListener('storage', handler);
+      liveListeners.push({ code: code, cb: cb });
+      setTimeout(function () { cb(readLive(code)); }, 0);
+      return function () {
+        window.removeEventListener('storage', handler);
+        liveListeners = liveListeners.filter(function (l) { return l.cb !== cb; });
+      };
     },
 
     // ---------- admin-entered study texts (e.g. the Army Song) ----------

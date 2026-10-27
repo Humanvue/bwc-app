@@ -40,6 +40,12 @@ Gemini through Firebase AI Logic (`public/js/ai.js`, model and SDK version under
 raise a grade, never lower one; if it's unavailable, keyword grading stands. Only the question, reference answer
 and the Soldier's words are sent. Admins can check it under Me → Admin → Test AI grading.
 
+**Linked sponsor board** (Phase 3; sponsors: Me → Run a sponsor board; Soldiers: Mock Board → Join a sponsor
+board). The sponsor's phone creates a 4-letter code and shows the answer key, citation, timer, GO/NO-GO, format
+checks, and final bearing/confidence/notes. The Soldier's device shows the panel and reads questions aloud, with
+no answer key. Both stay in sync through `liveBoards/{code}` in Firestore (live listeners); only the sponsor and
+that Soldier can read it, and only the sponsor can score. The Soldier earns 5 points per GO plus 20 for finishing.
+
 **Weapons and WTBD drills** (Phase 3; Home → Weapons or WTBDs). 14 put-the-steps-in-order drills (M4 clear,
 disassemble, assemble, function check, cycle of function, immediate action for M4/M249/M240/pistol, pistol unload,
 masking, CAT tourniquet, MARCH, 25 m zero), 5 match-the-format drills (9-line MEDEVAC, MEDEVAC precedence, SALUTE,

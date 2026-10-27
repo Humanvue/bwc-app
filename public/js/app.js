@@ -523,7 +523,8 @@
       '<div class="card"><div class="row"><div class="avatar">' + esc(initials(S.user.name)) + '</div><div class="grow"><div class="display" style="font-size:20px">' +
       esc(displayName(S.user)) + '</div><div class="muted small">' + esc(S.user.unit || '') + ' · ' + esc(S.user.role || 'soldier') + '</div></div>' +
       '<div class="rank-badge">' + esc(r.rank.id) + '</div></div></div>' +
-      (isLeader() || S.user.role === 'sponsor' ? '<a class="btn" href="#/team">' + icon('user', 18) + (S.user.role === 'sponsor' ? 'My competitor' : 'Competitors') + '</a>' : '') +
+      (isLeader() || S.user.role === 'sponsor' ? '<a class="btn" href="#/team">' + icon('user', 18) + (S.user.role === 'sponsor' ? 'My competitor' : 'Competitors') + '</a>' +
+        '<a class="btn ghost" href="#/sponsorboard">' + icon('mic', 18) + 'Run a sponsor board</a>' : '') +
       (isLeader() ? '<a class="btn ghost" href="#/admin">' + icon('settings', 18) + (isAdmin() ? 'Admin' : 'Leader tools') + '</a>' : '') +
       '<form class="card" id="me-form"><h2>Profile</h2>' +
       '<label class="field">Name<input class="input" id="me-name" maxlength="40" value="' + esc(S.user.name || '') + '"></label>' +
@@ -650,6 +651,7 @@
     if (BWC.Board) BWC.Board.stop();
     if (BWC.Audio) BWC.Audio.stop();
     if (BWC.LandNav) BWC.LandNav.stop();
+    if (BWC.SponsorBoard) BWC.SponsorBoard.stop();
     actions = {};
     applyTheme();
     if (Store.cloud && !S.user) return viewSignIn();
@@ -677,6 +679,8 @@
       case 'audio': return BWC.Audio.view(parts[1]);
       case 'landnav': return BWC.LandNav.view(parts[1]);
       case 'drills': return BWC.Drills.view(parts[1], parts[2]);
+      case 'sponsorboard': return parts[1] ? BWC.SponsorBoard.sponsor(parts[1].toUpperCase()) : BWC.SponsorBoard.setup();
+      case 'linked': return BWC.SponsorBoard.join(parts[1]);
       case 'creeds': return BWC.Creeds.view();
       case 'creed': return BWC.Creeds.view(parts[1], parts[2]);
       case 'squad': return parts[1] === 'new' ? BWC.Discussion.newPost(parts[2]) : BWC.Discussion.list(parts[1]);

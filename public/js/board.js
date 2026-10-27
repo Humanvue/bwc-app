@@ -110,6 +110,7 @@
       (canSpeak ? '<div class="row wrap"><label class="row small grow"><input type="checkbox" id="bd-aloud" checked> Read questions aloud</label>' + BWC.Speech.testButton('bd-test') + '</div>' +
         '<p class="muted small">' + u.esc(BWC.Speech.TIP) + '</p>' : '') +
       '<button class="btn" type="submit">' + u.icon('mic', 20) + 'Knock and enter</button>' +
+      '<a class="btn ghost" href="#/linked">Join a sponsor board (code from your sponsor)</a>' +
       '<p class="muted small">' + (left ? 'Earns points: ' + BC.points.right + ' per right answer, ' + BC.points.partial + ' if partly right, ' + BC.points.format +
         ' for correct format, +' + BC.points.pass + ' for passing (' + BC.passPct + '%). ' + left + ' scored board' + (left === 1 ? '' : 's') + ' left today.'
         : 'You have sat today\'s ' + BC.boardsPerDayForPoints + ' scored boards. This one is practice only.') + '</p></form>';
@@ -364,7 +365,7 @@
   }
 
   BWC.Board = {
-    view: view, stop: stop,
+    view: view, stop: stop, panel: panel,
     // Shared with the creed trainer: dictate into a textarea with a toggle button.
     canListen: !!Rec, listen: startListening, stopListening: stopListening,
     isListening: function () { return !!rec; }

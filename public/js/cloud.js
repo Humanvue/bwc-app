@@ -200,6 +200,35 @@
     });
   };
 
+  // ---------- linked sponsor board ----------
+  //   liveBoards/{code}   sponsorUid, soldierUid, question ids, seats, phase, current index,
+  //                       timer start, sponsor's GO/NO-GO per question. Readable only by the two of them.
+
+  function liveRef(code) { return db.collection('liveBoards').doc(code); }
+
+  Store.createLive = function (fields) {
+    var letters = 'ABCDEFGHJKLMNPQRSTUVWXYZ';
+    function attempt(tries) {
+      var code = '';
+      for (var i = 0; i < 4; i++) code += letters[Math.floor(Math.random() * letters.length)];
+      var data = Object.assign({ code: code, sponsorUid: profile.uid, createdAt: Date.now() }, fields);
+      // create() fails if the code is already taken (the rules forbid overwriting), so retry.
+      return liveRef(code).set(data).then(function () { return code; })
+        .catch(function (e) { if (tries > 0) return attempt(tries - 1); throw e; });
+    }
+    return attempt(5);
+  };
+
+  Store.getLive = function (code) {
+    return liveRef(code).get().then(function (s) { return s.exists ? s.data() : null; }).catch(function () { return null; });
+  };
+
+  Store.updateLive = function (code, fields) { return liveRef(code).update(fields); };
+
+  Store.watchLive = function (code, cb) {
+    return liveRef(code).onSnapshot(function (s) { cb(s.exists ? s.data() : null); }, function () { cb(null); });
+  };
+
   // ---------- admin-entered study texts ----------
   //   texts/{id}   name, source, text (admins write; everyone approved reads)
 

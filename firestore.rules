@@ -79,6 +79,21 @@ service cloud.firestore {
       }
     }
 
+    // Linked sponsor board: a sponsor (or leader) runs a board on their phone while the Soldier sits it
+    // on their own device. Only those two (and leaders) can see it. The Soldier may only mark that
+    // they joined; every score comes from the sponsor.
+    match /liveBoards/{code} {
+      allow read: if signedIn() && (resource.data.sponsorUid == me() || resource.data.soldierUid == me() || isLeader());
+      allow create: if approved() && request.resource.data.sponsorUid == me()
+        && (isLeader() || sponsors(request.resource.data.soldierUid))
+        && request.resource.data.qids.size() <= 20;
+      allow update: if approved() && (
+        (resource.data.sponsorUid == me() && request.resource.data.sponsorUid == me()
+          && request.resource.data.soldierUid == resource.data.soldierUid)
+        || (resource.data.soldierUid == me() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['joined'])));
+      allow delete: if signedIn() && resource.data.sponsorUid == me();
+    }
+
     // Study texts admins add for the creed trainer (e.g. the Army Song from an official source).
     match /texts/{id} {
       allow read: if approved();
