@@ -9,3 +9,6 @@ window.BWC_FIREBASE_CONFIG = {
   messagingSenderId: '852055747337',
   appId: '1:852055747337:web:e313dfd54afa90a02901d8'
 };
+
+// App Check (reCAPTCHA / Fraud Defense key ID). Public by design; it only works on the app's own domains.
+window.BWC_APPCHECK_SITE_KEY = '6LfhSwIuAAAAAMXONzVABrTKilC2pLS5lpgIVdrc';

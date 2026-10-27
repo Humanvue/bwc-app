@@ -556,6 +556,19 @@
   function viewAdmin() {
     if (!isLeader()) return viewNotFound();
     app.innerHTML = header(isAdmin() ? 'Admin' : 'Leader tools', '#/me') +
+      (isAdmin() ? '<div class="card"><h2>AI grading</h2><p class="muted small">Sends one sample board answer, worded differently from the reference, to the AI check.</p>' +
+        '<button type="button" class="btn ghost" data-act="' + act('aitest', function (el) {
+          var out = document.getElementById('ai-test-out');
+          if (!BWC.AI.available()) { out.textContent = 'AI grading is off here (demo mode or not configured).'; return; }
+          el.disabled = true;
+          out.textContent = 'Asking the AI…';
+          var q = Q.filter(function (x) { return x.id === 'a-009'; })[0] || Q[0];
+          var t0 = Date.now();
+          BWC.AI.grade(q, 'Sergeant Major, leadership is influencing people through purpose, direction and motivation so the mission gets done and the organization gets better.')
+            .then(function (r) { out.textContent = 'Working. Verdict: ' + r.verdict + ' (' + ((Date.now() - t0) / 1000).toFixed(1) + 's). "' + r.reason + '"'; })
+            .catch(function (e) { out.textContent = 'Not working yet: ' + (e && e.message ? e.message : e); })
+            .then(function () { el.disabled = false; });
+        }) + '">Test AI grading</button><p class="small" id="ai-test-out"></p></div>' : '') +
       (Store.cloud ? '<div class="card"><h2>People</h2><div id="people" class="scroll-x"><p class="muted">Loading…</p></div></div>' : '') +
       '<div class="card"><h2>Question error reports</h2><div id="reports"><p class="muted">Loading…</p></div></div>' +
       '<div class="card"><h2>Question bank</h2><div class="list">' + C.topics.map(function (t) {

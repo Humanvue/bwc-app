@@ -127,6 +127,15 @@
       ]
     },
 
+    // AI second opinion on board answers (Firebase AI Logic, Gemini Developer API free tier).
+    // Keyword grading runs first; only answers it didn't mark right go to the AI.
+    ai: {
+      enabled: true,
+      model: 'gemini-3.8-flash',
+      sdkVersion: '13.0.0',
+      timeoutMs: 12000
+    },
+
     themes: [
       { id: 'black-gold', name: 'Black and Gold' },
       { id: 'desert-storm', name: 'Desert Storm' },

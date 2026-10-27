@@ -275,9 +275,30 @@
   // ---------- results ----------
 
   function finish() {
-    var u = U();
     B.done = true;
     B.grades = B.list.map(function (q, i) { return G.grade(B.answers[i] || '', q, BC.seats[B.seats[i]].title); });
+    // AI second opinion for answers the keyword check didn't mark right (worded differently).
+    var todo = B.list.map(function (q, i) { return i; }).filter(function (i) { return !B.grades[i].content && !B.grades[i].blank; });
+    if (!todo.length || !BWC.AI || !BWC.AI.available()) { score(); return; }
+    app().innerHTML = '<div class="card"><h2>The board is reviewing your answers…</h2><p class="muted">Checking ' + todo.length +
+      ' answer' + (todo.length === 1 ? '' : 's') + ' worded differently from the reference.</p></div>';
+    var left = todo.length;
+    var failed = 0;
+    todo.forEach(function (i) {
+      BWC.AI.grade(B.list[i], B.answers[i]).then(function (r) {
+        var g = B.grades[i];
+        g.ai = r;
+        // The AI can raise a grade, never lower one.
+        if (r.verdict === 'right') { g.content = true; g.partial = false; g.correct = true; }
+        else if (r.verdict === 'partial' && !g.content) { g.partial = true; }
+      }).catch(function () { failed++; }).then(function () {
+        if (--left === 0) { B.aiFailed = failed; score(); }
+      });
+    });
+  }
+
+  function score() {
+    var u = U();
     var right = B.grades.filter(function (g) { return g.content; }).length;
     var partial = B.grades.filter(function (g) { return g.partial; }).length;
     var formatted = B.grades.filter(function (g) { return g.address && g.restate; }).length;
@@ -330,14 +351,16 @@
           '<div class="small">You said: "' + u.esc(B.answers[i] || '(no answer)') + '"</div>' +
           '<div class="row wrap">' + check(g.address, 'Addressed ' + title) + check(g.restate, 'Restated the question') +
           (g.fillers ? '<span class="chip">' + g.fillers + ' filler word' + (g.fillers === 1 ? '' : 's') + '</span>' : '') + '</div>' +
-          (g.miss.length && !g.content ? '<div class="small">Missing: ' + u.esc(g.miss.join(', ')) + '</div>' : '') +
+          (g.ai ? '<div class="small ai-note"><span class="chip">AI check: ' + u.esc(g.ai.verdict) + '</span> ' + u.esc(g.ai.reason) + '</div>' :
+            (g.miss.length && !g.content ? '<div class="small">Missing: ' + u.esc(g.miss.join(', ')) + '</div>' : '')) +
           '<div><strong>Answer:</strong> ' + u.esc(q.answer) + '</div>' +
           '<div class="cite"><strong>' + u.esc(q.pub) + '</strong>' + (q.para ? ', para ' + u.esc(q.para) : '') + '</div>' +
           '<div class="row wrap">' + u.sourceLink(q.pub, q.page, 'Open at this page') +
           '<button type="button" class="btn small ghost" data-act="discuss" data-arg="' + u.esc(q.id) + '">' + u.icon('chat', 18) + 'Discuss</button>' +
           '<button type="button" class="btn small ghost" data-act="report" data-arg="' + u.esc(q.id) + '">' + u.icon('alert', 18) + 'Report an error</button></div></div>';
       }).join('') +
-      '<p class="muted small">Grading checks for the key points of each answer. If a correct answer in different words was marked wrong, use Report an error so a leader can add it.</p>' +
+      (B.aiFailed ? '<p class="muted small">The AI check couldn\'t run for ' + B.aiFailed + ' answer' + (B.aiFailed === 1 ? '' : 's') + '; those were graded on key words only.</p>' : '') +
+      '<p class="muted small">Answers are checked for key points, and answers in different words get an AI second opinion. If a correct answer was still marked wrong, use Report an error so a leader can fix it.</p>' +
       '<div class="row wrap"><a class="btn grow" href="#/board">Sit another board</a><a class="btn ghost grow" href="#/">Home</a></div>';
     if (!B.announced) {
       B.announced = true;

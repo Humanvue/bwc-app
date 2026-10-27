@@ -19,6 +19,12 @@
   var auth, db;
   try {
     fb.initializeApp(config);
+    // App Check proves requests come from this app on its own domains. On localhost, a debug
+    // token is printed to the console; register it under App Check → Apps → Manage debug tokens.
+    if (window.BWC_APPCHECK_SITE_KEY && fb.appCheck) {
+      if (location.hostname === 'localhost') self.FIREBASE_APPCHECK_DEBUG_TOKEN = true;
+      fb.appCheck().activate(new fb.appCheck.ReCaptchaEnterpriseProvider(window.BWC_APPCHECK_SITE_KEY), true);
+    }
     auth = fb.auth();
     db = fb.firestore();
   } catch (e) {

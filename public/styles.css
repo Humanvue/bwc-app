@@ -278,6 +278,8 @@ button.chip-link:disabled { opacity: 0.4; cursor: default; }
 .ln-result.good { background: var(--good); color: var(--on-status); }
 .ln-result.bad { background: var(--bad); color: var(--on-status); }
 
+.ai-note { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .swatch { min-height: 64px; border-radius: 14px; border: 3px solid transparent; cursor: pointer; padding: 8px; text-align: left; font-weight: 700; font-size: 13px; display: flex; align-items: flex-end; }
 .swatch.on { border-color: var(--text); }
