@@ -273,7 +273,9 @@
           (t.soon ? '<span class="soon">' + esc(t.soon) + '</span>' :
             '<span class="stat">' + esc(t.stat.text) + '</span><span class="tbar"><span style="width:' + t.stat.pct + '%"></span></span>') + '</a>';
       }).join('') + '</div>' +
+      (isLeader() || S.user.role === 'sponsor' ? '<div class="card" id="alerts-card"><h2>Readiness alerts</h2><p class="muted small">Checking your competitors…</p></div>' : '') +
       '<div class="card" id="lb-card"><div class="row"><h2 class="grow">Leaderboard</h2><a class="link-btn" href="#/leaderboard">See all</a></div><p class="muted small">Loading…</p></div>';
+    if (isLeader() || S.user.role === 'sponsor') BWC.Alerts.renderCard();
 
     Store.leaderboard().then(function (rows) {
       var el = document.getElementById('lb-card');

@@ -40,6 +40,12 @@ Gemini through Firebase AI Logic (`public/js/ai.js`, model and SDK version under
 raise a grade, never lower one; if it's unavailable, keyword grading stands. Only the question, reference answer
 and the Soldier's words are sent. Admins can check it under Me → Admin → Test AI grading.
 
+**Readiness alerts** (Phase 4; sponsors' and leaders' Home screen and competitor roster). Computed in the app from
+each competitor's records (no paid push service): never started, no activity in 7+ days (4+ is a warning), behind on
+Daily 10 or no workouts by Thursday, a topic stuck under 60% that hasn't improved in two weeks, no board in 14+ days
+within 60 days of the next competition, and screenshots to verify. Snooze hides an alert for 3 days on that device.
+Rules in `public/js/alerts.js`, tested by `node tools/test_alerts.js`.
+
 **Award and NCOER drafts** (Phase 4; competitor page → Award and NCOER drafts, sponsors and leaders only). Builds
 DA Form 638 achievement bullets and a proposed citation, and NCOER bullets (SGT and above) grouped by part IV block,
 only from the Soldier's records dated inside the chosen rating period. Follows AR 623-3: bullets start with an action

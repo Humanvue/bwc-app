@@ -81,7 +81,14 @@
         return;
       }
       return Promise.all(people.map(function (p) {
-        return loadMember(p.uid).then(function (m) { return { p: p, s: summarize(m) }; })
+        return loadMember(p.uid).then(function (m) {
+          var names = {};
+          C.topics.forEach(function (t) { names[t.id] = t.name; });
+          var next = P.nextCompetition();
+          var alerts = BWC.Alerts.check(m, { now: Date.now(), weeklyGoal: C.points.weeklyGoalDays, topicNames: names,
+            daysToCompetition: next ? (next.days != null ? next.days : next.dated ? next.dated.days : null) : null });
+          return { p: p, s: summarize(m), alerts: alerts.filter(function (a) { return a.level !== 'info'; }) };
+        })
           .catch(function () { return { p: p, s: null }; });
       })).then(function (rows) {
         rows.sort(function (a, b) { return (b.p.points || 0) - (a.p.points || 0); });
@@ -96,6 +103,7 @@
               '<div class="display" style="font-size:19px">' + u.esc(u.displayName(p)) + '</div>' +
               '<div class="muted small">' + u.esc(p.unit || '') + ' · app rank ' + u.esc(P.rankFor(p.points || 0).rank.id) + ' · ' + (p.points || 0).toLocaleString() + ' pts · active ' + ago(s.last) + '</div></div>' +
               (s.quiet ? '<span class="chip bad">Quiet</span>' : '') + (s.pendingShots ? '<span class="chip">' + s.pendingShots + ' to verify</span>' : '') + '</div>' +
+              (r.alerts && r.alerts.length ? '<div class="small alert-line">' + r.alerts.map(function (a) { return u.esc(a.text); }).join(' · ') + '</div>' : '') +
               '<div class="row wrap small">' +
               '<span class="chip">Knowledge ' + (s.knowledge == null ? '–' : s.knowledge + '%') + '</span>' +
               '<span class="chip">Best board ' + (s.bestBoard == null ? '–' : s.bestBoard + '%') + '</span>' +
