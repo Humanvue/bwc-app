@@ -1,0 +1,19 @@
+{
+  "name": "bwc-app",
+  "version": "1.0.0",
+  "description": "TY27 Best Warrior Competition study and training app",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "serve": "python3 -m http.server 8765 --directory public",
+    "questions": "python3 -I tools/build_questions.py \"$HOME/Downloads/TY27 BWC Source Docs\"",
+    "deploy": "firebase deploy"
+  },
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "devDependencies": {
+    "firebase-tools": "^15.34.1"
+  },
+  "private": true
+}

@@ -1,0 +1,1886 @@
+[
+  {
+    "id": "b-001",
+    "topic": "rifle",
+    "level": 1,
+    "q": "What is Rule 1 of the rules of firearms safety?",
+    "answer": "Treat every weapon as if it is loaded",
+    "wrong": [
+      "Keep the weapon on safe at all times",
+      "Always clear the weapon before handing it off",
+      "Know your target and what is beyond it"
+    ],
+    "keywords": [
+      "loaded",
+      "every weapon"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "1-7",
+    "page": 23,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "Rule 1: Treat Every Weapon as if it is Loaded",
+    "why": "TC 3-22.9 lists treating every weapon as loaded as the first rule of firearms safety."
+  },
+  {
+    "id": "b-002",
+    "topic": "rifle",
+    "level": 2,
+    "q": "What four colors are used for weapon safety status?",
+    "answer": "Green, amber, red, and black",
+    "wrong": [
+      "Green, yellow, red, and white",
+      "Blue, green, amber, and red",
+      "White, green, yellow, and black"
+    ],
+    "keywords": [
+      "green",
+      "amber",
+      "red",
+      "black"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "1-15",
+    "page": 24,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "It is a standard code that uses common colors (green, amber, red, and black) to represent the level of readiness for a given weapon.",
+    "why": "Weapon safety status uses four colors from fully safe (green) to not safe (black)."
+  },
+  {
+    "id": "b-003",
+    "topic": "rifle",
+    "level": 3,
+    "q": "What is the condition of an M4 in weapon safety status red?",
+    "answer": "On SAFE, magazine locked in the well, round in the chamber, bolt forward",
+    "wrong": [
+      "On SEMI, no magazine, chamber empty, bolt forward",
+      "On SAFE, no magazine, chamber empty, bolt locked to the rear",
+      "On SAFE, magazine inserted, chamber empty, bolt forward"
+    ],
+    "keywords": [
+      "safe",
+      "magazine",
+      "round in the chamber",
+      "bolt forward"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "1-18",
+    "page": 25,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "Red, “Marginally Safe” – the fire selector switch is set to SAFE, the magazine is locked in the magazine well, a round is in the chamber",
+    "why": "Red means the weapon is loaded with a round chambered but the selector is still on SAFE."
+  },
+  {
+    "id": "b-004",
+    "topic": "rifle",
+    "level": 2,
+    "q": "What does the weapons control status WEAPONS TIGHT mean?",
+    "answer": "Engage only if the target is positively identified as enemy",
+    "wrong": [
+      "Engage only if engaged or ordered to engage",
+      "Engage targets not positively identified as friendly",
+      "Do not engage under any circumstances"
+    ],
+    "keywords": [
+      "positively identified",
+      "enemy"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "Table 1-2",
+    "page": 30,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "WEAPONS TIGHT Engage only if target is positively identified as enemy.",
+    "why": "Weapons tight sits between hold (only if engaged or ordered) and free (anything not identified as friendly)."
+  },
+  {
+    "id": "b-005",
+    "topic": "rifle",
+    "level": 1,
+    "q": "What are the eight phases of the cycle of function for the M4 in order?",
+    "answer": "Feeding, chambering, locking, firing, unlocking, extracting, ejecting, cocking",
+    "wrong": [
+      "Chambering, feeding, firing, locking, extracting, unlocking, cocking, ejecting",
+      "Feeding, chambering, firing, locking, ejecting, extracting, unlocking, cocking",
+      "Cocking, feeding, chambering, locking, firing, extracting, unlocking, ejecting"
+    ],
+    "keywords": [
+      "feeding",
+      "chambering",
+      "locking",
+      "firing",
+      "cocking"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "2-9",
+    "page": 38,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "The phases of the cycle of function in order are— Feeding. Chambering. Locking. Firing. Unlocking. Extracting. Ejecting. Cocking.",
+    "why": "TC 3-22.9 lists the eight phases in this exact order."
+  },
+  {
+    "id": "b-006",
+    "topic": "rifle",
+    "level": 2,
+    "q": "What type of operating system do the M4 and M16 use?",
+    "answer": "A direct impingement gas operating system",
+    "wrong": [
+      "A short-stroke gas piston system",
+      "A recoil-operated system",
+      "A blowback-operated system"
+    ],
+    "keywords": [
+      "direct impingement",
+      "gas"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "2-10",
+    "page": 38,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "The M4- and M16-series weapons use a direct impingement gas operating system.",
+    "why": "Gas from the fired cartridge directly moves the assemblies to complete the cycle of function."
+  },
+  {
+    "id": "b-007",
+    "topic": "rifle",
+    "level": 2,
+    "q": "What is the barrel length of the M4 carbine?",
+    "answer": "14.5 inches",
+    "wrong": [
+      "16 inches",
+      "20 inches",
+      "11.5 inches"
+    ],
+    "keywords": [
+      "14.5"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "Table 2-1",
+    "page": 38,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "M4 SAFE SEMI BURST Collapsible 14.5 inches",
+    "why": "Table 2-1 lists the M4 and M4A1 barrel at 14.5 inches and the M16 series at 20 inches."
+  },
+  {
+    "id": "b-008",
+    "topic": "rifle",
+    "level": 1,
+    "q": "What are the four functional elements of the shot process?",
+    "answer": "Stability, aim, control, and movement",
+    "wrong": [
+      "Breathing, aim, trigger squeeze, and follow-through",
+      "Steady position, aiming, breath control, and trigger squeeze",
+      "Stability, sight picture, recoil, and reload"
+    ],
+    "keywords": [
+      "stability",
+      "aim",
+      "control",
+      "movement"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "5-11",
+    "page": 85,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "A accurate shot, regardless of weapon system, requires the Soldier to establish, maintain, and sustain— Stability",
+    "why": "Paragraph 5-11 lists stability, aim, control, and movement as the interdependent functional elements."
+  },
+  {
+    "id": "b-009",
+    "topic": "rifle",
+    "level": 2,
+    "q": "What are the steps of immediate action on an M4 after hearing a click?",
+    "answer": "Tap the bottom of the magazine, pull and release the charging handle, reassess",
+    "wrong": [
+      "Remove the magazine, lock the bolt to the rear, inspect the chamber",
+      "Pull the charging handle, tap the forward assist, fire",
+      "Place the weapon on safe, remove the magazine, clear the weapon"
+    ],
+    "keywords": [
+      "tap",
+      "charging handle",
+      "reassess"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "8-35",
+    "page": 149,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "Taps the bottom of the magazine firmly. Rapidly pulls the charging handle and releases to extract / eject the previous cartridge",
+    "why": "Immediate action is a fast tap, rack, and reassess when the hammer falls with a click."
+  },
+  {
+    "id": "b-010",
+    "topic": "rifle",
+    "level": 3,
+    "q": "When is remedial action executed on the M4?",
+    "answer": "When immediate action fails after two attempts, the trigger will not squeeze, or the trigger feels like mush",
+    "wrong": [
+      "After the first failure to fire",
+      "Only when the bolt locks to the rear on an empty magazine",
+      "Any time the weapon is hot from sustained firing"
+    ],
+    "keywords": [
+      "two attempts",
+      "mush",
+      "trigger"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "8-36",
+    "page": 149,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "Immediate action does not work after two attempts. The trigger refuses to be squeezed. The trigger feels like “mush” when squeezed.",
+    "why": "These three symptoms mean a problem immediate action cannot fix."
+  },
+  {
+    "id": "b-011",
+    "topic": "rifle",
+    "level": 2,
+    "q": "What is the zero distance for the Army standard zero?",
+    "answer": "300 meters",
+    "wrong": [
+      "25 meters",
+      "100 meters",
+      "500 meters"
+    ],
+    "keywords": [
+      "300"
+    ],
+    "pub": "TC 3-22.9",
+    "para": "B-9",
+    "page": 183,
+    "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+    "quote": "again at the zero distance (300 meters for the Army standard zero).",
+    "why": "The bullet crosses the line of sight near 25 meters and again at the 300 meter standard zero."
+  },
+  {
+    "id": "b-012",
+    "topic": "pistol",
+    "level": 1,
+    "q": "What cartridge is the M9 pistol chambered for?",
+    "answer": "The 9 by 19 mm NATO cartridge",
+    "wrong": [
+      "The .45 caliber ACP cartridge",
+      "The 5.56 mm NATO cartridge",
+      "The 9 by 17 mm cartridge"
+    ],
+    "keywords": [
+      "9",
+      "19",
+      "nato"
+    ],
+    "pub": "TC 3-23.35",
+    "para": "2-1",
+    "page": 25,
+    "file": "TC 3-23.35 - Pistol (C2).pdf",
+    "quote": "double- and single-action weapon that is chambered for the 9- by 19-mm (millimeter) NATO cartridge.",
+    "why": "TC 3-23.35 describes the M9 as chambered for the 9 x 19 mm NATO round."
+  },
+  {
+    "id": "b-013",
+    "topic": "pistol",
+    "level": 2,
+    "q": "How is the M9 service pistol described in terms of operation?",
+    "answer": "Semiautomatic, magazine-fed, recoil-operated, double- and single-action",
+    "wrong": [
+      "Fully automatic, belt-fed, gas-operated",
+      "Semiautomatic, magazine-fed, gas-operated, striker-fired",
+      "Single-action only, revolver, manually operated"
+    ],
+    "keywords": [
+      "semiautomatic",
+      "magazine-fed",
+      "recoil-operated"
+    ],
+    "pub": "TC 3-23.35",
+    "para": "2-1",
+    "page": 25,
+    "file": "TC 3-23.35 - Pistol (C2).pdf",
+    "quote": "The M9 service pistol is a semiautomatic, magazine-fed, recoil-operated, double- and single-action weapon",
+    "why": "The M9 uses recoil to operate and can fire in double or single action."
+  },
+  {
+    "id": "b-014",
+    "topic": "pistol",
+    "level": 2,
+    "q": "What happens when you fire the M9 in double action?",
+    "answer": "Pulling the trigger cocks the hammer and immediately releases it",
+    "wrong": [
+      "You must manually cock the hammer before each shot",
+      "The trigger fires two rounds per pull",
+      "The slide must be racked before every shot"
+    ],
+    "keywords": [
+      "trigger",
+      "cock the hammer",
+      "releases"
+    ],
+    "pub": "TC 3-23.35",
+    "para": "2-2",
+    "page": 25,
+    "file": "TC 3-23.35 - Pistol (C2).pdf",
+    "quote": "For double action, pulling the trigger will cock the hammer and immediately release it, discharging the first chambered round.",
+    "why": "In double action the trigger pull does both jobs, cocking and releasing the hammer."
+  },
+  {
+    "id": "b-015",
+    "topic": "pistol",
+    "level": 1,
+    "q": "What three-word phrase describes pistol immediate action for a failure to fire?",
+    "answer": "Tap, rack, bang",
+    "wrong": [
+      "Slap, pull, observe",
+      "Drop, lock, clear",
+      "Tap, rack, assess"
+    ],
+    "keywords": [
+      "tap",
+      "rack",
+      "bang"
+    ],
+    "pub": "TC 3-23.35",
+    "para": "D-26",
+    "page": 131,
+    "file": "TC 3-23.35 - Pistol (C2).pdf",
+    "quote": "If your pistol experiences a failure to fire, conduct tap, rack, bang:",
+    "why": "Drill I in appendix D teaches tap, rack, bang for a failure to fire."
+  },
+  {
+    "id": "b-016",
+    "topic": "pistol",
+    "level": 3,
+    "q": "What is the first step of M9 immediate action in paragraph 8-14?",
+    "answer": "Ensure the decocking lever is in the FIRE position",
+    "wrong": [
+      "Tap the baseplate of the magazine",
+      "Rack the slide",
+      "Lock the slide to the rear"
+    ],
+    "keywords": [
+      "decocking lever",
+      "fire"
+    ],
+    "pub": "TC 3-23.35",
+    "para": "8-14",
+    "page": 96,
+    "file": "TC 3-23.35 - Pistol (C2).pdf",
+    "quote": "1. Ensure the decocking lever on the pistol is in the FIRE position.",
+    "why": "The decocking lever must be on FIRE before the rest of immediate action will work."
+  },
+  {
+    "id": "b-017",
+    "topic": "pistol",
+    "level": 2,
+    "q": "If your pistol malfunctions with a target less than 25 meters away, what should you do?",
+    "answer": "Transition to a secondary weapon",
+    "wrong": [
+      "Perform remedial action in the open",
+      "Call for a cease fire",
+      "Throw the pistol and take cover"
+    ],
+    "keywords": [
+      "secondary weapon"
+    ],
+    "pub": "TC 3-23.35",
+    "para": "8-16",
+    "page": 97,
+    "file": "TC 3-23.35 - Pistol (C2).pdf",
+    "quote": "Targets less than 25 meters. Soldier transitions to secondary weapon for the engagement.",
+    "why": "At close range the fastest way to defeat the threat is a secondary weapon."
+  },
+  {
+    "id": "b-018",
+    "topic": "machine-guns",
+    "level": 1,
+    "q": "What is the maximum effective range of the M240B on a tripod against a point target?",
+    "answer": "800 meters",
+    "wrong": [
+      "600 meters",
+      "1,100 meters",
+      "1,800 meters"
+    ],
+    "keywords": [
+      "800"
+    ],
+    "pub": "TC 3-22.240",
+    "para": "Table 2-1",
+    "page": 21,
+    "file": "TC 3-22.240 - Medium Machine Gun M240 (Apr 2017).pdf",
+    "quote": "Maximum effective point 800 meters M122A1 tripod or M192 tripod (M240B/M240L).",
+    "why": "Table 2-1 lists 800 meters for a point target and 1,800 meters for an area target on a tripod."
+  },
+  {
+    "id": "b-019",
+    "topic": "machine-guns",
+    "level": 2,
+    "q": "What is the maximum effective range of the M240B on a tripod against an area target?",
+    "answer": "1,800 meters",
+    "wrong": [
+      "800 meters",
+      "3,725 meters",
+      "1,100 meters"
+    ],
+    "keywords": [
+      "1800",
+      "1,800"
+    ],
+    "pub": "TC 3-22.240",
+    "para": "Table 2-1",
+    "page": 21,
+    "file": "TC 3-22.240 - Medium Machine Gun M240 (Apr 2017).pdf",
+    "quote": "Maximum effective area 1800 meters with M122A1 tripod or M192 tripod (M240B/M240L).",
+    "why": "The area target range on a tripod is 1,800 meters."
+  },
+  {
+    "id": "b-020",
+    "topic": "machine-guns",
+    "level": 2,
+    "q": "What is the sustained rate of fire for the M240 and how often do you change the barrel?",
+    "answer": "100 rounds per minute, change barrel every 10 minutes",
+    "wrong": [
+      "200 rounds per minute, change barrel every 2 minutes",
+      "50 rounds per minute, change barrel every hour",
+      "650 rounds per minute, change barrel every minute"
+    ],
+    "keywords": [
+      "100",
+      "10 minutes"
+    ],
+    "pub": "TC 3-22.240",
+    "para": "Table 2-1",
+    "page": 21,
+    "file": "TC 3-22.240 - Medium Machine Gun M240 (Apr 2017).pdf",
+    "quote": "Sustained 100 rounds per minute (four to five seconds between bursts). Change barrel every 10 minutes.",
+    "why": "Sustained fire is the slowest rate and needs the fewest barrel changes."
+  },
+  {
+    "id": "b-021",
+    "topic": "machine-guns",
+    "level": 2,
+    "q": "What is the rapid rate of fire for the M240 and how often do you change the barrel?",
+    "answer": "200 rounds per minute, change barrel every two minutes",
+    "wrong": [
+      "100 rounds per minute, change barrel every 10 minutes",
+      "400 rounds per minute, change barrel every minute",
+      "850 rounds per minute, change barrel every 5 minutes"
+    ],
+    "keywords": [
+      "200",
+      "two minutes"
+    ],
+    "pub": "TC 3-22.240",
+    "para": "Table 2-1",
+    "page": 21,
+    "file": "TC 3-22.240 - Medium Machine Gun M240 (Apr 2017).pdf",
+    "quote": "Rapid 200 rounds per minute (two to three seconds between bursts). Change barrel every two minutes.",
+    "why": "Rapid fire doubles the sustained rate and needs a barrel change every two minutes."
+  },
+  {
+    "id": "b-022",
+    "topic": "machine-guns",
+    "level": 2,
+    "q": "From what bolt position does the M249 fire, and what is its maximum rate of fire?",
+    "answer": "Open bolt, 850 rounds per minute",
+    "wrong": [
+      "Closed bolt, 650 rounds per minute",
+      "Open bolt, 450 rounds per minute",
+      "Closed bolt, 1,000 rounds per minute"
+    ],
+    "keywords": [
+      "open",
+      "850"
+    ],
+    "pub": "TC 3-22.249",
+    "para": "2-1",
+    "page": 19,
+    "file": "TC 3-22.249 - Light Machine Gun M249 (May 2017).pdf",
+    "quote": "fully automatic weapon that fires from the open -bolt position. The M249 has a maximum rate of fire of 850 rounds per minute.",
+    "why": "TC 3-22.249 describes the M249 as open-bolt with a maximum rate of 850 rounds per minute."
+  },
+  {
+    "id": "b-023",
+    "topic": "machine-guns",
+    "level": 1,
+    "q": "What is the maximum effective range of the M2 machine gun?",
+    "answer": "1,829 meters (2,000 yards)",
+    "wrong": [
+      "1,100 meters",
+      "800 meters",
+      "6,767 meters"
+    ],
+    "keywords": [
+      "1829",
+      "1,829",
+      "2000",
+      "2,000"
+    ],
+    "pub": "TC 3-22.50",
+    "para": "Table 2-1",
+    "page": 24,
+    "file": "TC 3-22.50 - Heavy Machine Gun M2 (May 2017).pdf",
+    "quote": "Maximum effective range (approximate) ............... 2,000 yards (1,829 meters)",
+    "why": "Table 2-1 lists about 1,829 meters; 6,767 meters is the maximum range."
+  },
+  {
+    "id": "b-024",
+    "topic": "machine-guns",
+    "level": 2,
+    "q": "What is the cyclic rate of the caliber .50 M2 machine gun?",
+    "answer": "450 to 600 rounds per minute",
+    "wrong": [
+      "650 to 950 rounds per minute",
+      "850 rounds per minute",
+      "40 rounds per minute"
+    ],
+    "keywords": [
+      "450",
+      "600"
+    ],
+    "pub": "TC 3-22.50",
+    "para": "8-23",
+    "page": 118,
+    "file": "TC 3-22.50 - Heavy Machine Gun M2 (May 2017).pdf",
+    "quote": "The cyclic rate of the caliber .50 machine gun is 450 to 600 rounds per minute.",
+    "why": "The M2 cyclic rate is 450 to 600 rounds per minute."
+  },
+  {
+    "id": "b-025",
+    "topic": "machine-guns",
+    "level": 3,
+    "q": "Over level ground, what is the maximum grazing fire for the M240 and M249, and for the M2?",
+    "answer": "600 meters for the M240 and M249, 700 meters for the M2",
+    "wrong": [
+      "800 meters for all three",
+      "1,000 meters for the M240 and M249, 1,500 meters for the M2",
+      "300 meters for the M240 and M249, 600 meters for the M2"
+    ],
+    "keywords": [
+      "600",
+      "700"
+    ],
+    "pub": "TC 3-22.249",
+    "para": "C-14",
+    "page": 137,
+    "file": "TC 3-22.249 - Light Machine Gun M249 (May 2017).pdf",
+    "quote": "the M240 series and the M249 can attain a maximum of 600 meters of grazing fire. The M2/M2A1 can attain a maximum of 700 meters.",
+    "why": "Grazing fire means the cone of fire stays within one meter of the ground."
+  },
+  {
+    "id": "b-026",
+    "topic": "qualification",
+    "level": 1,
+    "q": "How many target hits out of 40 are needed to qualify Expert with the rifle or carbine?",
+    "answer": "36 to 40",
+    "wrong": [
+      "38 to 40",
+      "33 to 40",
+      "30 to 35"
+    ],
+    "keywords": [
+      "36"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "Table 1-13",
+    "page": 53,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "EXPERT 27 to 30 36 to 40 36 to 40 180 to 200",
+    "why": "For rifle and carbine, Expert is 36 to 40 hits of 40 targets."
+  },
+  {
+    "id": "b-027",
+    "topic": "qualification",
+    "level": 2,
+    "q": "What score range earns Sharpshooter with the rifle or carbine?",
+    "answer": "30 to 35",
+    "wrong": [
+      "24 to 26",
+      "32 to 35",
+      "28 to 35"
+    ],
+    "keywords": [
+      "30",
+      "35"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "Table 1-13",
+    "page": 53,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "SHARPSHOOTER 24 to 26 30 to 35 32 to 35 160 to 179",
+    "why": "The rifle and carbine column shows 30 to 35 for Sharpshooter."
+  },
+  {
+    "id": "b-028",
+    "topic": "qualification",
+    "level": 1,
+    "q": "What is the minimum number of hits to qualify Marksman with the rifle or carbine?",
+    "answer": "23 hits out of 40",
+    "wrong": [
+      "21 hits out of 40",
+      "26 hits out of 40",
+      "28 hits out of 40"
+    ],
+    "keywords": [
+      "23"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "Table 1-13",
+    "page": 53,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "MARKSMAN 21 to 23 23 to 29 28 to 31 140 to 159",
+    "why": "Marksman for rifle and carbine is 23 to 29; fewer than 23 is unqualified."
+  },
+  {
+    "id": "b-029",
+    "topic": "qualification",
+    "level": 2,
+    "q": "How many hits out of 30 are needed for Expert on the pistol?",
+    "answer": "27 to 30",
+    "wrong": [
+      "24 to 26",
+      "28 to 30",
+      "25 to 30"
+    ],
+    "keywords": [
+      "27"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "Table 1-13",
+    "page": 53,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "EXPERT 27 to 30 36 to 40 36 to 40 180 to 200",
+    "why": "The pistol column of Table 1-13 shows 27 to 30 of 30 for Expert."
+  },
+  {
+    "id": "b-030",
+    "topic": "qualification",
+    "level": 2,
+    "q": "How long is a weapons qualification valid?",
+    "answer": "12 months",
+    "wrong": [
+      "6 months",
+      "24 months",
+      "Until the Soldier changes units"
+    ],
+    "keywords": [
+      "12 months"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "1-62",
+    "page": 53,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "Note. All qualifications and certifications are valid for 12 months.",
+    "why": "This period is called the qualification duration (QD)."
+  },
+  {
+    "id": "b-031",
+    "topic": "qualification",
+    "level": 2,
+    "q": "How many days must a Soldier wait to refire to increase their qualification rating?",
+    "answer": "45 days",
+    "wrong": [
+      "30 days",
+      "14 days",
+      "90 days"
+    ],
+    "keywords": [
+      "45"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "1-74",
+    "page": 55,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "Must wait 45 days to INCREASE their qualification rating.",
+    "why": "Refires sooner than that only earn the Marksman rating."
+  },
+  {
+    "id": "b-032",
+    "topic": "qualification",
+    "level": 3,
+    "q": "What is the 25-meter grouping standard for the rifle in Table IV?",
+    "answer": "Four of five rounds in two consecutive five-round groups inside a 6 MOA circle",
+    "wrong": [
+      "Five of five rounds in one group inside a 4 centimeter circle",
+      "Three of five rounds in three consecutive groups inside a 2 MOA circle",
+      "Four of six rounds in two groups inside a 10 MOA circle"
+    ],
+    "keywords": [
+      "four of five",
+      "two consecutive",
+      "6 moa"
+    ],
+    "pub": "TC 3-20.40",
+    "para": "Table E-14",
+    "page": 313,
+    "file": "TC 3-20.40 - Training and Qualification, Individual Weapons (C1).pdf",
+    "quote": "Successfully group by placing four of five rounds in two consecutive five-round shot groups within a 6 minute of angle (MOA) circle (threshold)",
+    "why": "6 MOA is the threshold; 4 MOA is the objective."
+  },
+  {
+    "id": "b-033",
+    "topic": "land-nav",
+    "level": 1,
+    "q": "What does the color black indicate on a military map?",
+    "answer": "Cultural (man-made) features such as buildings and roads",
+    "wrong": [
+      "Water features",
+      "Vegetation",
+      "Relief features and contour lines"
+    ],
+    "keywords": [
+      "man-made",
+      "cultural"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "3-7",
+    "page": 27,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "Black. Black indicates cultural (man-made) features such as buildings and roads, surveyed spot elevations, and all labels.",
+    "why": "Black shows man-made features, surveyed spot elevations, and labels."
+  },
+  {
+    "id": "b-034",
+    "topic": "land-nav",
+    "level": 1,
+    "q": "What does the color blue identify on a military map?",
+    "answer": "Water features such as lakes, swamps, rivers, and drainage",
+    "wrong": [
+      "Vegetation such as woods and orchards",
+      "Man-made features such as roads",
+      "Relief and contour lines"
+    ],
+    "keywords": [
+      "water"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "3-7",
+    "page": 27,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "Blue. Blue identifies hydrography or water features such as lakes, swamps, rivers, and drainage.",
+    "why": "Blue is hydrography, meaning water."
+  },
+  {
+    "id": "b-035",
+    "topic": "land-nav",
+    "level": 1,
+    "q": "What are the five major terrain features?",
+    "answer": "Hill, saddle, valley, ridge, and depression",
+    "wrong": [
+      "Hill, draw, spur, cliff, and saddle",
+      "Hill, ridge, valley, cut, and fill",
+      "Mountain, hill, draw, ridge, and depression"
+    ],
+    "keywords": [
+      "hill",
+      "saddle",
+      "valley",
+      "ridge",
+      "depression"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "9-26",
+    "page": 116,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "Major terrain features are hills, saddles, valleys, ridges, and depressions.",
+    "why": "Draws, spurs, and cliffs are minor terrain features."
+  },
+  {
+    "id": "b-036",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "What is a saddle?",
+    "answer": "A dip or low point between two areas of higher ground",
+    "wrong": [
+      "A low point surrounded by higher ground in all directions",
+      "A sloping line of high ground",
+      "A stream course less developed than a valley"
+    ],
+    "keywords": [
+      "dip",
+      "low point",
+      "higher ground"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "9-28",
+    "page": 117,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "A saddle is a dip or low point between two areas of higher ground.",
+    "why": "In a saddle there is high ground in two opposite directions."
+  },
+  {
+    "id": "b-037",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "How is a depression shown on a map?",
+    "answer": "Closed contour lines with tick marks pointing toward low ground",
+    "wrong": [
+      "Concentric circles with no tick marks",
+      "U-shaped contour lines pointing toward high ground",
+      "An hourglass shape"
+    ],
+    "keywords": [
+      "closed contour",
+      "tick marks",
+      "low ground"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "9-31",
+    "page": 118,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "On maps, depressions are represented by closed contour lines that have tick marks pointing toward low ground.",
+    "why": "The tick marks separate a depression from a hilltop."
+  },
+  {
+    "id": "b-038",
+    "topic": "land-nav",
+    "level": 1,
+    "q": "What is the military rule for reading a map grid coordinate?",
+    "answer": "Read right and up",
+    "wrong": [
+      "Read up and right",
+      "Read left and down",
+      "Read north then east"
+    ],
+    "keywords": [
+      "right",
+      "up"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "4-12",
+    "page": 48,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "Based on the military principle for reading maps RIGHT and UP, locations on the map can be determined by grid coordinates.",
+    "why": "Always read the easting (right) first, then the northing (up)."
+  },
+  {
+    "id": "b-039",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "A six-digit grid coordinate locates a point to the nearest how many meters?",
+    "answer": "100 meters",
+    "wrong": [
+      "10 meters",
+      "1,000 meters",
+      "1 meter"
+    ],
+    "keywords": [
+      "100"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "4-15",
+    "page": 49,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "Normally, grid coordinates are determined to the nearest 100 m (six digits) for reporting locations.",
+    "why": "Six digits is 100 meters and eight digits is 10 meters."
+  },
+  {
+    "id": "b-040",
+    "topic": "land-nav",
+    "level": 1,
+    "q": "What is an azimuth?",
+    "answer": "A horizontal angle measured clockwise from a north base line",
+    "wrong": [
+      "A vertical angle measured from the horizon",
+      "A horizontal angle measured counterclockwise from east",
+      "The distance between two grid lines"
+    ],
+    "keywords": [
+      "horizontal angle",
+      "clockwise",
+      "north"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "6-3",
+    "page": 70,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "An azimuth is defined as a horizontal angle measured clockwise from a north base line.",
+    "why": "The north base line can be true, magnetic, or grid north."
+  },
+  {
+    "id": "b-041",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "How do you find a back azimuth in degrees?",
+    "answer": "Add 180 if the azimuth is 180 or less; subtract 180 if it is 180 or more",
+    "wrong": [
+      "Always add 90 degrees",
+      "Subtract the G-M angle",
+      "Add 360 degrees"
+    ],
+    "keywords": [
+      "180",
+      "add",
+      "subtract"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "6-3",
+    "page": 71,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "To obtain a back azimuth from an azimuth, add 180 degrees if the azimuth is 180 degrees or less; subtract 180 degrees if the azimuth is 180 degrees or more.",
+    "why": "A back azimuth is the opposite direction, like an about face."
+  },
+  {
+    "id": "b-042",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "What are the three norths shown on a declination diagram?",
+    "answer": "True north, magnetic north, and grid north",
+    "wrong": [
+      "True north, polar north, and map north",
+      "Grid north, compass north, and star north",
+      "Magnetic north, geographic north, and military north"
+    ],
+    "keywords": [
+      "true",
+      "magnetic",
+      "grid"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "6-2",
+    "page": 69,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "The three base lines include true north, magnetic north, and grid north.",
+    "why": "Magnetic and grid north are the most commonly used base lines."
+  },
+  {
+    "id": "b-043",
+    "topic": "land-nav",
+    "level": 3,
+    "q": "How many clicks does the lensatic compass bezel ring have, and how many degrees is each click?",
+    "answer": "120 clicks, 3 degrees each",
+    "wrong": [
+      "60 clicks, 6 degrees each",
+      "360 clicks, 1 degree each",
+      "90 clicks, 4 degrees each"
+    ],
+    "keywords": [
+      "120",
+      "3 degrees"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "8-2",
+    "page": 91,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "It contains 120 clicks when rotated fully; each click is equal to 3 degrees.",
+    "why": "120 clicks times 3 degrees equals the full 360 degrees."
+  },
+  {
+    "id": "b-044",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "What is resection?",
+    "answer": "Locating your own position by finding the grid azimuth to at least two known locations",
+    "wrong": [
+      "Locating an unknown distant point from two known positions",
+      "Moving around an obstacle with 90 degree turns",
+      "Measuring distance with a pace count"
+    ],
+    "keywords": [
+      "own position",
+      "at least two",
+      "known"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "6-18",
+    "page": 81,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "Resection is the method of locating one’s position on a map by determining the grid azimuth to at least two well-defined locations that can be pinpointed on the map.",
+    "why": "Intersection finds an unknown distant point; resection finds where you are."
+  },
+  {
+    "id": "b-045",
+    "topic": "land-nav",
+    "level": 2,
+    "q": "How long is one pace, and what does a pace count tell you?",
+    "answer": "About 30 inches; how many paces it takes you to walk 100 meters",
+    "wrong": [
+      "About 36 inches; how many paces per kilometer",
+      "About 24 inches; how many steps per minute",
+      "One meter; how many paces per mile"
+    ],
+    "keywords": [
+      "30 inches",
+      "100"
+    ],
+    "pub": "TC 3-25.26",
+    "para": "5-20",
+    "page": 64,
+    "file": "TC 3-25.26 - Map Reading and Land Navigation (Govt Only).pdf",
+    "quote": "about 30 inches long. To use the pace count method accurately, a Soldier knows how many paces it takes to walk 100 m.",
+    "why": "Each Soldier measures their own pace count on a known course."
+  },
+  {
+    "id": "b-046",
+    "topic": "first-aid",
+    "level": 1,
+    "q": "What are the three phases of Tactical Combat Casualty Care?",
+    "answer": "Care under fire, tactical field care, and tactical evacuation care",
+    "wrong": [
+      "Self aid, buddy aid, and combat lifesaver aid",
+      "Assessment, treatment, and evacuation",
+      "Point of injury, casualty collection point, and aid station"
+    ],
+    "keywords": [
+      "care under fire",
+      "tactical field care",
+      "tactical evacuation"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "3-36",
+    "page": 45,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "These phases, structured to address varying levels of urgency and complexity, are Care Under Fire (CUF), Tactical Field Care (TFC), and Tactical Evacuation Care",
+    "why": "ATP 4-02.11 names CUF, TFC, and Tactical Evacuation Care as the three phases."
+  },
+  {
+    "id": "b-047",
+    "topic": "first-aid",
+    "level": 2,
+    "q": "During care under fire, what is the only medical priority?",
+    "answer": "Massive extremity bleeding",
+    "wrong": [
+      "Opening the airway",
+      "Treating for shock",
+      "Splinting fractures"
+    ],
+    "keywords": [
+      "massive",
+      "bleeding"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "3-37",
+    "page": 45,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "the only medical priority is addressing massive extremity bleeding due to the ongoing threat",
+    "why": "Under fire, only massive bleeding is treated while the threat is still active."
+  },
+  {
+    "id": "b-048",
+    "topic": "first-aid",
+    "level": 1,
+    "q": "What does MARCH stand for in TCCC casualty assessment?",
+    "answer": "Massive hemorrhage, airway, respiration, circulation, hypothermia",
+    "wrong": [
+      "Mental status, airway, respiration, circulation, head injury",
+      "Massive hemorrhage, assessment, response, care, hydration",
+      "Mechanism, airway, response, circulation, history"
+    ],
+    "keywords": [
+      "massive",
+      "airway",
+      "respiration",
+      "circulation",
+      "hypothermia"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "3-94",
+    "page": 52,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "known as massive hemorrhaging, airway, respiration, circulation, and hypothermia (MARCH) - pain, wounds, antibiotics, and splinting (PAWS).",
+    "why": "MARCH is addressed first, then PAWS."
+  },
+  {
+    "id": "b-049",
+    "topic": "first-aid",
+    "level": 2,
+    "q": "During tactical field care, where is a deliberate tourniquet placed?",
+    "answer": "Two to three inches above the wound, directly on the skin",
+    "wrong": [
+      "High and tight over the clothing",
+      "Directly on top of the wound",
+      "Six inches below the wound"
+    ],
+    "keywords": [
+      "two to three inches",
+      "above",
+      "skin"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "4-39",
+    "page": 62,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "during TFC, all TQs should be deliberate, placed two to three inches above the wound directly on the skin, not over clothing.",
+    "why": "High and tight is for a hasty tourniquet under fire."
+  },
+  {
+    "id": "b-050",
+    "topic": "first-aid",
+    "level": 3,
+    "q": "How quickly should a tourniquet stop bleeding and be fully secured?",
+    "answer": "Stop bleeding within one minute, fully secured within three minutes",
+    "wrong": [
+      "Stop bleeding within five minutes, secured within ten minutes",
+      "Stop bleeding within 30 seconds, secured within one minute",
+      "Stop bleeding within two minutes, secured within two hours"
+    ],
+    "keywords": [
+      "one minute",
+      "three minutes"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "4-37",
+    "page": 62,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "with the TQ aiming to halt bleeding within one minute and be fully secured within three minutes",
+    "why": "Casualties with uncontrolled massive bleeding can die in these first minutes."
+  },
+  {
+    "id": "b-051",
+    "topic": "first-aid",
+    "level": 2,
+    "q": "Who may remove a tourniquet once applied?",
+    "answer": "Only medical personnel at a higher role of care",
+    "wrong": [
+      "The casualty, once bleeding stops",
+      "Any combat lifesaver after two hours",
+      "The squad leader"
+    ],
+    "keywords": [
+      "medical personnel",
+      "higher role"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "4-40",
+    "page": 62,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "Additionally, TQs should never be removed except by medical personnel at a higher role of care.",
+    "why": "The optimal safe duration is under two hours, but removal is a medical decision."
+  },
+  {
+    "id": "b-052",
+    "topic": "first-aid",
+    "level": 1,
+    "q": "What are the four triage categories?",
+    "answer": "Immediate, delayed, minimal, and expectant",
+    "wrong": [
+      "Urgent, priority, routine, and convenience",
+      "Red, yellow, green, and blue",
+      "Critical, serious, stable, and deceased"
+    ],
+    "keywords": [
+      "immediate",
+      "delayed",
+      "minimal",
+      "expectant"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "3-89",
+    "page": 52,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "Casualties are sorted into categories based on their treatment urgency: immediate, delayed, minimal, and expectant.",
+    "why": "Triage sorts casualties by treatment need."
+  },
+  {
+    "id": "b-053",
+    "topic": "first-aid",
+    "level": 2,
+    "q": "Immediate category injuries require attention within what time frame?",
+    "answer": "Within minutes to two hours",
+    "wrong": [
+      "Within 24 hours",
+      "Within six hours",
+      "Within 72 hours"
+    ],
+    "keywords": [
+      "minutes",
+      "two hours"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "3-90",
+    "page": 52,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "Immediate injuries are those that require attention within minutes to two hours to prevent death or major disability.",
+    "why": "Examples include airway obstruction and uncontrolled hemorrhage."
+  },
+  {
+    "id": "b-054",
+    "topic": "first-aid",
+    "level": 2,
+    "q": "When calling a 9-line MEDEVAC, which lines must be sent within 25 seconds?",
+    "answer": "Lines 1 through 5",
+    "wrong": [
+      "Lines 1 through 9",
+      "Lines 1 through 3",
+      "Lines 6 through 9"
+    ],
+    "keywords": [
+      "1 through 5",
+      "25 seconds"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "3-62",
+    "page": 48,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "Line numbers 1 through 5 must be transmitted within 25 seconds during the initial",
+    "why": "Lines 6 through 9 can be sent while the aircraft or vehicle is en route."
+  },
+  {
+    "id": "b-055",
+    "topic": "first-aid",
+    "level": 3,
+    "q": "What form serves as the MIST report, often called the 10th line of the 9-line MEDEVAC?",
+    "answer": "DD Form 1380, the TCCC Card",
+    "wrong": [
+      "DA Form 2404",
+      "DD Form 214",
+      "DA Form 7656"
+    ],
+    "keywords": [
+      "dd form 1380",
+      "tccc card"
+    ],
+    "pub": "ATP 4-02.11",
+    "para": "9-2",
+    "page": 107,
+    "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+    "quote": "Often referred to as the 10th line in the 9 -line MEDEVAC request, the completed DD Form 1380 serves as the MIST report.",
+    "why": "MIST stands for mechanism of injury, injury type, signs and symptoms, and treatments."
+  },
+  {
+    "id": "b-056",
+    "topic": "call-for-fire",
+    "level": 1,
+    "q": "What are the six elements of a call for fire?",
+    "answer": "Observer identification, warning order, target location, target description, method of engagement, method of fire and control",
+    "wrong": [
+      "Call sign, grid, direction, distance, target, request",
+      "Observer ID, grid, altitude, target, ammunition, fuze",
+      "Warning order, target location, adjust fire, fire for effect, end of mission, surveillance"
+    ],
+    "keywords": [
+      "observer identification",
+      "warning order",
+      "target location",
+      "target description",
+      "method of engagement"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "4-8",
+    "page": 66,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "The six elements of a call for fire include: observer identification, warning order, target location, target description, method of engagement and method of fire and control.",
+    "why": "ATP 3-09.30 lists the six elements in this order."
+  },
+  {
+    "id": "b-057",
+    "topic": "call-for-fire",
+    "level": 2,
+    "q": "How many transmissions is a call for fire normally sent in?",
+    "answer": "Three transmissions",
+    "wrong": [
+      "One transmission",
+      "Two transmissions",
+      "Six transmissions"
+    ],
+    "keywords": [
+      "three"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "4-8",
+    "page": 66,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "the call for fire is normally sent in three transmissions, consisting of six elements, with a break and read back after each transmission.",
+    "why": "Each transmission is read back by the FDC."
+  },
+  {
+    "id": "b-058",
+    "topic": "call-for-fire",
+    "level": 2,
+    "q": "What does the warning order in a call for fire consist of?",
+    "answer": "Type of mission, size of element to fire for effect, and method of target location",
+    "wrong": [
+      "Observer call sign and frequency",
+      "Target description and ammunition",
+      "Danger close and method of control"
+    ],
+    "keywords": [
+      "type of mission",
+      "size",
+      "method of target location"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "4-10",
+    "page": 66,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "The warning order consists of the type of mission, the size of the element to fire for effect, and the method of target location.",
+    "why": "The warning order also clears the net for the fire mission."
+  },
+  {
+    "id": "b-059",
+    "topic": "call-for-fire",
+    "level": 2,
+    "q": "Within what distance of friendly troops must you announce DANGER CLOSE for mortars and artillery?",
+    "answer": "600 meters",
+    "wrong": [
+      "750 meters",
+      "1,000 meters",
+      "300 meters"
+    ],
+    "keywords": [
+      "600"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "4-34",
+    "page": 69,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "within 600 meters of any friendly troops for mortars and artillery, 750 meters for 5 inch naval guns",
+    "why": "750 meters applies to 5 inch naval guns and TLAM."
+  },
+  {
+    "id": "b-060",
+    "topic": "call-for-fire",
+    "level": 2,
+    "q": "If the observer spots a round as SHORT, what range correction is sent?",
+    "answer": "ADD",
+    "wrong": [
+      "DROP",
+      "REPEAT",
+      "LEFT"
+    ],
+    "keywords": [
+      "add"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "5-19",
+    "page": 90,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "If the spotting was SHORT, the observer will “add”; if the spotting was OVER , the observer will “drop”.",
+    "why": "Short rounds need more range, so the observer adds."
+  },
+  {
+    "id": "b-061",
+    "topic": "call-for-fire",
+    "level": 3,
+    "q": "When adjusting danger close fire, how large should range corrections be?",
+    "answer": "100 meters or less, using creeping fire",
+    "wrong": [
+      "400 meters, using successive bracketing",
+      "200 meters, using hasty bracketing",
+      "No corrections, fire for effect only"
+    ],
+    "keywords": [
+      "100 meters",
+      "creeping"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "5-51",
+    "page": 96,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "The observer should make range changes by creeping the rounds to the target, using corrections of 100 meters or less",
+    "why": "Small creeping corrections keep rounds away from friendly troops."
+  },
+  {
+    "id": "b-062",
+    "topic": "call-for-fire",
+    "level": 3,
+    "q": "What is the least preferred method of target location?",
+    "answer": "Shift from a known point",
+    "wrong": [
+      "Grid coordinates using map spot",
+      "Polar plot",
+      "Laser grid"
+    ],
+    "keywords": [
+      "shift",
+      "known point"
+    ],
+    "pub": "ATP 3-09.30",
+    "para": "3-60",
+    "page": 55,
+    "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+    "quote": "Grid coordinates using map spot. Polar plot. Shift from a known point.",
+    "why": "The list is in order of preference and shift from a known point is last."
+  },
+  {
+    "id": "b-063",
+    "topic": "cbrn",
+    "level": 1,
+    "q": "What does MOPP stand for?",
+    "answer": "Mission-oriented protective posture",
+    "wrong": [
+      "Mission-ordered protective position",
+      "Military operational protective posture",
+      "Mask, overgarment, protective posture"
+    ],
+    "keywords": [
+      "mission-oriented",
+      "protective posture"
+    ],
+    "pub": "TC 3-11.20",
+    "para": "Figure 1-2",
+    "page": 12,
+    "file": "TC 3-11.20 - CBRN Training Strategies (Jul 2024).pdf",
+    "quote": "MOPP mission-oriented protective posture",
+    "why": "TC 3-11.20 defines MOPP in its legends."
+  },
+  {
+    "id": "b-064",
+    "topic": "cbrn",
+    "level": 2,
+    "q": "What is the standard for donning your protective mask?",
+    "answer": "Don, clear, and seal the mask within nine seconds, then give the alarm",
+    "wrong": [
+      "Don the mask within 15 seconds",
+      "Don, clear, and seal within eight minutes",
+      "Don the mask and hood within 30 seconds"
+    ],
+    "keywords": [
+      "nine seconds",
+      "clear",
+      "seal"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "031-COM-1004",
+    "page": 251,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "donning, clearing, and sealing your assigned protective mask within nine seconds, then giving the alarm without becoming a casualty.",
+    "why": "Task 031-COM-1004 sets the nine-second standard."
+  },
+  {
+    "id": "b-065",
+    "topic": "cbrn",
+    "level": 1,
+    "q": "After masking, what do you shout to give the alarm?",
+    "answer": "Gas, Gas, Gas",
+    "wrong": [
+      "Mask, mask, mask",
+      "Chemical, chemical, chemical",
+      "Incoming, incoming, incoming"
+    ],
+    "keywords": [
+      "gas"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "031-COM-1004",
+    "page": 254,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "Shout, \"Gas, Gas, Gas.\"",
+    "why": "You also give the hand-and-arm signal per unit SOP."
+  },
+  {
+    "id": "b-066",
+    "topic": "cbrn",
+    "level": 2,
+    "q": "What is the time standard for assuming MOPP Level 1 through 4?",
+    "answer": "Within eight minutes, in sequence",
+    "wrong": [
+      "Within nine seconds",
+      "Within 15 minutes",
+      "Within two minutes"
+    ],
+    "keywords": [
+      "eight minutes",
+      "sequence"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "031-COM-1005",
+    "page": 263,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "Protect yourself from CBRN injury or contamination by assuming MOPP level 1 thru 4 in sequence within eight minutes.",
+    "why": "Task 031-COM-1005 requires all four levels in order within eight minutes."
+  },
+  {
+    "id": "b-067",
+    "topic": "cbrn",
+    "level": 2,
+    "q": "What item do you put on to go from MOPP Level 1 to MOPP Level 2?",
+    "answer": "Overboots",
+    "wrong": [
+      "Protective mask",
+      "Gloves",
+      "JSLIST overgarment"
+    ],
+    "keywords": [
+      "overboots",
+      "over boots"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "031-COM-1005",
+    "page": 264,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "2. Assume MOPP Level 2 by donning the over boots.",
+    "why": "Level 1 is the overgarment, 2 adds overboots, 3 adds the mask, 4 adds gloves."
+  },
+  {
+    "id": "b-068",
+    "topic": "cbrn",
+    "level": 2,
+    "q": "What item do you put on to assume MOPP Level 4?",
+    "answer": "Gloves",
+    "wrong": [
+      "Overboots",
+      "Protective mask",
+      "Hood only"
+    ],
+    "keywords": [
+      "gloves"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "031-COM-1005",
+    "page": 264,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "4. Assume MOPP Level 4. Don the gloves.",
+    "why": "Gloves are the last item, after the mask at MOPP 3."
+  },
+  {
+    "id": "b-069",
+    "topic": "cbrn",
+    "level": 3,
+    "q": "What colors on M9 detector paper mean you should assume exposure to a liquid chemical agent?",
+    "answer": "Pink, red, red-brown, red-purple, or any shade of red",
+    "wrong": [
+      "Blue, yellow, or green",
+      "Gray or black",
+      "Yellow-gold or dark green"
+    ],
+    "keywords": [
+      "red",
+      "pink"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "031-COM-1009",
+    "page": 270,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "If pink, red, red-brown, red-purple, or any shade of red streaks or spots are detected assume that you have been exposed to a liquid chemical agent.",
+    "why": "Blue, yellow, green, gray, or black spots are not from a liquid chemical agent."
+  },
+  {
+    "id": "b-070",
+    "topic": "range-safety",
+    "level": 1,
+    "q": "On a Camp Ripley range, who may announce check fire when they see an unsafe act?",
+    "answer": "Any person who witnesses an unsafe action or condition",
+    "wrong": [
+      "Only the range OIC",
+      "Only the RSO",
+      "Only range control"
+    ],
+    "keywords": [
+      "any person",
+      "check fire"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "2-5f",
+    "page": 18,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "“Check fire, check fire, check fire” is announced by any person witnessing an unsafe action or condition.",
+    "why": "Safety is everyone's job; anyone can call check fire."
+  },
+  {
+    "id": "b-071",
+    "topic": "range-safety",
+    "level": 1,
+    "q": "Under CRTC Reg 210-2, what is the fuse delay of a hand grenade, and is cooking off allowed?",
+    "answer": "3 to 5 seconds, and cooking off is prohibited",
+    "wrong": [
+      "1 to 2 seconds, and cooking off is allowed",
+      "5 to 7 seconds, and cooking off is allowed with RSO approval",
+      "3 to 5 seconds, and cooking off is required"
+    ],
+    "keywords": [
+      "3",
+      "5 seconds",
+      "prohibited"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "5-1",
+    "page": 26,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "Defined as an explosive charge with a delay of 3-5 seconds. Cooking off a grenade is prohibited.",
+    "why": "Cooking off a grenade is never allowed at Camp Ripley."
+  },
+  {
+    "id": "b-072",
+    "topic": "range-safety",
+    "level": 2,
+    "q": "Who is authorized to approach dud ordnance on a Camp Ripley grenade range?",
+    "answer": "Only EOD",
+    "wrong": [
+      "The RSO",
+      "The range OIC",
+      "The thrower's squad leader"
+    ],
+    "keywords": [
+      "eod"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "5-1",
+    "page": 26,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "Only EOD is authorized to approach DUD ordnance.",
+    "why": "Duds must also be reported to range control."
+  },
+  {
+    "id": "b-073",
+    "topic": "range-safety",
+    "level": 2,
+    "q": "May a Soldier pick up UXO and remove it from the training area?",
+    "answer": "No, unauthorized personnel are prohibited from handling or removing UXO",
+    "wrong": [
+      "Yes, if they turn it in to the ASP",
+      "Yes, if the OIC approves",
+      "Yes, if it is a practice round"
+    ],
+    "keywords": [
+      "prohibited",
+      "uxo"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "2-1e",
+    "page": 16,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "Unauthorized personnel are prohibited from handling UXO or removing them from the FTA.",
+    "why": "UXO is reported, not touched."
+  },
+  {
+    "id": "b-074",
+    "topic": "range-safety",
+    "level": 2,
+    "q": "What is the minimum PPE level 0 on a Camp Ripley range?",
+    "answer": "Army Combat Uniform with hearing and eye protection",
+    "wrong": [
+      "Body armor and helmet",
+      "Body armor with plates and helmet",
+      "Helmet only"
+    ],
+    "keywords": [
+      "uniform",
+      "hearing",
+      "eye"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "2-13",
+    "page": 22,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "0 (Min Req) Army Combat Uniform/Standard Utility Uniform, hearing/eye protection",
+    "why": "The commander determines the PPE level; level 0 is the minimum."
+  },
+  {
+    "id": "b-075",
+    "topic": "range-safety",
+    "level": 2,
+    "q": "What is the downrange speed limit at Camp Ripley unless otherwise posted?",
+    "answer": "25 MPH, and 15 MPH on one-lane roads",
+    "wrong": [
+      "35 MPH, and 25 MPH on one-lane roads",
+      "15 MPH everywhere",
+      "45 MPH on main roads"
+    ],
+    "keywords": [
+      "25",
+      "15"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "1-11",
+    "page": 12,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "The speed limit is 25 MPH unless otherwise posted. On one lane roads the speed limit is 15 MPH.",
+    "why": "Speeding costs the unit points under the safety policy."
+  },
+  {
+    "id": "b-076",
+    "topic": "range-safety",
+    "level": 3,
+    "q": "What happens immediately when a range barrier is breached?",
+    "answer": "Immediate cease-fire of affected training areas, ranges, and firing points",
+    "wrong": [
+      "Firing continues while range control investigates",
+      "Only the nearest firing point stops",
+      "The unit files a report at the end of the day"
+    ],
+    "keywords": [
+      "cease-fire",
+      "cease fire"
+    ],
+    "pub": "CRTC Reg 210-2",
+    "para": "2-2b",
+    "page": 16,
+    "file": "CRTC Reg 210-2 - Camp Ripley Range Regulation (Jan 2026).pdf",
+    "quote": "Barrier Breach requires the following actions: Immediate Cease-Fire of affected Training Areas, Ranges, and Firing Points.",
+    "why": "Fire stays stopped until the surface danger zone is confirmed clear."
+  },
+  {
+    "id": "b-077",
+    "topic": "warrior-tasks",
+    "level": 1,
+    "q": "Recite the Warrior Ethos.",
+    "answer": "I will always place the mission first. I will never accept defeat. I will never quit. I will never leave a fallen comrade.",
+    "wrong": [
+      "I will always place my Soldiers first. I will never surrender. I will never quit. I will never fail.",
+      "I am an American Soldier. I am a Warrior. I serve the people. I live the Army Values.",
+      "Loyalty, duty, respect, selfless service, honor, integrity, personal courage."
+    ],
+    "keywords": [
+      "mission first",
+      "never accept defeat",
+      "never quit",
+      "fallen comrade"
+    ],
+    "pub": "TC 3-21.75",
+    "para": "Part One",
+    "page": 17,
+    "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+    "quote": "I will always place the mission first. I will never accept defeat. I will never quit. I will never leave a fallen comrade.",
+    "why": "The Warrior Ethos is the four lines embedded in the Soldier's Creed."
+  },
+  {
+    "id": "b-078",
+    "topic": "warrior-tasks",
+    "level": 1,
+    "q": "What are the three individual movement techniques?",
+    "answer": "Low crawl, high crawl, and rush",
+    "wrong": [
+      "Walk, run, and sprint",
+      "Traveling, traveling overwatch, and bounding overwatch",
+      "Low crawl, side step, and roll"
+    ],
+    "keywords": [
+      "low crawl",
+      "high crawl",
+      "rush"
+    ],
+    "pub": "TC 3-21.75",
+    "para": "7-2",
+    "page": 121,
+    "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+    "quote": "you may move in one of three other methods known as individual movement techniques (IMT) — low crawl, high crawl, or rush.",
+    "why": "Traveling and bounding overwatch are unit movement techniques, not IMT."
+  },
+  {
+    "id": "b-079",
+    "topic": "warrior-tasks",
+    "level": 1,
+    "q": "How long should each individual rush last?",
+    "answer": "3 to 5 seconds",
+    "wrong": [
+      "10 to 15 seconds",
+      "1 to 2 seconds",
+      "5 to 10 seconds"
+    ],
+    "keywords": [
+      "3",
+      "5 seconds"
+    ],
+    "pub": "TC 3-21.75",
+    "para": "7-7",
+    "page": 122,
+    "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+    "quote": "The rush is the fastest way to move from one position to another (Figure 7-2). Each rush should last from 3 to 5 seconds.",
+    "why": "Short rushes keep enemy gunners from tracking you."
+  },
+  {
+    "id": "b-080",
+    "topic": "warrior-tasks",
+    "level": 2,
+    "q": "What is the difference between cover and concealment?",
+    "answer": "Cover protects you from fire and observation; concealment only hides you from observation",
+    "wrong": [
+      "Cover hides you; concealment protects you from bullets",
+      "They mean the same thing",
+      "Concealment is man-made; cover is always natural"
+    ],
+    "keywords": [
+      "protection",
+      "hides",
+      "observation"
+    ],
+    "pub": "TC 3-21.75",
+    "para": "Section I",
+    "page": 77,
+    "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+    "quote": "Cover, made of natural or man-made materials, gives protection from bullets, fragments of exploding rounds, flame, nuclear effects, biological and chemical agents, and enemy observation",
+    "why": "Concealment does not protect you from enemy fire."
+  },
+  {
+    "id": "b-081",
+    "topic": "warrior-tasks",
+    "level": 1,
+    "q": "What does SALUTE stand for?",
+    "answer": "Size, activity, location, uniform, time, equipment",
+    "wrong": [
+      "Size, area, location, unit, terrain, enemy",
+      "Situation, activity, location, unit, time, enemy",
+      "Size, activity, location, unit, terrain, equipment"
+    ],
+    "keywords": [
+      "size",
+      "activity",
+      "location",
+      "uniform",
+      "time",
+      "equipment"
+    ],
+    "pub": "TC 3-21.75",
+    "para": "9-7",
+    "page": 152,
+    "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+    "quote": "The size, activity, location, uniform, time, equipment (SALUTE) format is an example of Level I reporting.",
+    "why": "SALUTE is the standard format for reporting enemy information."
+  },
+  {
+    "id": "b-082",
+    "topic": "warrior-tasks",
+    "level": 2,
+    "q": "What procedure do you follow when handling EPWs and detainees?",
+    "answer": "The 5 Ss and T: search, segregate, silence, speed, safeguard, and tag",
+    "wrong": [
+      "Stop, search, secure, send, sort",
+      "Search, seize, secure, speed, sign",
+      "Segregate, silence, sit, stand, search, tag"
+    ],
+    "keywords": [
+      "search",
+      "segregate",
+      "silence",
+      "safeguard",
+      "tag"
+    ],
+    "pub": "TC 3-21.75",
+    "para": "9-16",
+    "page": 154,
+    "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+    "quote": "In handling EPWs/detainees, follow the procedure of search, segregate, silence, speed, safeguard, and tag (the 5 Ss and T).",
+    "why": "EPWs must be treated humanely under the law of war."
+  },
+  {
+    "id": "b-083",
+    "topic": "warrior-tasks",
+    "level": 2,
+    "q": "What is the standard for performing a function check on an M4?",
+    "answer": "Verify it is clear and check it works in each selector position, with all steps in sequence",
+    "wrong": [
+      "Fire one round on each selector position",
+      "Disassemble and inspect the bolt carrier group",
+      "Check the zero at 25 meters"
+    ],
+    "keywords": [
+      "clear",
+      "selector",
+      "sequence"
+    ],
+    "pub": "STP 21-1-SMCT",
+    "para": "071-COM-0029",
+    "page": 48,
+    "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+    "quote": "Verify the M16/M4 is clear and conduct a function check to ensure that the weapon operates properly with the selector switch in each position.",
+    "why": "Task 071-COM-0029 also requires all steps to be performed in sequence."
+  },
+  {
+    "id": "b-084",
+    "topic": "warrior-tasks",
+    "level": 3,
+    "q": "In task Adjust Indirect Fire, how accurately must you locate the target and how fast must you send the initial call for fire?",
+    "answer": "Within 250 meters, initial call for fire within 3 minutes",
+    "wrong": [
+      "Within 100 meters, within 1 minute",
+      "Within 500 meters, within 5 minutes",
+      "Within 50 meters, within 45 seconds"
+    ],
+    "keywords": [
+      "250 meters",
+      "3 minutes"
+    ],
+    "pub": "STP 21-24-SMCT",
+    "para": "061-283-6003",
+    "page": 68,
+    "file": "STP 21-24-SMCT - Soldier's Manual of Common Tasks, Warrior Leader Skills Levels 2-4 (Sep 2008).pdf",
+    "quote": "Determine the target location to within 250 meters of its actual location. Transmit the initial call for fire within 3 minutes after identifying the target.",
+    "why": "Adjustments must then be sent within 45 seconds after each spotting."
+  }
+]

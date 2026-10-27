@@ -1,0 +1,78 @@
+rules_version = '2';
+
+// Best Warrior app. Deploy with `firebase deploy --only firestore:rules`.
+// Nobody sees anything until an admin approves their account.
+// Roles: soldier, sponsor, leader, admin.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // The first admin. Replace with your Google account email before deploying.
+    // After you have approved yourself as admin in the app, this line can stay as a backstop.
+    function bootstrapAdmin() {
+      return request.auth != null && request.auth.token.email == 'humanvue@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    function signedIn() { return request.auth != null; }
+    function me() { return request.auth.uid; }
+    function myDoc() { return get(/databases/$(database)/documents/users/$(me())).data; }
+    function exists_() { return exists(/databases/$(database)/documents/users/$(me())); }
+    function approved() { return signedIn() && exists_() && myDoc().status == 'approved'; }
+    function isAdmin() { return bootstrapAdmin() || (approved() && myDoc().role == 'admin'); }
+    function isLeader() { return isAdmin() || (approved() && myDoc().role == 'leader'); }
+    function sponsors(uid) {
+      return approved() && myDoc().role == 'sponsor'
+        && get(/databases/$(database)/documents/users/$(uid)).data.sponsorUid == me();
+    }
+    function canSee(uid) { return uid == me() || isLeader() || sponsors(uid); }
+
+    match /users/{uid} {
+      // Approved people can read profiles (name, rank, unit, points) for the leaderboard.
+      allow read: if uid == me() || approved() || isAdmin();
+
+      // A new account starts pending, as a Soldier, with zero points.
+      allow create: if signedIn() && uid == me()
+        && request.resource.data.status == 'pending'
+        && request.resource.data.role == 'soldier'
+        && request.resource.data.points == 0;
+
+      // Soldiers edit their own name, rank, unit and theme, and points may only go up
+      // a little at a time. Admins can change anything (role, status, unit, sponsor).
+      allow update: if isAdmin() || (uid == me() && approved()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'rank', 'unit', 'theme', 'points'])
+        && request.resource.data.points >= resource.data.points
+        && request.resource.data.points <= resource.data.points + 100
+        && request.resource.data.name is string && request.resource.data.name.size() <= 40);
+
+      allow delete: if isAdmin();
+
+      match /private/{doc} {
+        allow read: if canSee(uid) || isAdmin();
+        allow create: if uid == me();
+        allow update: if (uid == me() && approved()
+          && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['email'])) || isAdmin();
+      }
+
+      match /attempts/{id} {
+        allow read: if canSee(uid);
+        allow create: if uid == me() && approved();
+      }
+
+      match /ledger/{id} {
+        allow read: if canSee(uid);
+        allow create: if uid == me() && approved()
+          && request.resource.data.pts is int && request.resource.data.pts >= 0 && request.resource.data.pts <= 50;
+      }
+    }
+
+    // Question error reports: anyone approved can file one; leaders and admins work the queue.
+    match /reports/{id} {
+      allow create: if approved() && request.resource.data.byUid == me()
+        && request.resource.data.status == 'open'
+        && request.resource.data.comment is string && request.resource.data.comment.size() <= 1000;
+      allow read: if isLeader() || (approved() && resource.data.byUid == me());
+      allow update: if isLeader()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'resolvedBy', 'resolvedAt']);
+    }
+  }
+}

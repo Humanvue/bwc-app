@@ -1,0 +1,85 @@
+// Season settings, topics, point values and the rank ladder.
+// Admins change values here (and later in the Admin screen) without touching app logic.
+(function () {
+  window.BWC_CONFIG = {
+    appName: 'Best Warrior',
+    season: 'TY27',
+
+    // Competitions in order. A null date shows "Date TBD" until an admin sets it.
+    competitions: [
+      { id: 'hhbn', name: 'HHBn Best Warrior', date: '2027-01-10' },
+      { id: 'division', name: '34ID Best Warrior', date: null },
+      { id: 'state', name: 'MNNG Best Warrior', date: '2027-04-13', place: 'Camp Ripley' },
+      { id: 'region', name: 'Region IV Best Warrior', date: '2027-04-28', place: 'Marseilles, IL' }
+    ],
+
+    // Study topics, grouped the way the library shows them.
+    groups: [
+      { id: 'profession', name: 'Profession and Leadership' },
+      { id: 'standards', name: 'Standards and Policy' },
+      { id: 'skills', name: 'Soldier Skills' }
+    ],
+    topics: [
+      { id: 'army-profession', group: 'profession', name: 'Army Profession', icon: 'flag' },
+      { id: 'leadership', group: 'profession', name: 'Leadership', icon: 'star' },
+      { id: 'counseling', group: 'profession', name: 'Counseling', icon: 'chat' },
+      { id: 'training', group: 'profession', name: 'Training', icon: 'target' },
+      { id: 'risk-management', group: 'profession', name: 'Risk Management', icon: 'shield' },
+      { id: 'command-policy', group: 'standards', name: 'Command Policy', icon: 'chain' },
+      { id: 'uniforms', group: 'standards', name: 'Uniforms (AR 670-1)', icon: 'shirt' },
+      { id: 'awards', group: 'standards', name: 'Awards', icon: 'medal' },
+      { id: 'evaluations', group: 'standards', name: 'Evaluations', icon: 'clipboard' },
+      { id: 'fitness', group: 'standards', name: 'Fitness and H2F', icon: 'fitness' },
+      { id: 'drill-ceremonies', group: 'standards', name: 'Drill and Ceremonies', icon: 'flag' },
+      { id: 'mnng-policy', group: 'standards', name: 'MNNG Policies', icon: 'book' },
+      { id: 'warrior-tasks', group: 'skills', name: 'Warrior Tasks', icon: 'shield' },
+      { id: 'rifle', group: 'skills', name: 'Rifle and Carbine', icon: 'target' },
+      { id: 'pistol', group: 'skills', name: 'Pistol', icon: 'target' },
+      { id: 'machine-guns', group: 'skills', name: 'Machine Guns', icon: 'target' },
+      { id: 'qualification', group: 'skills', name: 'Weapons Qualification', icon: 'target' },
+      { id: 'land-nav', group: 'skills', name: 'Land Navigation', icon: 'compass' },
+      { id: 'first-aid', group: 'skills', name: 'First Aid and TCCC', icon: 'medic' },
+      { id: 'call-for-fire', group: 'skills', name: 'Call for Fire', icon: 'radio' },
+      { id: 'cbrn', group: 'skills', name: 'CBRN', icon: 'shield' },
+      { id: 'range-safety', group: 'skills', name: 'Range Safety', icon: 'alert' }
+    ],
+
+    // Default point values (see the spec, section 8).
+    points: {
+      readSource: 1,          // opening a source document or finishing a flashcard set
+      readDailyCap: 5,
+      quizCorrect: 1,         // first correct answer per question only
+      dailyCorrect: 1,
+      dailyFinish: 5,
+      weeklyGoalDays: 4       // Daily 10 days per week that count as "on track"
+    },
+
+    // Points needed for each rank. Early ranks come fast; SMA takes a full season.
+    ranks: [
+      { id: 'PVT', name: 'Private', need: 0 },
+      { id: 'PV2', name: 'Private Second Class', need: 50 },
+      { id: 'PFC', name: 'Private First Class', need: 150 },
+      { id: 'SPC', name: 'Specialist', need: 350 },
+      { id: 'CPL', name: 'Corporal', need: 700 },
+      { id: 'SGT', name: 'Sergeant', need: 1200 },
+      { id: 'SSG', name: 'Staff Sergeant', need: 2000 },
+      { id: 'SFC', name: 'Sergeant First Class', need: 3200 },
+      { id: 'MSG', name: 'Master Sergeant', need: 4600 },
+      { id: '1SG', name: 'First Sergeant', need: 6000 },
+      { id: 'SGM', name: 'Sergeant Major', need: 8000 },
+      { id: 'CSM', name: 'Command Sergeant Major', need: 10500 },
+      { id: 'SMA', name: 'Sergeant Major of the Army', need: 14000 }
+    ],
+
+    themes: [
+      { id: 'black-gold', name: 'Black and Gold' },
+      { id: 'desert-storm', name: 'Desert Storm' },
+      { id: 'arctic-electric', name: 'Arctic Electric' },
+      { id: 'camo-pop', name: 'Camo Pop' },
+      { id: 'tropic-fiesta', name: 'Tropic Fiesta' }
+    ],
+
+    militaryRanks: ['PVT', 'PV2', 'PFC', 'SPC', 'CPL', 'SGT', 'SSG', 'SFC', 'MSG', '1SG', 'SGM', 'CSM',
+      '2LT', '1LT', 'CPT', 'MAJ', 'LTC', 'COL', 'WO1', 'CW2', 'CW3', 'CW4', 'CW5']
+  };
+})();

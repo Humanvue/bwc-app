@@ -1,0 +1,547 @@
+<title>Best Warrior App Spec</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a sticky table of contents beside one reading column; stacks to a single column on phones. */
+:root {
+  --bg: #FBF8F1;
+  --panel: #FFFFFF;
+  --fg: #16140F;
+  --muted: #5C5546;
+  --line: #E6DFCC;
+  --gold: #FFCC33;
+  --gold-ink: #7A5C00;
+  --on-gold: #16140F;
+  --tbd-bg: #FFF1C2;
+  --tbd-fg: #5A4300;
+  --warn-bg: #FDE7E4;
+  --warn-fg: #8A1F12;
+  --font-display: 'Bricolage Grotesque', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A0A0D; --panel: #15151B; --fg: #F4F1E8; --muted: #B5AF9F; --line: #2A2A33;
+    --gold: #FFCC33; --gold-ink: #FFCC33; --on-gold: #0A0A0D;
+    --tbd-bg: #3A2F08; --tbd-fg: #FFE08A; --warn-bg: #3B1512; --warn-fg: #FFB4A8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A0A0D; --panel: #15151B; --fg: #F4F1E8; --muted: #B5AF9F; --line: #2A2A33;
+  --gold: #FFCC33; --gold-ink: #FFCC33; --on-gold: #0A0A0D;
+  --tbd-bg: #3A2F08; --tbd-fg: #FFE08A; --warn-bg: #3B1512; --warn-fg: #FFB4A8;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+a { color: var(--gold-ink); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+.masthead { background: #0A0A0D; color: #F4F1E8; border-bottom: 6px solid var(--gold); }
+.masthead .inner { max-width: 1180px; margin: 0 auto; padding-block: 40px 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 10px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFCC33; }
+.masthead h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 6vw, 56px); line-height: 1.05; margin: 0; text-wrap: balance; }
+.masthead p { margin: 0; color: #CFC8B4; max-width: 65ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.chip { font-family: var(--font-mono); font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid #3A3A44; color: #E8E2D0; }
+.chip.gold { background: #FFCC33; color: #0A0A0D; border-color: #FFCC33; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 32px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+nav.toc { flex: 1 1 220px; max-width: 260px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); font-size: 14px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; counter-reset: s; }
+nav.toc li { counter-increment: s; }
+nav.toc a { display: block; padding: 5px 10px; border-radius: 8px; color: var(--muted); text-decoration: none; }
+nav.toc a::before { content: counter(s) ". "; font-family: var(--font-mono); font-size: 12px; color: var(--gold-ink); }
+nav.toc a:hover { background: var(--panel); color: var(--fg); }
+main { flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 48px; }
+@media (max-width: 860px) { nav.toc { position: static; max-width: none; } }
+
+section { display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 16px; }
+h2 { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.15; margin: 0; text-wrap: balance; display: flex; gap: 12px; align-items: baseline; }
+h2 .n { font-family: var(--font-mono); font-size: 14px; color: var(--on-gold); background: var(--gold); border-radius: 6px; padding: 2px 8px; font-weight: 500; }
+h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin: 10px 0 0; }
+p, ul, ol { margin: 0; max-width: 72ch; }
+ul, ol.steps { padding-left: 22px; display: flex; flex-direction: column; gap: 4px; }
+strong { font-weight: 700; }
+code { font-family: var(--font-mono); font-size: 0.86em; background: var(--panel); border: 1px solid var(--line); border-radius: 5px; padding: 1px 5px; }
+
+.tbd { display: inline-block; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; background: var(--tbd-bg); color: var(--tbd-fg); border-radius: 4px; padding: 1px 6px; vertical-align: 2px; }
+.callout { border-radius: 12px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); max-width: 72ch; }
+.callout.warn { background: var(--warn-bg); color: var(--warn-fg); border-color: transparent; }
+.callout.gold { border: 2px solid var(--gold); }
+
+.table-box { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; white-space: nowrap; }
+tr:last-child td { border-bottom: none; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.yes { color: var(--fg); font-weight: 700; }
+.no { color: var(--muted); }
+
+.ladder { display: flex; flex-wrap: wrap; gap: 6px; }
+.rung { display: flex; flex-direction: column; align-items: center; min-width: 64px; padding: 8px 6px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.rung b { font-family: var(--font-display); font-size: 16px; }
+.rung span { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.rung.top { background: var(--gold); color: var(--on-gold); border-color: var(--gold); }
+.rung.top span { color: var(--on-gold); }
+
+.phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.phase { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.phase h3 { margin: 0; }
+.phase ul { font-size: 14px; }
+.board-line { font-family: var(--font-mono); font-size: 14px; background: #0A0A0D; color: #F4F1E8; border-left: 4px solid #FFCC33; border-radius: 8px; padding: 12px 14px; max-width: 72ch; }
+.board-line em { color: #FFCC33; font-style: normal; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<header class="masthead">
+  <div class="inner">
+    <div class="eyebrow">TY27 Best Warrior · HHBn → 34ID → MNNG State → Region IV</div>
+    <h1>Best Warrior App: Build Spec</h1>
+    <p>A study and training app that gets Soldiers ready for the Best Warrior Competition season, with points, promotions and rewards for the work they put in, and a clear view of progress for sponsors and senior leaders.</p>
+    <div class="meta">
+      <span class="chip gold">Draft v0.2 · 26 Oct 2026</span>
+      <span class="chip">Status: Phase 1 in build</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#purpose">Purpose and scope</a></li>
+      <li><a href="#roles">Users and roles</a></li>
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#study">Study and quizzes</a></li>
+      <li><a href="#board">Mock board</a></li>
+      <li><a href="#drills">Hands-on drills</a></li>
+      <li><a href="#fitness">Fitness log</a></li>
+      <li><a href="#points">Points and progression</a></li>
+      <li><a href="#social">Leaderboard and discussion</a></li>
+      <li><a href="#leaders">Sponsor and leader tools</a></li>
+      <li><a href="#awards">Award and NCOER drafts</a></li>
+      <li><a href="#season">Season and admin</a></li>
+      <li><a href="#data">Data model</a></li>
+      <li><a href="#security">Security and OPSEC</a></li>
+      <li><a href="#visual">Visual design</a></li>
+      <li><a href="#phases">Build phases</a></li>
+      <li><a href="#open">Open items</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <div class="callout gold">
+      <strong>v0.2:</strong> updated from the TY27 MNNG BWC Competitor MOI (1 Oct 2026) and its references enclosure. The FRAGORD and 34ID OPORD are marked CUI and are not used as app content (see section 14). Items still marked <span class="tbd">TBD</span> need a unit decision or a document not in the package. Point values and thresholds are starting defaults, adjustable by the admin without code changes.
+    </div>
+
+    <section id="purpose">
+      <h2><span class="n">1</span>Purpose and scope</h2>
+      <p>The app is a <strong>preparation tool</strong> for the TY27 season: the HHBn competition, then Division, then the Minnesota state competition. Soldiers use it on their phones and computers in the weeks before each event. It is <strong>not used during the competitions</strong>, since competitors are not allowed phones.</p>
+      <ul>
+        <li><strong>For competitors:</strong> study doctrine by topic or from the source document, take untimed quizzes, sit a simulated timed board, practice land nav, weapons and WTBD tasks, and log workouts. All of it earns points, promotions and unlockable rewards.</li>
+        <li><strong>For sponsors:</strong> see their competitor's progress, run sponsor boards, verify hands-on tasks and get a draft award or NCOER bullets at the end.</li>
+        <li><strong>For senior leaders:</strong> see how every competitor in their scope is doing, review question-error reports and moderate the discussion board.</li>
+      </ul>
+      <h3>From the Competitor MOI</h3>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>MNNG State BWC</td><td class="num">13–17 Apr 2027, Camp Ripley (72-hour competition)</td></tr>
+            <tr><td>Nomination packets due</td><td class="num">13 Mar 2027</td></tr>
+            <tr><td>Region IV BWC</td><td class="num">28 Apr – 2 May 2027, Marseilles Training Center, IL (train-up 19–24 Apr)</td></tr>
+            <tr><td>Categories</td><td>NCO of the Year; Soldier of the Year (Soldiers promoted to SGT on or after 1 Apr 2027 compete as Soldiers)</td></tr>
+            <tr><td>Physical demand</td><td>About 25–30 miles of marching over 72 hours</td></tr>
+            <tr><td>Primary resources</td><td>FM 1, TC 3-21.75, STP 21-1-SMCT, STP 21-24-SMCT, TP 672-9 (Expert Soldier Badge Handbook), plus the references enclosure</td></tr>
+            <tr><td>Board</td><td>MSC-level board in ASU/AGSU before nomination</td></tr>
+            <tr><td>Scoring</td><td>Event NCOICs score accuracy and time; no individual scores or feedback during the competition</td></tr>
+            <tr><td>Sponsors</td><td>Within two grades of the competitor; coach before, document strengths and weaknesses during</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Source of truth for study content is the MOI's primary resources and references enclosure. The Gemini-generated study plan included in the package is <strong>not</strong> used as a source.</p>
+      <p><strong>References not in the package</strong> (needed for full coverage): TP 672-9, AR 25-2, AR 25-50, ATP 3-34.20, ATP 4-02.5, FM 3-34, TC 3-22.10, TC 3-22.19, TC 3-22.23, TC 3-23.30, TC 3-34.150, TC 7-21.13, TC 7-22.7, TC 21-24, TM 3-34.82, the M240 and M17 operator TMs, and the SINCGARS TM.</p>
+    </section>
+
+    <section id="roles">
+      <h2><span class="n">2</span>Users and roles</h2>
+      <p>Everyone signs in with Google. Each user record carries a role and a unit, so leaders see only the people in their scope <span class="tbd">FRAGORD</span>.</p>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Can…</th><th>Soldier</th><th>Sponsor</th><th>Leader</th><th>Admin</th></tr></thead>
+          <tbody>
+            <tr><td>Study, quiz, board, drills, log workouts</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>See own progress and points</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>See assigned competitor's full dashboard</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Run sponsor board, verify tasks and screenshots</td><td class="no">No</td><td class="yes">Own competitor</td><td class="yes">In scope</td><td class="yes">All</td></tr>
+            <tr><td>See every competitor's dashboard</td><td class="no">No</td><td class="no">No</td><td class="yes">In scope</td><td class="yes">All</td></tr>
+            <tr><td>Receive question-error and post reports</td><td class="no">No</td><td class="no">No</td><td class="yes">If listed</td><td class="yes">Yes</td></tr>
+            <tr><td>Hide discussion posts, post announcements</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+            <tr><td>Generate award and NCOER drafts</td><td class="no">No</td><td class="yes">Own competitor</td><td class="yes">In scope</td><td class="yes">All</td></tr>
+            <tr><td>Edit questions, point values, roles, season</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Every competitor has exactly one assigned sponsor. Roles are enforced in Firestore security rules on the server, not only by hiding buttons.</p>
+    </section>
+
+    <section id="platform">
+      <h2><span class="n">3</span>Platform</h2>
+      <p>The app copies the proven structure of <strong>Squad Trivia</strong> (repo <code>Humanvue/Humanvue</code>, folder <code>trivia/</code>): plain JavaScript modules, no build step, installable to the home screen, works on phone and computer.</p>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Piece</th><th>Choice</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Firebase project</td><td><strong>New project</strong> (e.g. <code>mn-bwc-ty27</code>), Spark plan, $0</td><td>Squad Trivia lets any signed-in user read every profile; BWC needs role-based access and must stay separate from a friends' game.</td></tr>
+            <tr><td>Hosting</td><td><strong>Firebase Hosting</strong> from a <strong>private</strong> GitHub repo</td><td>Free GitHub Pages needs a public repo, which would publish the question bank and season details.</td></tr>
+            <tr><td>Sign-in</td><td>Firebase Auth, Google provider</td><td>Same as Squad Trivia's <code>cloud.js</code>.</td></tr>
+            <tr><td>Database</td><td>Cloud Firestore with role rules</td><td>Live updates for leaderboards, sponsor boards and discussion.</td></tr>
+            <tr><td>AI grading and screenshot reading</td><td>Firebase AI Logic (Gemini Developer API, free tier) + App Check</td><td>Free; App Check keeps the quota for this app only. Confirm free-tier terms at setup.</td></tr>
+            <tr><td>Images</td><td>No Cloud Storage; small thumbnails stored in Firestore</td><td>New Storage buckets need the paid Blaze plan.</td></tr>
+            <tr><td>Notifications</td><td>Firebase Cloud Messaging (web push)</td><td>Free. On iPhone, requires the app to be added to the home screen.</td></tr>
+            <tr><td>Voice</td><td>Browser speech synthesis (questions) and speech recognition (answers)</td><td>Works in Chrome, Edge and recent Safari; typing is always available as a fallback.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Reused from Squad Trivia</h3>
+      <ul>
+        <li><code>store.js</code>: one storage layer that every feature talks to.</li>
+        <li><code>cloud.js</code>: Google sign-in and profile setup, extended with roles and units.</li>
+        <li><code>scoring.js</code> and <code>rewards.js</code>: tiered unlock ladders, extended to ranks, weapons, vehicles and ribbons.</li>
+        <li><code>why.js</code>: the per-question explanation, extended with a doctrinal citation and source link.</li>
+        <li><code>avatar.js</code>: the avatar builder, extended with uniform, rank and ribbon rack.</li>
+        <li>Leaderboard, seasons, weekly crown, theme picker, live-game join codes (used for the linked sponsor board).</li>
+      </ul>
+    </section>
+
+    <section id="study">
+      <h2><span class="n">4</span>Study and quizzes</h2>
+      <h3>Study library</h3>
+      <ul>
+        <li><strong>Browse by topic</strong> <span class="tbd">FRAGORD</span>: e.g. Army history, NCO Creed and Soldier's Creed, AR 670-1, AR 600-25, TCCC, land navigation, weapons, SHARP/EO, MN Guard history, chain of command.</li>
+        <li><strong>Open the source document:</strong> each topic links to the official PDF (armypubs.army.mil or the MN Guard source), opening at the cited page with <code>#page=N</code>. Copies are not hosted, so Soldiers always see the current version.</li>
+        <li><strong>Flashcards</strong> for quick review, with an <strong>audio mode</strong> that reads cards aloud and pauses for the answer, for use while running or rucking.</li>
+        <li><strong>Creed and memorization trainer:</strong> NCO Creed, Soldier's Creed, Army Song, General Orders. Words disappear progressively (10%, 30%, 60%, then all). The Soldier types or recites; the app checks word by word.</li>
+      </ul>
+      <h3>Untimed quizzes</h3>
+      <ol class="steps">
+        <li>Choose a topic (or mix) and a length: 10, 20 or all.</li>
+        <li>Answer at your own pace. No timer.</li>
+        <li>Review screen: every question shows the correct answer, the <strong>citation</strong> (e.g. <em>AR 670-1, para 21-8b</em>) and a link that opens the source at that page.</li>
+        <li>Per question: <strong>Mark as learned</strong> (leaves normal rotation, returns occasionally as a refresher), <strong>Report an error</strong>, or <strong>Discuss this question</strong>.</li>
+      </ol>
+      <p><strong>Report an error</strong> opens a short form (what is wrong, optional comment). The report goes to a queue that the admin and listed leaders see, plus an email. A report is closed when the question is fixed or the report is dismissed, and the reporter is told the outcome.</p>
+      <h3>Daily 10</h3>
+      <p>Ten questions a day, picked for each Soldier: weighted toward questions they missed, topics where accuracy is lowest, and questions not seen recently (spaced repetition). Builds on Squad Trivia's daily challenge, made personal. Completing it keeps a streak alive. Because Guardsmen drill monthly, streaks count <strong>weekly goals</strong> (e.g. 4 of 7 days) rather than unbroken daily runs.</p>
+    </section>
+
+    <section id="board">
+      <h2><span class="n">5</span>Mock board</h2>
+      <p>The board simulates sitting in front of a real panel: a <strong>CSM as president</strong>, with <strong>SGMs and 1SGs</strong> as members. It awards the most points of any study activity.</p>
+      <h3>Flow</h3>
+      <ol class="steps">
+        <li><strong>Report in.</strong> The Soldier gives the reporting statement; the app checks the wording <span class="tbd">FRAGORD</span>.</li>
+        <li><strong>Questions.</strong> A panel member, shown seated at the table, asks each question aloud in their own voice. The question text is hidden by default, as at a real board. Which member asks changes from question to question.</li>
+        <li><strong>Answer.</strong> The Soldier types or speaks the answer while a countdown runs <span class="tbd">FRAGORD</span>.</li>
+        <li><strong>Feedback.</strong> After the board: score per question, format score, delivery notes, and the cited answer for anything missed.</li>
+      </ol>
+      <h3>Required answer format</h3>
+      <div class="board-line"><em>"Sergeant Major,</em> the regulation that covers wear and appearance of Army uniforms <em>is</em> AR 670-1."</div>
+      <p>The greeting must match the member who asked: CSM or SGM → "Sergeant Major"; 1SG → "First Sergeant".</p>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Check</th><th>How it is graded</th></tr></thead>
+          <tbody>
+            <tr><td>Proper address</td><td>Answer starts with the asker's correct title.</td></tr>
+            <tr><td>Restates the question</td><td>Most of the question's key words appear before the answer.</td></tr>
+            <tr><td>Correct content</td><td>Keyword match against accepted answers first; Gemini grades open-ended answers ("Explain the five steps of risk management") and returns a short reason.</td></tr>
+            <tr><td>Delivery (spoken only)</td><td>Filler words ("um", "uh") and response time. Feedback only, not scored.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Two modes</h3>
+      <ul>
+        <li><strong>Solo board:</strong> self-paced, graded automatically. Timer is checked on the server (time question sent vs. answer received) so it cannot be paused.</li>
+        <li><strong>Sponsor board (linked):</strong> the Soldier faces the panel on a laptop; the sponsor joins with a 4-letter code on their phone and sees the answer key, citation, timer and Go / No-Go buttons, plus bearing and confidence scores. Both screens stay in sync. Highest points, since a leader verifies it.</li>
+      </ul>
+      <p>AI prompts contain only the question and the answer, never the Soldier's name. If the free Gemini quota is busy, grading falls back to keyword matching.</p>
+    </section>
+
+    <section id="drills">
+      <h2><span class="n">6</span>Hands-on drills</h2>
+      <p>Physical and spatial tasks get interactive practice, not just quiz questions. Each correct item earns the <strong>same points as a solo board question</strong>.</p>
+      <h3>Map reading and land navigation</h3>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Drill</th><th>What the Soldier does</th><th>Scored by</th></tr></thead>
+          <tbody>
+            <tr><td>Plot the point</td><td>Given an 8-digit MGRS grid, taps the spot on the map</td><td class="num">Meters off</td></tr>
+            <tr><td>Read the grid</td><td>Enters the 8-digit grid of a marked point</td><td>Correct digits</td></tr>
+            <tr><td>Shoot an azimuth</td><td>Measures between two points with an on-screen protractor</td><td class="num">Degrees off</td></tr>
+            <tr><td>Grid ↔ magnetic</td><td>Converts using the map's G-M angle</td><td>Correct / not</td></tr>
+            <tr><td>Terrain features</td><td>Identifies hill, saddle, ridge, valley, depression, draw, spur, cut, fill</td><td>Correct / not</td></tr>
+            <tr><td>Route planning</td><td>Plans legs through points: distance, azimuth, pace count</td><td>Compared to an efficient route</td></tr>
+            <tr><td>Resection</td><td>Finds own location from two azimuths to known points</td><td class="num">Meters off</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Includes a pace-count calculator (personal 100 m count, adjusted for slope and vegetation). Maps: Camp Ripley maps from the package if their markings allow use in the app <span class="tbd">FRAGORD</span>; otherwise a public USGS topo of the same area. GeoPDF maps carry their own coordinates; a scanned map needs 3–4 control points set once by the admin.</p>
+      <h3>Weapons</h3>
+      <ul>
+        <li>Disassembly and assembly order (M4, M17, M249, M240), plus a sponsor-timed real-world version.</li>
+        <li>Functions check: order the steps and state the expected result of each.</li>
+        <li>Malfunctions: pick the correct immediate action from a symptom, per the current TC 3-22.9 <span class="tbd">FRAGORD</span>.</li>
+        <li>Zeroing: find the center of a shot group on a 25 m target and calculate the sight adjustment.</li>
+        <li>Range card: complete a DA 5517-style sector sketch from a scenario.</li>
+      </ul>
+      <h3>Warrior tasks and battle drills</h3>
+      <ul>
+        <li>9-line MEDEVAC, SALUTE and SPOT reports, call for fire: built from a scenario and graded line by line.</li>
+        <li>TCCC: branching scenarios through MARCH, where the wrong order gives a worse outcome.</li>
+        <li>Radio procedure: prowords and format, typed or spoken.</li>
+      </ul>
+      <h3>Sponsor-verified tasks</h3>
+      <p>Tasks a phone cannot check (tourniquet, MOPP, litter carry, weapon disassembly against the clock) use a <strong>sponsor checklist</strong>: the task's Go / No-Go steps with a stopwatch. The sponsor grades and the points post.</p>
+      <h3>Print mode</h3>
+      <p>Because competitors work without phones on competition day, the app can print practice material (land-nav worksheet, blank 9-line, board answer sheet). The sponsor enters the score afterward for points.</p>
+    </section>
+
+    <section id="fitness">
+      <h2><span class="n">7</span>Fitness log</h2>
+      <ul>
+        <li><strong>Fields:</strong> type (run, ruck, lift, HIIT, swim, AFT practice, other), duration, distance, ruck weight, effort (1–10), notes, optional screenshot.</li>
+        <li><strong>No wearable needed.</strong> A typed entry earns the same base points as one with a screenshot. A screenshot adds a <strong>Verified</strong> badge and +10%.</li>
+        <li><strong>Screenshots</strong> from Oura, Apple Watch, Garmin, WHOOP or others: Gemini reads the numbers (duration, distance, heart rate) and pre-fills the form. The app keeps the stats and a small thumbnail; the original image is discarded.</li>
+        <li><strong>AFT practice:</strong> per-event scores with a trend chart against the standard <span class="tbd">FRAGORD</span>.</li>
+        <li><strong>Guardrails:</strong> daily point cap, and leaders can flag or reverse an entry.</li>
+      </ul>
+      <div class="callout warn"><strong>OPSEC:</strong> fitness screenshots often show a GPS route map. The upload screen warns Soldiers to crop maps out, and because only stats and a thumbnail are kept, a full route image is never stored.</div>
+    </section>
+
+    <section id="points">
+      <h2><span class="n">8</span>Points and progression</h2>
+      <p>Three tiers: <strong>study</strong> (low), <strong>practice</strong> (medium), <strong>perform</strong> (high). Hands-on drills score the same as solo board questions. The sponsor board scores highest.</p>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Activity</th><th>Default points</th><th>Limits</th></tr></thead>
+          <tbody>
+            <tr><td>Read a source section or flashcard set</td><td class="num">1</td><td>5 per day</td></tr>
+            <tr><td>Untimed quiz, correct answer</td><td class="num">1</td><td>First correct answer per question only</td></tr>
+            <tr><td>Daily 10</td><td class="num">1 per correct + 5 for finishing</td><td>Once per day</td></tr>
+            <tr><td>Solo board, correct answer</td><td class="num">3 (+10 for passing)</td><td>Pass mark <span class="tbd">FRAGORD</span></td></tr>
+            <tr><td>Hands-on drill, correct item</td><td class="num">3</td><td>First pass per drill per day</td></tr>
+            <tr><td>Sponsor board, Go</td><td class="num">5 per Go (+20 for completing)</td><td>Sponsor-verified</td></tr>
+            <tr><td>Sponsor-verified task, Go</td><td class="num">15</td><td>Sponsor-verified</td></tr>
+            <tr><td>Workout</td><td class="num">1 per 10 min; ruck ×1.5; AFT practice ×1.25</td><td>15 per day; screenshot +10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Rank ladder</h3>
+      <p>Early ranks come quickly; SMA takes a full, committed season. Thresholds are defaults.</p>
+      <div class="ladder" role="list">
+        <div class="rung" role="listitem"><b>PVT</b><span>0</span></div>
+        <div class="rung" role="listitem"><b>PV2</b><span>50</span></div>
+        <div class="rung" role="listitem"><b>PFC</b><span>150</span></div>
+        <div class="rung" role="listitem"><b>SPC</b><span>350</span></div>
+        <div class="rung" role="listitem"><b>CPL</b><span>700</span></div>
+        <div class="rung" role="listitem"><b>SGT</b><span>1,200</span></div>
+        <div class="rung" role="listitem"><b>SSG</b><span>2,000</span></div>
+        <div class="rung" role="listitem"><b>SFC</b><span>3,200</span></div>
+        <div class="rung" role="listitem"><b>MSG</b><span>4,600</span></div>
+        <div class="rung" role="listitem"><b>1SG</b><span>6,000</span></div>
+        <div class="rung" role="listitem"><b>SGM</b><span>8,000</span></div>
+        <div class="rung" role="listitem"><b>CSM</b><span>10,500</span></div>
+        <div class="rung top" role="listitem"><b>SMA</b><span>14,000</span></div>
+      </div>
+      <h3>Collectibles</h3>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Set</th><th>Ladder</th><th>Earned by</th></tr></thead>
+          <tbody>
+            <tr><td>Weapons</td><td>M17 → M4 → M249 → M240 → M2 → Javelin → XM7</td><td>Weapons drills and weapons-topic mastery</td></tr>
+            <tr><td>Vehicles</td><td>HMMWV → JLTV → Stryker → Bradley → Abrams → UH-60 → AH-64</td><td>Ruck miles and fitness goals</td></tr>
+            <tr><td>Ribbons</td><td>A ribbon rack on the avatar's uniform, filled in correct order of precedence</td><td>Board, quiz and streak milestones</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>All collectibles are clearly labeled <strong>app badges</strong>, not actual awards, and use custom-drawn icons rather than official Army insignia artwork. Unlocks play a short animation (a vehicle drives in, a rank slides onto the collar).</p>
+    </section>
+
+    <section id="social">
+      <h2><span class="n">9</span>Leaderboard and discussion</h2>
+      <h3>Leaderboard</h3>
+      <ul>
+        <li>Filters: squad, section, company, all competitors; this week, this month, season.</li>
+        <li><strong>Most improved this week</strong> board, so newer Soldiers have something to chase.</li>
+        <li>Squad vs. squad weekly team totals.</li>
+        <li>Weekly crown and season champion, carried over from Squad Trivia.</li>
+      </ul>
+      <h3>Discussion board</h3>
+      <ul>
+        <li>Channels: <strong>Announcements</strong> (leaders post), Board Prep, Fitness, Land Nav, Weapons &amp; WTBDs, General.</li>
+        <li>Threads, replies, @mentions, reactions, pinned posts.</li>
+        <li>"Discuss this question" from any quiz question opens or joins its thread.</li>
+        <li>Leaders can hide posts (kept on record, not deleted). Anyone can report a post; reports go to the same queue as question errors.</li>
+        <li><strong>No private messages.</strong> All conversation stays in the open.</li>
+        <li>An OPSEC reminder sits above the post box: no locations, dates, other units' details or photos with maps.</li>
+      </ul>
+    </section>
+
+    <section id="leaders">
+      <h2><span class="n">10</span>Sponsor and leader tools</h2>
+      <ul>
+        <li><strong>Roster:</strong> every competitor in scope with total points, rank, study vs. fitness points and last activity.</li>
+        <li><strong>Readiness meter</strong> per competition event <span class="tbd">FRAGORD</span>: board, fitness, land nav, weapons and others, based on recent scores.</li>
+        <li><strong>Competitor detail:</strong> quiz accuracy by topic (weak areas), board history, drill scores, workouts, questions learned.</li>
+        <li><strong>Verification queue:</strong> sponsor-graded tasks and flagged fitness entries.</li>
+        <li><strong>Reports queue:</strong> question errors and reported posts, with status (open, fixed, dismissed).</li>
+        <li><strong>Notifications:</strong> e.g. "no workout logged in 7 days", "mock board finished, 82%", new announcement.</li>
+        <li><strong>Weekly summary</strong> email to leaders (optional).</li>
+      </ul>
+    </section>
+
+    <section id="awards">
+      <h2><span class="n">11</span>Award and NCOER drafts</h2>
+      <p>A <strong>Generate draft</strong> button on a competitor's profile, for their sponsor and leaders in scope.</p>
+      <ul>
+        <li><strong>Inputs (from the app's own records):</strong> active study hours (idle time excluded), questions answered and accuracy, topics mastered, boards completed and best score, workouts and ruck miles, verified tasks, app rank reached, competition placement.</li>
+        <li><strong>Award draft:</strong> citation line and justification bullets in DA 638 style, for an award level the user selects.</li>
+        <li><strong>NCOER bullets:</strong> short, measurable bullets, e.g. <em>"o completed 1,200+ board prep questions at 94% accuracy across 14 doctrinal topics; placed 1st at HHBn BWC"</em>.</li>
+      </ul>
+      <div class="callout">
+        <strong>Guardrails:</strong> every output is marked DRAFT for the rater or sponsor to review and edit. It uses only real numbers from the app, never invented accomplishments, and avoids comment types prohibited by DA PAM 623-3 (checked against the version in the package). All activity is logged with timestamps from day one, so drafts can describe trends ("over nine weeks"), not just totals.
+      </div>
+    </section>
+
+    <section id="season">
+      <h2><span class="n">12</span>Season and admin</h2>
+      <ul>
+        <li><strong>Season TY27</strong> holds three competitions: HHBn, Division, State, each with dates, events and standards <span class="tbd">FRAGORD</span>.</li>
+        <li><strong>Competitor status:</strong> competing at HHBn, advanced to Division, advanced to State, or finished. Advancing awards a badge and unlocks that level's content.</li>
+        <li><strong>Points and rank carry over</strong> the whole season.</li>
+        <li><strong>Study plan:</strong> built from the competition date and the order's reference list, week by week.</li>
+        <li><strong>Admin tools:</strong> bulk question import from a spreadsheet (question, choices, answer, topic, source, paragraph, page); edit point values and thresholds; manage roles, units and sponsor pairings; keep the chain of command list current (President through SMA, MN TAG, state CSM, down to company).</li>
+        <li><strong>Season AAR:</strong> each Soldier's progress, the unit's weakest topics, and the most-reported question errors, for planning TY28.</li>
+      </ul>
+    </section>
+
+    <section id="data">
+      <h2><span class="n">13</span>Data model</h2>
+      <p>Firestore collections. Every write carries a server timestamp.</p>
+      <div class="table-box">
+        <table>
+          <thead><tr><th>Collection</th><th>Holds</th><th>Who writes</th></tr></thead>
+          <tbody>
+            <tr><td><code>users/{uid}</code></td><td>name, rank, unit, role, sponsorUid, competition status, avatar, theme</td><td>Self (profile fields); admin (role, unit, sponsor)</td></tr>
+            <tr><td><code>questions/{id}</code></td><td>question, choices, answers / keywords, topic, level, source_doc, paragraph, page, explanation, last_verified</td><td>Admin</td></tr>
+            <tr><td><code>attempts/{id}</code></td><td>one answered question: uid, questionId, mode, correct, time taken</td><td>Self (create only)</td></tr>
+            <tr><td><code>progress/{uid}</code></td><td>points by tier, rank, unlocks, learned and missed question IDs, streak</td><td>Server-checked rules</td></tr>
+            <tr><td><code>boards/{id}</code></td><td>a mock board session: panel, questions, answers, scores, sponsorUid</td><td>Soldier and linked sponsor</td></tr>
+            <tr><td><code>drills/{id}</code></td><td>drill type, items, scores</td><td>Self</td></tr>
+            <tr><td><code>workouts/{id}</code></td><td>type, duration, distance, weight, effort, stats, thumbnail, verified, flagged</td><td>Self; sponsor or leader can flag</td></tr>
+            <tr><td><code>verifications/{id}</code></td><td>sponsor-graded task: checklist, time, Go / No-Go</td><td>Sponsor or leader</td></tr>
+            <tr><td><code>reports/{id}</code></td><td>question error or post report: target, reason, status, resolver</td><td>Anyone creates; leaders resolve</td></tr>
+            <tr><td><code>channels/{c}/posts/{id}</code></td><td>discussion posts and replies, hidden flag</td><td>Author creates; leaders hide</td></tr>
+            <tr><td><code>season/{id}</code></td><td>competitions, dates, events, point values, thresholds, chain of command</td><td>Admin</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="security">
+      <h2><span class="n">14</span>Security and OPSEC</h2>
+      <ul>
+        <li><strong>Personal data:</strong> name, rank and unit only. No DoD ID, SSN, date of birth, medical or profile data.</li>
+        <li><strong>No CUI in the app.</strong> Competitors are authorized to see the CUI orders, but Firebase on the free plan and commercial AI tools are not approved systems for storing or processing CUI. The FRAGORD, 34ID OPORD, Radio Operator's Handbook (FOUO), MUOS sheet and NGA 1:50K map stay out; Soldiers get them through official channels.</li>
+        <li><strong>"Government agencies only" publications</strong> (TC 3-25.26, STP 21-1-SMCT, TC 3-20.31-1 and others) are used for questions, which are visible only to admin-approved accounts. The PDFs themselves are never hosted; links go to the Army Publishing Directory, which may require a CAC.</li>
+        <li><strong>Camp Ripley land nav keys</strong> stay out of the app so the competition courses aren't given away. Map drills use the unmarked 1:25K GeoPDF with app-generated points.</li>
+        <li><strong>Private repo</strong> and Firebase Hosting, so code and content are not public.</li>
+        <li><strong>Role rules</strong> on the server: Soldiers cannot read other Soldiers' details or change their own points.</li>
+        <li><strong>AI calls</strong> carry no names or personal details; App Check limits them to this app.</li>
+        <li><strong>Screenshots:</strong> only stats and a thumbnail kept; map warning on upload.</li>
+        <li><strong>Discussion:</strong> no private messages; hidden posts retained for review.</li>
+      </ul>
+    </section>
+
+    <section id="visual">
+      <h2><span class="n">15</span>Visual design</h2>
+      <ul>
+        <li><strong>Default theme: Black &amp; Gold.</strong> Black ground, gold accents, gold-shaded training tiles with black text.</li>
+        <li><strong>Theme picker</strong> (from the mockups): Desert Storm (light), Arctic Electric (light), Camo Pop, Tropic Fiesta (light).</li>
+        <li><strong>Fonts:</strong> Bricolage Grotesque for headings, Atkinson Hyperlegible for text, the same as Squad Trivia.</li>
+        <li><strong>Readability:</strong> every color pairing meets 4.5:1 contrast; meaning never depends on color alone (each area has an icon and label).</li>
+        <li><strong>Motion:</strong> rank-up, unlock and board-pass celebrations; haptics on Android; optional bugle sound, off by default. Reduced-motion settings respected.</li>
+        <li><strong>Layout:</strong> phone-first, with wider layouts on computers for map drills and the board panel.</li>
+      </ul>
+    </section>
+
+    <section id="phases">
+      <h2><span class="n">16</span>Build phases</h2>
+      <p>Each phase is usable on its own, so Soldiers can start studying before everything is built.</p>
+      <div class="phases">
+        <div class="phase">
+          <h3>Phase 1 · Core study</h3>
+          <ul>
+            <li>New Firebase project, private repo, hosting</li>
+            <li>Sign-in, roles, units, sponsor pairing</li>
+            <li>Question bank from the reference list, with citations</li>
+            <li>Study library, untimed quizzes, mark learned, report error</li>
+            <li>Points, rank ladder, leaderboard, Black &amp; Gold theme</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3>Phase 2 · Board and fitness</h3>
+          <ul>
+            <li>Solo mock board with voice and format grading</li>
+            <li>Daily 10, creed trainer, audio flashcards</li>
+            <li>Fitness log with screenshot reading</li>
+            <li>Discussion board</li>
+            <li>Sponsor and leader dashboards, reports queue</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3>Phase 3 · Hands-on</h3>
+          <ul>
+            <li>Linked sponsor board</li>
+            <li>AI grading for open answers</li>
+            <li>Map and land-nav drills</li>
+            <li>Weapons and WTBD drills, sponsor checklists, print mode</li>
+            <li>Weapons, vehicle and ribbon collectibles</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <h3>Phase 4 · Season tools</h3>
+          <ul>
+            <li>Award and NCOER drafts</li>
+            <li>Readiness meters and notifications</li>
+            <li>Division and State content unlocks</li>
+            <li>Alternate themes, squad challenges</li>
+            <li>Season AAR</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="open">
+      <h2><span class="n">17</span>Open items</h2>
+      <p>Settled from the package: State and Region IV dates, packet deadline, categories, reference list, document markings.</p>
+      <p>Still to fill in:</p>
+      <ul>
+        <li>HHBn and 34ID competition dates</li>
+        <li>Board format: reporting procedure, number of questions, time per question, pass mark (not in the unmarked MOI)</li>
+        <li>The references listed in section 1 that aren't in the package</li>
+      </ul>
+      <p>Decisions still needed:</p>
+      <ul>
+        <li>Unit structure for leader scopes (company / section / squad names)</li>
+        <li>Which leaders receive question-error reports</li>
+        <li>App name</li>
+      </ul>
+    </section>
+  </main>
+</div>

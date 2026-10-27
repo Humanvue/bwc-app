@@ -1,0 +1,70 @@
+# Best Warrior
+
+Study and training app for the TY27 Best Warrior season (HHBn → 34ID → MNNG State → Region IV).
+Built on the same pattern as Squad Trivia: plain JavaScript, no build step, installable to a phone's home screen.
+
+Phase 1 (this version): Google sign-in with admin approval, roles, a cited question bank, study library,
+flashcards, untimed topic quizzes, Daily 10, mark-as-learned, question error reports, points, app ranks
+PVT → SMA, leaderboard and five themes. The mock board and fitness log are Phase 2 (see the spec).
+
+## Run it on this computer
+
+```sh
+cd public && python3 -m http.server 8765
+```
+
+Then open http://localhost:8765. With no Firebase config the app runs in demo mode: one person, saved in this browser.
+
+## Question bank
+
+Questions live in `content/raw/*.json`, one object per question with its publication, paragraph, PDF page and a
+verbatim quote. Rebuild the app's question file after any change:
+
+```sh
+python3 -I tools/build_questions.py "$HOME/Downloads/TY27 BWC Source Docs"
+```
+
+The build re-checks every quote against the cited PDF page. Anything that fails is left out of the app and listed
+in `content/needs-review.json`. Source links go to the Army Publishing Directory (`tools/apd_links.json`); some
+need a CAC.
+
+Content rules:
+- Never use the folders starting `00` (CUI, FOUO, limited distribution), `01` (land nav course keys) or `90`
+  (Gemini study guide) as sources.
+- PDFs are never put in `public/`: Firebase Hosting is publicly reachable, and several publications are
+  "Distribution authorized to U.S. Government agencies only".
+
+## Put it online (Firebase, free Spark plan)
+
+One-time setup, done by the admin:
+
+1. **Create the project.** In the [Firebase console](https://console.firebase.google.com), add a project
+   (e.g. `mn-bwc-ty27`). Analytics is not needed.
+2. **Add a web app.** Project settings → Your apps → Web. Copy the config values into `public/js/firebase-config.js`.
+3. **Turn on Google sign-in.** Build → Authentication → Sign-in method → Google → Enable.
+4. **Create Firestore.** Build → Firestore Database → Create database (production mode, a US region).
+5. **Set the admin email.** In `firestore.rules`, replace `REPLACE_WITH_ADMIN_EMAIL@gmail.com` with your Google
+   account email.
+6. **Deploy with the Firebase CLI** (installed in this project by `npm install`):
+
+   ```sh
+   npm install
+   npx firebase login
+   npx firebase use --add      # pick the project
+   npm run deploy              # hosting + firestore rules
+   ```
+
+7. **Approve yourself.** Open the site, sign in, and on the "Waiting for approval" screen tap **I am the app admin**.
+   Then approve everyone else from **Me → Admin**, and set roles (soldier, sponsor, leader, admin) and sponsors there.
+
+Keep the GitHub repo **private**. Firebase Hosting does not need a public repo.
+
+### What the security rules do
+
+- Nobody reads anything until an admin approves their account.
+- Soldiers can change only their own name, rank, unit and theme. Points can only go up, at most 100 per save.
+- Answers and points history are visible to the Soldier, their assigned sponsor, leaders and admins.
+- Error reports can be filed by anyone approved and worked by leaders and admins.
+
+Without Cloud Functions (paid plan) the app adds points from the phone, so a determined user could inflate their
+score within those limits. Leaders can review each person's answers if a score looks wrong.

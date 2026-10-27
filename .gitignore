@@ -1,0 +1,7 @@
+.DS_Store
+.firebase/
+firebase-debug.log
+node_modules/
+__pycache__/
+# Source PDFs never go in the repo
+*.pdf

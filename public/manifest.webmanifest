@@ -1,0 +1,12 @@
+{
+  "name": "Best Warrior",
+  "short_name": "Best Warrior",
+  "description": "TY27 Best Warrior Competition study and training",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0A0A0D",
+  "theme_color": "#0A0A0D",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
