@@ -22,6 +22,11 @@ WTBDs, General), threads, replies, @mentions, Hooahs, and a **Discuss** button o
 opens one shared thread per question. Leaders pin and hide (hidden posts are kept for review); anyone can report a
 post to the leaders' queue. There are no private messages.
 
+**Sponsor dashboard** (Me → My competitor / Competitors). Sponsors see the competitors assigned to them; leaders and
+admins see every approved Soldier. Roster cards flag anyone quiet for 7 days and screenshots waiting for review.
+Each competitor page shows readiness bars (board, knowledge, weapons, land nav, WTBDs, fitness), topics weakest
+first, recently missed questions, board history, and workouts with **Verify** / **Flag** on screenshots.
+
 Add `?demo` to the address (e.g. `http://localhost:8765/?demo`) to test on this device without signing in.
 
 ## Run it on this computer

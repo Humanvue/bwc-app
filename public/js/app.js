@@ -137,7 +137,7 @@
       { href: '#/study', label: 'Study', icon: 'book', on: route === 'study' || route === 'topic' || route === 'flash' },
       { href: '#/quiz/daily', label: 'Daily 10', icon: 'flame', on: route === 'quiz' },
       { href: '#/squad', label: 'Squad', icon: 'chat', on: route === 'squad' || route === 'thread' || route === 'leaderboard' },
-      { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' }
+      { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' || route === 'team' }
     ];
     nav.innerHTML = '<div class="inner">' + items.map(function (n) {
       return '<a href="' + n.href + '" class="' + (n.on ? 'active' : '') + '"' + (n.on ? ' aria-current="page"' : '') + '>' + icon(n.icon) + esc(n.label) + '</a>';
@@ -521,7 +521,8 @@
       '<div class="card"><div class="row"><div class="avatar">' + esc(initials(S.user.name)) + '</div><div class="grow"><div class="display" style="font-size:20px">' +
       esc(displayName(S.user)) + '</div><div class="muted small">' + esc(S.user.unit || '') + ' · ' + esc(S.user.role || 'soldier') + '</div></div>' +
       '<div class="rank-badge">' + esc(r.rank.id) + '</div></div></div>' +
-      (isLeader() ? '<a class="btn" href="#/admin">' + icon('settings', 18) + (isAdmin() ? 'Admin' : 'Leader tools') + '</a>' : '') +
+      (isLeader() || S.user.role === 'sponsor' ? '<a class="btn" href="#/team">' + icon('user', 18) + (S.user.role === 'sponsor' ? 'My competitor' : 'Competitors') + '</a>' : '') +
+      (isLeader() ? '<a class="btn ghost" href="#/admin">' + icon('settings', 18) + (isAdmin() ? 'Admin' : 'Leader tools') + '</a>' : '') +
       '<form class="card" id="me-form"><h2>Profile</h2>' +
       '<label class="field">Name<input class="input" id="me-name" maxlength="40" value="' + esc(S.user.name || '') + '"></label>' +
       '<label class="field">Military rank<select class="input" id="me-rank">' + C.militaryRanks.map(function (x) {
@@ -655,6 +656,7 @@
       case 'admin': return viewAdmin();
       case 'board': return BWC.Board.view(parts[1]);
       case 'fitness': return BWC.Fitness.view(parts[1]);
+      case 'team': return BWC.Team.view(parts[1]);
       case 'squad': return parts[1] === 'new' ? BWC.Discussion.newPost(parts[2]) : BWC.Discussion.list(parts[1]);
       case 'thread': return BWC.Discussion.thread(decodeURIComponent(parts[1] || ''));
       case 'coming': return viewComing(parts[1]);

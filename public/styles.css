@@ -233,6 +233,16 @@ input[type="file"] { font-size: 14px; max-width: 100%; }
 .hooah.on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 .reply { gap: 8px; }
 
+/* Sponsor and leader dashboard */
+.roster-card { text-decoration: none; color: inherit; }
+.roster-card:hover { border-color: var(--accent); }
+.attention { border: 2px solid var(--bad); }
+.meter { display: flex; flex-direction: column; gap: 4px; }
+.bar > span.warn { background: var(--bad); }
+.workout-row { display: flex; flex-direction: column; gap: 8px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.workout-row:last-of-type { border-bottom: none; }
+.shot { max-width: 200px; max-height: 320px; border-radius: 12px; border: 1px solid var(--line); object-fit: contain; }
+
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .swatch { min-height: 64px; border-radius: 14px; border: 3px solid transparent; cursor: pointer; padding: 8px; text-align: left; font-weight: 700; font-size: 13px; display: flex; align-items: flex-end; }
 .swatch.on { border-color: var(--text); }

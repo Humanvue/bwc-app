@@ -103,6 +103,18 @@
       return Promise.resolve(rec);
     },
 
+    // ---------- sponsor and leader views (demo: you are your own competitor) ----------
+
+    competitors: function () { return Promise.resolve([Object.assign({}, db.profile)]); },
+
+    memberMeta: function () { return Promise.resolve({ learned: Object.assign({}, db.learned), daily: Object.assign({}, db.daily) }); },
+
+    reviewWorkout: function (uid, workoutId, review) {
+      db.workouts.forEach(function (w) { if (w.id === workoutId) { w.review = review; w.reviewedBy = db.profile.uid; } });
+      save();
+      return Promise.resolve();
+    },
+
     // ---------- discussion board ----------
 
     threads: function (channel) {

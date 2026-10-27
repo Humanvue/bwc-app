@@ -98,8 +98,9 @@
 
   // ---------- answers and points ----------
 
-  function listSub(name) {
-    return userRef().collection(name).get().then(function (snap) {
+  // uid is optional: sponsors and leaders read a competitor's history (allowed by firestore.rules).
+  function listSub(name, uid) {
+    return userRef(uid).collection(name).get().then(function (snap) {
       return snap.docs.map(function (d) {
         var v = d.data();
         return Object.assign({}, v, { at: v.at && v.at.toMillis ? v.at.toMillis() : Date.now() });
@@ -107,8 +108,32 @@
     });
   }
 
-  Store.attempts = function () { return listSub('attempts'); };
-  Store.ledger = function () { return listSub('ledger'); };
+  Store.attempts = function (uid) { return listSub('attempts', uid); };
+  Store.ledger = function (uid) { return listSub('ledger', uid); };
+
+  // ---------- sponsor and leader views ----------
+
+  // Sponsors see the competitors assigned to them; leaders and admins see every approved Soldier.
+  Store.competitors = function () {
+    var q = db.collection('users').where('status', '==', 'approved');
+    var leader = profile.role === 'leader' || profile.role === 'admin';
+    if (!leader) q = q.where('sponsorUid', '==', profile.uid);
+    return q.get().then(function (snap) {
+      return snap.docs.map(function (d) { return Object.assign({ uid: d.id }, d.data()); })
+        .filter(function (p) { return leader ? p.role === 'soldier' : true; });
+    });
+  };
+
+  Store.memberMeta = function (uid) {
+    return metaRef(uid).get().then(function (m) {
+      var v = m.exists ? m.data() : {};
+      return { learned: v.learned || {}, daily: v.daily || {} };
+    });
+  };
+
+  Store.reviewWorkout = function (uid, workoutId, review) {
+    return userRef(uid).collection('workouts').doc(workoutId).update({ review: review, reviewedBy: profile.uid });
+  };
 
   Store.addAttempts = function (list) {
     var batch = db.batch();
