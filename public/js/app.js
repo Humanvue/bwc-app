@@ -137,7 +137,7 @@
       { href: '#/study', label: 'Study', icon: 'book', on: ['study', 'topic', 'flash', 'creeds', 'creed', 'audio'].indexOf(route) >= 0 },
       { href: '#/quiz/daily', label: 'Daily 10', icon: 'flame', on: route === 'quiz' },
       { href: '#/squad', label: 'Squad', icon: 'chat', on: route === 'squad' || route === 'thread' || route === 'leaderboard' },
-      { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' || route === 'team' }
+      { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' || route === 'team' || route === 'collection' }
     ];
     nav.innerHTML = '<div class="inner">' + items.map(function (n) {
       return '<a href="' + n.href + '" class="' + (n.on ? 'active' : '') + '"' + (n.on ? ' aria-current="page"' : '') + '>' + icon(n.icon) + esc(n.label) + '</a>';
@@ -517,12 +517,21 @@
 
   // ---------- profile and settings ----------
 
+  // Ribbon rack and arms-room count shown on the Me card; tap through to the collection.
+  function meRack() {
+    var c = BWC.Collect.compute(S);
+    var rack = c.ribbons.filter(function (x) { return x.on; });
+    var arms = c.weapons.filter(function (x) { return x.on; }).length;
+    return '<a class="me-rack" href="#/collection">' + (rack.length ? '<span class="rack small-rack">' + rack.map(function (x) { return BWC.Collect.ribbonHtml(x); }).join('') + '</span>' : '<span class="muted small">No ribbons yet</span>') +
+      '<span class="small grow" style="text-align:right">' + arms + '/' + c.weapons.length + ' weapons · Arms room and ribbons →</span></a>';
+  }
+
   function viewMe() {
     var r = P.rankFor(points());
     app.innerHTML = header('Me') +
       '<div class="card"><div class="row"><div class="avatar">' + esc(initials(S.user.name)) + '</div><div class="grow"><div class="display" style="font-size:20px">' +
       esc(displayName(S.user)) + '</div><div class="muted small">' + esc(S.user.unit || '') + ' · ' + esc(S.user.role || 'soldier') + '</div></div>' +
-      '<div class="rank-badge">' + esc(r.rank.id) + '</div></div></div>' +
+      '<div class="rank-badge">' + esc(r.rank.id) + '</div></div>' + meRack() + '</div>' +
       (isLeader() || S.user.role === 'sponsor' ? '<a class="btn" href="#/team">' + icon('user', 18) + (S.user.role === 'sponsor' ? 'My competitor' : 'Competitors') + '</a>' +
         '<a class="btn ghost" href="#/sponsorboard">' + icon('mic', 18) + 'Run a sponsor board</a>' : '') +
       (isLeader() ? '<a class="btn ghost" href="#/admin">' + icon('settings', 18) + (isAdmin() ? 'Admin' : 'Leader tools') + '</a>' : '') +
@@ -663,6 +672,7 @@
     var name = parts[0] || 'home';
     renderNav(name);
     window.scrollTo(0, 0);
+    if (name === 'home' && BWC.Collect) setTimeout(BWC.Collect.announce, 600);
     switch (name) {
       case 'home': return viewHome();
       case 'study': return viewStudy();
@@ -679,6 +689,7 @@
       case 'audio': return BWC.Audio.view(parts[1]);
       case 'landnav': return BWC.LandNav.view(parts[1]);
       case 'drills': return BWC.Drills.view(parts[1], parts[2]);
+      case 'collection': return BWC.Collect.view();
       case 'sponsorboard': return parts[1] ? BWC.SponsorBoard.sponsor(parts[1].toUpperCase()) : BWC.SponsorBoard.setup();
       case 'linked': return BWC.SponsorBoard.join(parts[1]);
       case 'creeds': return BWC.Creeds.view();

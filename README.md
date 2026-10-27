@@ -40,6 +40,12 @@ Gemini through Firebase AI Logic (`public/js/ai.js`, model and SDK version under
 raise a grade, never lower one; if it's unavailable, keyword grading stands. Only the question, reference answer
 and the Soldier's words are sent. Admins can check it under Me → Admin → Test AI grading.
 
+**Arms room and ribbons** (Phase 3; Me → Arms room and ribbons). Weapons unlock with weapons points (first-time
+right answers in weapons topics plus weapons drill GOs): M17, M4, M249, M240, M2, Javelin, XM7. Ten app ribbons are
+earned from tracked activity (boards, creeds, Lifesaver drills, land nav, zeroing, study, ruck miles, Daily 10 days)
+and worn in the app's order of precedence. They are app badges with their own names and colors, not Army awards.
+New unlocks are announced on the Home screen. Rules are in `public/js/collect.js`.
+
 **Linked sponsor board** (Phase 3; sponsors: Me → Run a sponsor board; Soldiers: Mock Board → Join a sponsor
 board). The sponsor's phone creates a 4-letter code and shows the answer key, citation, timer, GO/NO-GO, format
 checks, and final bearing/confidence/notes. The Soldier's device shows the panel and reads questions aloud, with
