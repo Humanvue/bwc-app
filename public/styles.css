@@ -298,6 +298,10 @@ select.fm-bad { border-color: var(--bad); }
 .go-btn { background: var(--good); color: var(--on-status); min-height: 60px; }
 .nogo-btn { background: var(--bad); color: var(--on-status); min-height: 60px; }
 
+/* Award and NCOER drafts */
+.draft-warning { border: 2px solid var(--accent); }
+pre.draft { white-space: pre-wrap; word-wrap: break-word; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 1.55; margin: 0; padding: 12px; border-radius: 12px; background: var(--surface-2); border: 1px dashed var(--line); }
+
 /* Collectibles */
 .ribbon { display: inline-block; width: 44px; height: 13px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35); flex: 0 0 auto; }
 .ribbon.big { width: 66px; height: 20px; }

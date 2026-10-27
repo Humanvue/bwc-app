@@ -133,6 +133,7 @@
       app().innerHTML = u.header(u.displayName(p), '#/team') +
         '<div class="card"><div class="row"><div class="rank-badge">' + u.esc(rk.rank.id) + '</div><div class="grow">' +
         '<div class="muted small">' + u.esc(p.unit || '') + ' · app rank ' + u.esc(rk.rank.name) + '</div><div><strong>' + (p.points || 0).toLocaleString() + '</strong> points · active ' + ago(s.last) + '</div></div></div></div>' +
+        '<a class="btn" href="#/drafts/' + encodeURIComponent(uid) + '">' + u.icon('clipboard', 18) + 'Award and NCOER drafts</a>' +
         '<div class="card"><h2>Readiness</h2>' +
         meter('Board', s.bestBoard, s.bestBoard == null ? null : 'Best ' + s.bestBoard + '% · ' + s.boards.length + ' sat') +
         meter('Overall knowledge', s.knowledge) +
@@ -180,5 +181,5 @@
 
   function view(uid) { return uid ? viewMember(decodeURIComponent(uid)) : viewRoster(); }
 
-  BWC.Team = { view: view, summarize: summarize };
+  BWC.Team = { view: view, summarize: summarize, loadMember: loadMember };
 })();

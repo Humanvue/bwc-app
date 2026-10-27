@@ -40,6 +40,12 @@ Gemini through Firebase AI Logic (`public/js/ai.js`, model and SDK version under
 raise a grade, never lower one; if it's unavailable, keyword grading stands. Only the question, reference answer
 and the Soldier's words are sent. Admins can check it under Me → Admin → Test AI grading.
 
+**Award and NCOER drafts** (Phase 4; competitor page → Award and NCOER drafts, sponsors and leaders only). Builds
+DA Form 638 achievement bullets and a proposed citation, and NCOER bullets (SGT and above) grouped by part IV block,
+only from the Soldier's records dated inside the chosen rating period. Follows AR 623-3: bullets start with an action
+verb, stay within two lines, use no pronouns, and avoid the prohibited comments in paras 3-21 and 3-22. Every output
+is marked DRAFT for the rater to review. Generator tested by `node tools/test_drafts.js`.
+
 **Arms room and ribbons** (Phase 3; Me → Arms room and ribbons). Weapons unlock with weapons points (first-time
 right answers in weapons topics plus weapons drill GOs): M17, M4, M249, M240, M2, Javelin, XM7. Ten app ribbons are
 earned from tracked activity (boards, creeds, Lifesaver drills, land nav, zeroing, study, ruck miles, Daily 10 days)

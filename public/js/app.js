@@ -137,7 +137,7 @@
       { href: '#/study', label: 'Study', icon: 'book', on: ['study', 'topic', 'flash', 'creeds', 'creed', 'audio'].indexOf(route) >= 0 },
       { href: '#/quiz/daily', label: 'Daily 10', icon: 'flame', on: route === 'quiz' },
       { href: '#/squad', label: 'Squad', icon: 'chat', on: route === 'squad' || route === 'thread' || route === 'leaderboard' },
-      { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' || route === 'team' || route === 'collection' }
+      { href: '#/me', label: 'Me', icon: 'user', on: ['me', 'admin', 'team', 'collection', 'drafts'].indexOf(route) >= 0 }
     ];
     nav.innerHTML = '<div class="inner">' + items.map(function (n) {
       return '<a href="' + n.href + '" class="' + (n.on ? 'active' : '') + '"' + (n.on ? ' aria-current="page"' : '') + '>' + icon(n.icon) + esc(n.label) + '</a>';
@@ -690,6 +690,7 @@
       case 'landnav': return BWC.LandNav.view(parts[1]);
       case 'drills': return BWC.Drills.view(parts[1], parts[2]);
       case 'collection': return BWC.Collect.view();
+      case 'drafts': return isLeader() || S.user.role === 'sponsor' ? BWC.Drafts.view(parts[1]) : viewNotFound();
       case 'sponsorboard': return parts[1] ? BWC.SponsorBoard.sponsor(parts[1].toUpperCase()) : BWC.SponsorBoard.setup();
       case 'linked': return BWC.SponsorBoard.join(parts[1]);
       case 'creeds': return BWC.Creeds.view();
