@@ -169,6 +169,68 @@
     });
   };
 
+  // ---------- discussion board ----------
+  //   threads/{id}                 channel, title, body, author, reply count, Hooahs, pinned, hidden
+  //   threads/{id}/replies/{rid}   body, author, Hooahs, hidden
+
+  function withTimes(d) {
+    var v = d.data();
+    return Object.assign({ id: d.id }, v, {
+      at: v.at && v.at.toMillis ? v.at.toMillis() : Date.now(),
+      lastAt: v.lastAt && v.lastAt.toMillis ? v.lastAt.toMillis() : Date.now()
+    });
+  }
+
+  function byline() { return ((profile.rank ? profile.rank + ' ' : '') + (profile.name || '')).trim(); }
+
+  Store.threads = function (channel) {
+    var q = db.collection('threads');
+    if (channel) q = q.where('channel', '==', channel);
+    return q.limit(200).get().then(function (snap) { return snap.docs.map(withTimes); });
+  };
+
+  Store.thread = function (id) {
+    var ref = db.collection('threads').doc(id);
+    return ref.get().then(function (snap) {
+      if (!snap.exists) return null;
+      return ref.collection('replies').orderBy('at').limit(500).get().then(function (r) {
+        return { thread: withTimes(snap), replies: r.docs.map(withTimes) };
+      });
+    });
+  };
+
+  Store.addThread = function (fields, id) {
+    var ref = id ? db.collection('threads').doc(id) : db.collection('threads').doc();
+    return ref.set(Object.assign({}, fields, {
+      byUid: profile.uid, by: byline(), at: now(), lastAt: now(), replies: 0, hooah: {}, pinned: false, hidden: false
+    })).then(function () { return ref.id; });
+  };
+
+  Store.addReply = function (threadId, body) {
+    var tRef = db.collection('threads').doc(threadId);
+    var batch = db.batch();
+    batch.set(tRef.collection('replies').doc(), { body: body, byUid: profile.uid, by: byline(), at: now(), hooah: {}, hidden: false });
+    batch.update(tRef, { replies: inc(1), lastAt: now() });
+    return batch.commit();
+  };
+
+  Store.toggleHooah = function (threadId, replyId) {
+    var ref = db.collection('threads').doc(threadId);
+    if (replyId) ref = ref.collection('replies').doc(replyId);
+    return ref.get().then(function (snap) {
+      var on = !!((snap.data() || {}).hooah || {})[profile.uid];
+      var upd = {};
+      upd['hooah.' + profile.uid] = on ? fb.firestore.FieldValue.delete() : true;
+      return ref.update(upd);
+    });
+  };
+
+  Store.moderate = function (threadId, replyId, fields) {
+    var ref = db.collection('threads').doc(threadId);
+    if (replyId) ref = ref.collection('replies').doc(replyId);
+    return ref.update(fields);
+  };
+
   // ---------- question error reports ----------
 
   Store.addReport = function (r) {

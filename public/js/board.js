@@ -334,6 +334,7 @@
           '<div><strong>Answer:</strong> ' + u.esc(q.answer) + '</div>' +
           '<div class="cite"><strong>' + u.esc(q.pub) + '</strong>' + (q.para ? ', para ' + u.esc(q.para) : '') + '</div>' +
           '<div class="row wrap">' + u.sourceLink(q.pub, q.page, 'Open at this page') +
+          '<button type="button" class="btn small ghost" data-act="discuss" data-arg="' + u.esc(q.id) + '">' + u.icon('chat', 18) + 'Discuss</button>' +
           '<button type="button" class="btn small ghost" data-act="report" data-arg="' + u.esc(q.id) + '">' + u.icon('alert', 18) + 'Report an error</button></div></div>';
       }).join('') +
       '<p class="muted small">Grading checks for the key points of each answer. If a correct answer in different words was marked wrong, use Report an error so a leader can add it.</p>' +

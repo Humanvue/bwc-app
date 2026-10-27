@@ -136,7 +136,7 @@
       { href: '#/', label: 'Home', icon: 'home', on: route === 'home' },
       { href: '#/study', label: 'Study', icon: 'book', on: route === 'study' || route === 'topic' || route === 'flash' },
       { href: '#/quiz/daily', label: 'Daily 10', icon: 'flame', on: route === 'quiz' },
-      { href: '#/leaderboard', label: 'Ranks', icon: 'trophy', on: route === 'leaderboard' },
+      { href: '#/squad', label: 'Squad', icon: 'chat', on: route === 'squad' || route === 'thread' || route === 'leaderboard' },
       { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' }
     ];
     nav.innerHTML = '<div class="inner">' + items.map(function (n) {
@@ -454,6 +454,7 @@
           '<div class="cite"><strong>' + esc(q.pub) + '</strong>' + (q.para ? ', para ' + esc(q.para) : '') + (q.page ? ', PDF page ' + q.page : '') + '</div>' +
           '<div class="row wrap">' + sourceLink(q.pub, q.page, 'Open at this page') +
           '<button type="button" class="btn small ghost" data-act="learn" data-arg="' + esc(q.id) + '">' + icon('check', 18) + (learned ? 'Learned' : 'Mark as learned') + '</button>' +
+          '<button type="button" class="btn small ghost" data-act="discuss" data-arg="' + esc(q.id) + '">' + icon('chat', 18) + 'Discuss</button>' +
           '<button type="button" class="btn small ghost" data-act="report" data-arg="' + esc(q.id) + '">' + icon('alert', 18) + 'Report an error</button></div></div>';
       }).join('') +
       '<div class="row wrap"><a class="btn grow" href="#/">Home</a>' + (z.mode !== 'daily' && z.mode !== 'mixed' ? '<a class="btn ghost grow" href="#/topic/' + z.mode + '">Back to topic</a>' : '') + '</div>';
@@ -564,7 +565,7 @@
       var open = rows.filter(function (r) { return r.status === 'open'; });
       el.innerHTML = rows.length ? rows.map(function (r) {
         return '<div class="list-row" style="flex-wrap:wrap"><div class="grow"><div><span class="chip' + (r.status === 'open' ? ' bad' : '') + '">' + esc(r.status) + '</span> <strong>' + esc(r.reason) + '</strong></div>' +
-          '<div class="small">' + esc(r.question || r.qid) + '</div><div class="muted small">' + esc(r.pub || '') + ' · ' + esc(r.by || '') + ' · ' + new Date(r.at).toLocaleDateString() + '</div>' +
+          '<div class="small">' + (r.threadId ? '<a href="#/thread/' + encodeURIComponent(r.threadId) + '">' + esc(r.question) + '</a>' : esc(r.question || r.qid)) + '</div><div class="muted small">' + esc(r.pub || '') + ' · ' + esc(r.by || '') + ' · ' + new Date(r.at).toLocaleDateString() + '</div>' +
           (r.comment ? '<div class="quote">' + esc(r.comment) + '</div>' : '') + '</div>' +
           (r.status === 'open' ? '<div class="row"><button type="button" class="btn small" data-act="rfix" data-arg="' + esc(r.id) + '">Fixed</button>' +
             '<button type="button" class="btn small ghost" data-act="rdismiss" data-arg="' + esc(r.id) + '">Dismiss</button></div>' : '') + '</div>';
@@ -654,6 +655,8 @@
       case 'admin': return viewAdmin();
       case 'board': return BWC.Board.view(parts[1]);
       case 'fitness': return BWC.Fitness.view(parts[1]);
+      case 'squad': return parts[1] === 'new' ? BWC.Discussion.newPost(parts[2]) : BWC.Discussion.list(parts[1]);
+      case 'thread': return BWC.Discussion.thread(decodeURIComponent(parts[1] || ''));
       case 'coming': return viewComing(parts[1]);
       default: return viewNotFound();
     }
@@ -671,6 +674,7 @@
     }
     if (name === 'learn') { toggleLearned(el.getAttribute('data-arg')); return; }
     if (name === 'report') { openReport(el.getAttribute('data-arg')); return; }
+    if (name === 'discuss') { BWC.Discussion.discuss(el.getAttribute('data-arg')); return; }
     if (name === 'theme') {
       Store.saveProfile({ theme: el.getAttribute('data-arg') }).then(function (p) { S.user = p; applyTheme(); viewMe(); });
       return;

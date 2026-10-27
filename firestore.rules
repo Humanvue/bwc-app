@@ -79,6 +79,36 @@ service cloud.firestore {
       }
     }
 
+    // Discussion board. No private messages: every thread is visible to everyone approved.
+    // Only leaders post in Announcements, pin, or hide. Hidden posts are kept, not deleted.
+    function hooahOnly() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hooah'])
+        && request.resource.data.hooah.diff(resource.data.hooah).affectedKeys().hasOnly([me()]);
+    }
+
+    match /threads/{id} {
+      allow read: if approved();
+      allow create: if approved() && request.resource.data.byUid == me()
+        && (request.resource.data.channel != 'announcements' || isLeader())
+        && request.resource.data.title is string && request.resource.data.title.size() > 0 && request.resource.data.title.size() <= 140
+        && request.resource.data.body is string && request.resource.data.body.size() <= 4000
+        && request.resource.data.replies == 0 && request.resource.data.pinned == false && request.resource.data.hidden == false;
+      allow update: if approved() && (
+        hooahOnly()
+        || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies', 'lastAt'])
+            && request.resource.data.replies == resource.data.replies + 1)
+        || (isLeader() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['pinned', 'hidden'])));
+
+      match /replies/{rid} {
+        allow read: if approved();
+        allow create: if approved() && request.resource.data.byUid == me()
+          && request.resource.data.body is string && request.resource.data.body.size() > 0 && request.resource.data.body.size() <= 2000
+          && request.resource.data.hidden == false;
+        allow update: if approved() && (hooahOnly()
+          || (isLeader() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hidden'])));
+      }
+    }
+
     // Question error reports: anyone approved can file one; leaders and admins work the queue.
     match /reports/{id} {
       allow create: if approved() && request.resource.data.byUid == me()

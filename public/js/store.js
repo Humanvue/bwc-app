@@ -34,6 +34,10 @@
     workouts: []    // { id, type, date, minutes, miles, weight, effort, notes, aft, shot, pts, at }
   };
   db.workouts = db.workouts || [];
+  db.threads = db.threads || [];   // { id, channel, title, body, byUid, by, at, lastAt, replies, hooah, pinned, hidden, qid, list: [replies] }
+
+  function findThread(id) { return db.threads.filter(function (t) { return t.id === id; })[0]; }
+  function strip(t) { var c = Object.assign({}, t); delete c.list; return c; }
 
   var listeners = [];
 
@@ -97,6 +101,58 @@
       db.workouts.push(rec);
       save();
       return Promise.resolve(rec);
+    },
+
+    // ---------- discussion board ----------
+
+    threads: function (channel) {
+      return Promise.resolve(db.threads.filter(function (t) { return !channel || t.channel === channel; }).map(strip));
+    },
+
+    thread: function (id) {
+      var t = findThread(id);
+      if (!t) return Promise.resolve(null);
+      return Promise.resolve({ thread: strip(t), replies: (t.list || []).slice() });
+    },
+
+    addThread: function (fields, id) {
+      var p = db.profile;
+      var t = Object.assign({
+        id: id || newId('t'), byUid: p.uid, by: ((p.rank ? p.rank + ' ' : '') + (p.name || '')).trim(),
+        at: Date.now(), lastAt: Date.now(), replies: 0, hooah: {}, pinned: false, hidden: false, list: []
+      }, fields);
+      db.threads.push(t);
+      save();
+      return Promise.resolve(t.id);
+    },
+
+    addReply: function (threadId, body) {
+      var t = findThread(threadId);
+      var p = db.profile;
+      t.list = t.list || [];
+      t.list.push({ id: newId('r'), body: body, byUid: p.uid, by: ((p.rank ? p.rank + ' ' : '') + (p.name || '')).trim(), at: Date.now(), hooah: {}, hidden: false });
+      t.replies = t.list.length;
+      t.lastAt = Date.now();
+      save();
+      return Promise.resolve();
+    },
+
+    toggleHooah: function (threadId, replyId) {
+      var t = findThread(threadId);
+      var target = replyId ? (t.list || []).filter(function (r) { return r.id === replyId; })[0] : t;
+      var uid = db.profile.uid;
+      target.hooah = target.hooah || {};
+      if (target.hooah[uid]) delete target.hooah[uid]; else target.hooah[uid] = true;
+      save();
+      return Promise.resolve();
+    },
+
+    moderate: function (threadId, replyId, fields) {
+      var t = findThread(threadId);
+      var target = replyId ? (t.list || []).filter(function (r) { return r.id === replyId; })[0] : t;
+      Object.assign(target, fields);
+      save();
+      return Promise.resolve();
     },
 
     // ---------- question error reports ----------

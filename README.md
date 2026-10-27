@@ -15,7 +15,12 @@ Board settings and points are in `public/js/config.js` under `board`.
 **Fitness log.** Workouts with or without a wearable screenshot (shrunk to a small JPEG on the phone, which also
 strips any GPS data; a no-map confirmation is required). Points per 10 minutes with ruck and AFT multipliers and a
 daily cap, vehicle unlocks by ruck miles, and AFT practice trends (raw results for the five AFT events). Settings
-are under `fitness` in `config.js`. The discussion board comes next.
+are under `fitness` in `config.js`.
+
+**Squad discussion board.** Channels (Announcements for leaders only, Board Prep, Fitness, Land Nav, Weapons &
+WTBDs, General), threads, replies, @mentions, Hooahs, and a **Discuss** button on every quiz and board answer that
+opens one shared thread per question. Leaders pin and hide (hidden posts are kept for review); anyone can report a
+post to the leaders' queue. There are no private messages.
 
 Add `?demo` to the address (e.g. `http://localhost:8765/?demo`) to test on this device without signing in.
 
