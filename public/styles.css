@@ -278,6 +278,19 @@ button.chip-link:disabled { opacity: 0.4; cursor: default; }
 .ln-result.good { background: var(--good); color: var(--on-status); }
 .ln-result.bad { background: var(--bad); color: var(--on-status); }
 
+/* Drills */
+.seq-list, .seq-answer { margin: 0; padding-left: 26px; display: flex; flex-direction: column; gap: 6px; }
+.seq-step { width: 100%; min-height: 48px; text-align: left; padding: 10px 14px; border-radius: 12px; cursor: pointer; font-size: 15px; background: var(--surface-2); color: var(--text); border: 2px solid var(--line); }
+.seq-step.pool { background: var(--surface); }
+.seq-step.ok { border-color: var(--good); }
+.seq-step.bad { border-color: var(--bad); }
+.seq-step:disabled { cursor: default; }
+.fm-row { flex-direction: row; align-items: center; gap: 10px; }
+.fm-row select { flex: 1 1 auto; min-width: 0; }
+.fm-key { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; min-width: 30px; }
+select.fm-ok { border-color: var(--good); }
+select.fm-bad { border-color: var(--bad); }
+
 .ai-note { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
