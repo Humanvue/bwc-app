@@ -291,6 +291,9 @@ button.chip-link:disabled { opacity: 0.4; cursor: default; }
 select.fm-ok { border-color: var(--good); }
 select.fm-bad { border-color: var(--bad); }
 
+.zero-card { align-items: center; }
+.zero-target { width: 100%; max-width: 340px; height: auto; border-radius: 8px; }
+
 .ai-note { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
 
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }

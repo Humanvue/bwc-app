@@ -1,0 +1,626 @@
+{
+  "sequences": [
+    {
+      "id": "seq-m4-unload",
+      "group": "weapons",
+      "title": "Unload (clear) an M4",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Point the weapon muzzle in a safe direction.",
+        "Place the selector lever on SAFE.",
+        "Remove the magazine.",
+        "Lock the bolt open.",
+        "Ensure no ammunition is in the receiver and chamber.",
+        "Return the bolt to the closed position."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 071-COM-0027, Performance Steps 1-6",
+      "page": 56,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "4. Lock the bolt open. a. Pull the charging handle to the rear. b. Press the bottom portion of the bolt catch, locking the bolt open."
+    },
+    {
+      "id": "seq-m4-disassemble",
+      "group": "weapons",
+      "title": "Disassemble (field strip) an M4",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Remove the sling.",
+        "Remove the handguards or lower adapter rails.",
+        "Push the takedown pin as far as it will go.",
+        "Pivot the upper receiver from the lower receiver.",
+        "Push the receiver pivot pin in as far as it will go.",
+        "Separate the upper and lower receivers.",
+        "Remove carrying handle, if applicable.",
+        "Pull back the charging handle.",
+        "Remove the bolt carrier and bolt.",
+        "Remove the charging handle."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 071-COM-0032, Performance Step 2a-2j",
+      "page": 36,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "c. Push the take down pin as far as it will go. d. Pivot the upper receiver from the lower receiver."
+    },
+    {
+      "id": "seq-m4-assemble",
+      "group": "weapons",
+      "title": "Assemble an M4",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Assemble the bolt carrier.",
+        "Engage, then push the charging handle in part of the way.",
+        "Slide in the bolt carrier assembly.",
+        "Push in the charging handle and bolt carrier group together.",
+        "Insert the action spring and buffer.",
+        "Install the buttstock assembly (M4-series only).",
+        "Join the upper and lower receivers.",
+        "Engage the receiver pivot pin.",
+        "Close the upper and lower receiver groups.",
+        "Push in the takedown pin."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 071-COM-0032, Performance Step 6a-6j",
+      "page": 44,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "b. Engage and then push the charging handle in part of the way. c. Slide in the bolt carrier assembly. d. Push in the charging handle and the bolt carrier group together. e. Insert the action spring and buffer."
+    },
+    {
+      "id": "seq-m4-function-check",
+      "group": "weapons",
+      "title": "M4 function check (SAFE and SEMI)",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Confirm the M16/M4 is clear.",
+        "Place selector lever on SAFE.",
+        "Pull charging handle to rear and release.",
+        "Pull trigger (hammer should not fall).",
+        "Place selector lever on SEMI.",
+        "Pull trigger (hammer should fall).",
+        "Hold trigger to the rear and charge the weapon.",
+        "Release trigger slowly until fully forward (click).",
+        "Pull trigger (hammer should fall)."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 071-COM-0029, Performance Steps 1-2h",
+      "page": 49,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "f. Hold trigger to the rear and charge the weapon. g. Release the trigger with a slow, smooth motion, until the trigger is fully forward. Note: An audible click should be heard."
+    },
+    {
+      "id": "seq-m4-cycle",
+      "group": "weapons",
+      "title": "M4 cycle of function",
+      "prompt": "Put the eight phases in order.",
+      "steps": [
+        "Feeding",
+        "Chambering",
+        "Locking",
+        "Firing",
+        "Unlocking",
+        "Extracting",
+        "Ejecting",
+        "Cocking"
+      ],
+      "pub": "TC 3-22.9",
+      "para": "para 2-9",
+      "page": 38,
+      "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+      "quote": "From this state, the cycle executes the sequential phases of the cycle of functioning to fire a round and prepare the weapon for the next round. The phases of the cycle of function in order are—"
+    },
+    {
+      "id": "seq-m4-immediate",
+      "group": "weapons",
+      "title": "M4 immediate action",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Hear the hammer fall with an audible \"click.\"",
+        "Tap the bottom of the magazine firmly.",
+        "Rapidly pull the charging handle and release.",
+        "Reassess by continuing the shot process."
+      ],
+      "pub": "TC 3-22.9",
+      "para": "para 8-35",
+      "page": 149,
+      "file": "TC 3-22.9 - Rifle and Carbine (C3).pdf",
+      "quote": "Rapidly pulls the charging handle and releases to extract / eject the previous cartridge and feed, chamber, and lock a new round."
+    },
+    {
+      "id": "seq-m249-immediate",
+      "group": "weapons",
+      "title": "M249 immediate action",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Hear the piston assembly move forward with an audible click.",
+        "Pull and lock the charging handle to the rear.",
+        "Observe the ejection port for an ejected case, link, or round.",
+        "Push the charging handle forward to its lock position.",
+        "Continue the shot process to reassess."
+      ],
+      "pub": "TC 3-22.249",
+      "para": "para 8-34",
+      "page": 104,
+      "file": "TC 3-22.249 - Light Machine Gun M249 (May 2017).pdf",
+      "quote": "Observe the ejection port to see if a cartridge case, belt link, or round ejects."
+    },
+    {
+      "id": "seq-m240-popp",
+      "group": "weapons",
+      "title": "M240 immediate action (POPP)",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Pull and lock the cocking handle to the rear.",
+        "Observe the ejection port for an ejected case, link, or round.",
+        "Push the cocking handle forward; take aim on the target.",
+        "Press the trigger."
+      ],
+      "pub": "TC 3-22.240",
+      "para": "para 8-28",
+      "page": 99,
+      "file": "TC 3-22.240 - Medium Machine Gun M240 (Apr 2017).pdf",
+      "quote": "An effective memory aid is POPP, which stands for pull, observe, push, and press:"
+    },
+    {
+      "id": "seq-pistol-immediate",
+      "group": "weapons",
+      "title": "M9/M17 pistol immediate action",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Ensure the decocking lever is in the FIRE position.",
+        "Remove trigger finger; keep it straight along the frame.",
+        "Bring pistol back into workspace.",
+        "Rotate pistol.",
+        "Forcefully tap upward on the magazine baseplate.",
+        "Rotate pistol to observe chamber and rack the slide.",
+        "Allow the chambered round to extract and fall.",
+        "Observe the chambered round.",
+        "Rotate pistol back to target and squeeze trigger."
+      ],
+      "pub": "TC 3-23.35",
+      "para": "para 8-14",
+      "page": 96,
+      "file": "TC 3-23.35 - Pistol (C2).pdf",
+      "quote": "3. Bring pistol back into workspace. 4. Rotate pistol."
+    },
+    {
+      "id": "seq-pistol-unload",
+      "group": "weapons",
+      "title": "Pistol unload / show clear (Drill J)",
+      "prompt": "After drawing the pistol (step 1), put the remaining steps in order.",
+      "steps": [
+        "Bring the pistol to your workspace.",
+        "Ensure the decocker is on black (M9 only).",
+        "Eject the magazine with the pistol vertical.",
+        "Stow the magazine.",
+        "Rotate the pistol to target.",
+        "Pull back slide with upward pressure on slide stop.",
+        "Allow the chambered round to fall to the floor.",
+        "Inspect chamber, magazine well, and bolt face.",
+        "Have teammate conduct a three-point safety check.",
+        "Release the slide and reholster."
+      ],
+      "pub": "TC 3-23.35",
+      "para": "para D-27, Drill J steps 2-11",
+      "page": 132,
+      "file": "TC 3-23.35 - Pistol (C2).pdf",
+      "quote": "2. Bring the pistol to your workspace. 3. Ensure the decocker is on black (M9 only)."
+    },
+    {
+      "id": "seq-mask",
+      "group": "wtbd",
+      "title": "Don, clear, and seal the protective mask",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Don mask assembly (stop breathing, close eyes first).",
+        "Clear mask assembly.",
+        "Seal mask assembly.",
+        "Give the alarm (\"Gas, Gas, Gas\").",
+        "Close mask carrier.",
+        "Don the mask hood, if applicable.",
+        "Put on the helmet and secure gear.",
+        "Continue the mission."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 031-COM-1004, Performance Steps 1-8",
+      "page": 253,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "2. Clear mask assembly. a. Seal the outlet disk valve by placing one hand over the outlet valve cover assembly."
+    },
+    {
+      "id": "seq-cat",
+      "group": "wtbd",
+      "title": "Apply a CAT tourniquet (hemostatic control)",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Direct casualty to return fire, take cover, self-aid.",
+        "Determine life-threatening bleeding.",
+        "Place tourniquet high, or 2-3\" above a visible wound.",
+        "Pass the red tip through the buckle slit.",
+        "Pull band tight; secure Velcro around the limb.",
+        "Twist the windlass until the bleeding stops.",
+        "Lock the windlass rod in the windlass clip.",
+        "Route band over rod; secure with windlass strap.",
+        "Check for a pulse below the injury site.",
+        "Mark a \"T\" and the time of application."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 081-COM-1002, Performance Steps 1-5",
+      "page": 358,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "(1) Pass the red tip through the inside slit in the buckle. (2) Pull the band as tight as possible and secure the Velcro back on itself all the way around the limb, but not over the rod clips."
+    },
+    {
+      "id": "seq-march",
+      "group": "wtbd",
+      "title": "MARCH rapid casualty assessment",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Massive Bleeding",
+        "Airway",
+        "Respiration",
+        "Circulation",
+        "Hypothermia/Head Injury",
+        "Other injuries: Burns, Eye Trauma, Dislocation"
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 081-COM-1001, Performance Step 2b",
+      "page": 329,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "b. Conduct Rapid Casualty Assessment (MARCH) (1) Massive Bleeding (2) Airway (3) Respiration (4) Circulation (5) Hypothermia/Head Injury"
+    },
+    {
+      "id": "seq-zero",
+      "group": "weapons",
+      "title": "Zero an M4 at 25 meters",
+      "prompt": "Put the steps in order.",
+      "steps": [
+        "Prepare the sight system for zeroing.",
+        "Establish a correct sight picture.",
+        "Establish a tight shot group.",
+        "Adjust sights (if required) to obtain a zero.",
+        "Establish a zero.",
+        "Confirm the zero.",
+        "(Mechanical sight) Return rear sight to 300-meter setting.",
+        "Record your zero.",
+        "Confirm the zero at 300 meters."
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 071-COM-0031, Performance Steps 1-9",
+      "page": 74,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "7. (Mechanical sight only) Return the rear sight elevation to the 300-meter setting. 8. Record your zero. 9. Confirm the zero at 300 meters"
+    }
+  ],
+  "formats": [
+    {
+      "id": "fmt-9line",
+      "group": "wtbd",
+      "title": "9-line MEDEVAC request",
+      "items": [
+        {
+          "key": "1",
+          "name": "Location of the pickup site",
+          "detail": "Grid coordinates for the pickup site."
+        },
+        {
+          "key": "2",
+          "name": "Radio frequency, call sign, and suffix",
+          "detail": "Radio frequency, call sign, and suffix of the requesting unit."
+        },
+        {
+          "key": "3",
+          "name": "Number of patients by precedence",
+          "detail": "Number of patients and precedence."
+        },
+        {
+          "key": "4",
+          "name": "Special equipment required",
+          "detail": "Type of special equipment required."
+        },
+        {
+          "key": "5",
+          "name": "Number of patients by type",
+          "detail": "Number and type (litter or ambulatory) of patients."
+        },
+        {
+          "key": "6",
+          "name": "Security of the pickup site",
+          "detail": "Security of the pickup site."
+        },
+        {
+          "key": "7",
+          "name": "Method of marking the pickup site",
+          "detail": "How the pickup site will be marked."
+        },
+        {
+          "key": "8",
+          "name": "Patient nationality and status",
+          "detail": "Patient nationality and status."
+        },
+        {
+          "key": "9",
+          "name": "NBC contamination",
+          "detail": "Pickup site NBC contamination; included only when contamination exists."
+        }
+      ],
+      "pub": "STP 21-24-SMCT",
+      "para": "Task 081-831-0101, Performance Steps 1-2",
+      "page": 41,
+      "file": "STP 21-24-SMCT - Soldier's Manual of Common Tasks, Warrior Leader Skills Levels 2-4 (Sep 2008).pdf",
+      "quote": "a. Location of the pickup site (line 1). b. Radio frequency, call sign, and suffix (line 2). c. Numbers of patients by precedence (line 3). d. Special equipment required (line 4)."
+    },
+    {
+      "id": "fmt-evac-precedence",
+      "group": "wtbd",
+      "title": "MEDEVAC precedence categories",
+      "items": [
+        {
+          "key": "Priority I",
+          "name": "Urgent",
+          "detail": "Evacuate as soon as possible, within a maximum of one hour, to save life, limb, or eyesight."
+        },
+        {
+          "key": "Priority IA",
+          "name": "Urgent Surgical",
+          "detail": "Evacuate within a maximum of one hour; needs far forward surgical intervention."
+        },
+        {
+          "key": "Priority II",
+          "name": "Priority",
+          "detail": "Prompt medical care; evacuate within four hours."
+        },
+        {
+          "key": "Priority III",
+          "name": "Routine",
+          "detail": "Condition not expected to deteriorate significantly; evacuate within 24 hours."
+        },
+        {
+          "key": "Priority IV",
+          "name": "Convenience",
+          "detail": "Evacuation by medical vehicle is a matter of medical convenience."
+        }
+      ],
+      "pub": "ATP 4-02.11",
+      "para": "para 1-46",
+      "page": 24,
+      "file": "ATP 4-02.11 - Casualty Response, TCCC and First Aid (Mar 2026).pdf",
+      "quote": "Priority I – Urgent is assigned to emergency cases being evacuated as soon as possible and within a maximum of one hour to save life, limb, or eyesight;"
+    },
+    {
+      "id": "fmt-salute",
+      "group": "wtbd",
+      "title": "SALUTE report",
+      "items": [
+        {
+          "key": "S",
+          "name": "Size/Who",
+          "detail": "Quantity and echelon or size, e.g., \"10 enemy Infantrymen.\""
+        },
+        {
+          "key": "A",
+          "name": "Activity/What",
+          "detail": "What you saw the enemy doing, e.g., \"emplacing mines in the road.\""
+        },
+        {
+          "key": "L",
+          "name": "Location/Where",
+          "detail": "Generally a grid coordinate with the 100,000-meter grid zone designator."
+        },
+        {
+          "key": "U",
+          "name": "Unit/Who",
+          "detail": "Who is performing the activity; complete unit designation."
+        },
+        {
+          "key": "T",
+          "name": "Time/When",
+          "detail": "Time you saw the activity (not when you report it); local or Zulu."
+        },
+        {
+          "key": "E",
+          "name": "Equipment/How",
+          "detail": "Equipment, tactics, and other EEI not already reported."
+        }
+      ],
+      "pub": "TC 3-21.75",
+      "para": "Table 9-1",
+      "page": 153,
+      "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+      "quote": "1 (S)ize/Who Expressed as a quantity and echelon or size."
+    },
+    {
+      "id": "fmt-spotrep",
+      "group": "wtbd",
+      "title": "SPOTREP (spot report) lines",
+      "items": [
+        {
+          "key": "1",
+          "name": "DTG",
+          "detail": "Date time group of report submission."
+        },
+        {
+          "key": "2",
+          "name": "Reporting unit",
+          "detail": "Unit making report, plus method of observation."
+        },
+        {
+          "key": "3",
+          "name": "Size",
+          "detail": "Size of detected element (persons, vehicles, equipment)."
+        },
+        {
+          "key": "4",
+          "name": "Activity",
+          "detail": "Activity of detected element at DTG of report."
+        },
+        {
+          "key": "5",
+          "name": "Location",
+          "detail": "UTM or MGRS grid coordinate of the activity or event observed."
+        },
+        {
+          "key": "6",
+          "name": "Unit",
+          "detail": "Detected element unit, organization, or facility."
+        },
+        {
+          "key": "7",
+          "name": "Time",
+          "detail": "DTG of observation."
+        },
+        {
+          "key": "8",
+          "name": "Equipment",
+          "detail": "Equipment of element observed."
+        },
+        {
+          "key": "9",
+          "name": "Assessment",
+          "detail": "Apparent reason for the activity; threats or opportunities."
+        },
+        {
+          "key": "10",
+          "name": "Narrative",
+          "detail": "Free text for clarifying report."
+        },
+        {
+          "key": "11",
+          "name": "Authentication",
+          "detail": "Report authentication per SOP."
+        }
+      ],
+      "pub": "STP 21-1-SMCT",
+      "para": "Task 171-COM-4080, Performance Step 1a-1k",
+      "page": 218,
+      "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+      "quote": "a. LINE 1 – date time group (DTG) of report submission. b. LINE 2 – reporting unit (Unit Making Report)."
+    },
+    {
+      "id": "fmt-cff",
+      "group": "wtbd",
+      "title": "Six elements of the call for fire",
+      "items": [
+        {
+          "key": "1",
+          "name": "Observer identification",
+          "detail": "Tells the FDC who is calling for fire. (Transmission 1)"
+        },
+        {
+          "key": "2",
+          "name": "Warning order",
+          "detail": "Clears the net; type of mission, size of element to fire for effect, method of target location. (Transmission 1)"
+        },
+        {
+          "key": "3",
+          "name": "Target location",
+          "detail": "Sent as the second transmission."
+        },
+        {
+          "key": "4",
+          "name": "Target description",
+          "detail": "Sent in the third transmission."
+        },
+        {
+          "key": "5",
+          "name": "Method of engagement",
+          "detail": "Sent in the third transmission."
+        },
+        {
+          "key": "6",
+          "name": "Method of fire and control",
+          "detail": "Sent in the third transmission."
+        }
+      ],
+      "pub": "ATP 3-09.30",
+      "para": "para 4-8 to 4-10",
+      "page": 66,
+      "file": "ATP 3-09.30 - Observed Fires (Sep 2017).pdf",
+      "quote": "The six elements of a call for fire include: observer identification, warning order, target location, target description, method of engagement and method of fire and control."
+    }
+  ],
+  "zero": {
+    "facts": [
+      {
+        "fact": "Each numbered square around the edge of the 25 m zero target represents one click.",
+        "value": "1 numbered edge square = 1 click",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 4a note",
+        "page": 71,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "Note: The numbered squares around the edges of the target each represent a click on the sight."
+      },
+      {
+        "fact": "Front sight post (elevation): one click moves the strike one square; clockwise = down, counterclockwise = up.",
+        "value": "1 click = 1 square; CW down, CCW up",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 4d(1) note",
+        "page": 72,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "Note: One click clockwise moves the strike of the bullet down one square, while one click counterclockwise moves the strike of the bullet up one square."
+      },
+      {
+        "fact": "Rear sight (windage): three clicks move the strike one square; counterclockwise = left, clockwise = right.",
+        "value": "3 clicks = 1 square; CCW left, CW right",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 4d(2) note",
+        "page": 73,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "Note: Three clicks counterclockwise moves the strike of the bullet left one square, while three clicks clockwise moves the strike of the bullet right one square."
+      },
+      {
+        "fact": "Elevation is adjusted at the front sight; windage is adjusted at the rear sight.",
+        "value": "Elevation = front sight; windage = rear sight",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 4d(1)(d) and 4d(2)(d)",
+        "page": 73,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "(d) Adjust the rear sight in the indicated direction by the appropriate number of clicks."
+      },
+      {
+        "fact": "Zero target square size differs by target: M16A2 squares vs. M4 squares.",
+        "value": "M16A2 = .96 cm; M4 = 1.3 cm",
+        "pub": "TC 3-21.75",
+        "para": "para 10-43, note to Figure 10-18",
+        "page": 184,
+        "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+        "quote": "Note: The M16A2 zero target squares are .96 cen timeter in size while the M4 zero target squares are 1.3 centimeters in size."
+      },
+      {
+        "fact": "The BUIS is zeroed on the M4/M4A1 target on the back of the M16A2 zero target, using the same 25 m procedure as the standard rear sight.",
+        "value": "M4/M4A1 target (back of M16A2 target)",
+        "pub": "TC 3-21.75",
+        "para": "para 10-50",
+        "page": 189,
+        "file": "TC 3-21.75 - The Warrior Ethos and Soldier Combat Skills (Aug 2013).pdf",
+        "quote": "The BIS is zeroed on the M4/M4A1 target on the backside of the M16A2 zero targets."
+      },
+      {
+        "fact": "BUIS battlesight zero setting for the M4/M4A1: align the sight cam mark with the 300-meter mark.",
+        "value": "300-meter mark",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 1c(2)(a)",
+        "page": 65,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "(a) (M4/M4A1 Carbine) Align the mark on the left side of the sight cam with the 300-meter mark."
+      },
+      {
+        "fact": "A tight shot group fits within a 4 cm circle.",
+        "value": "4 cm or less",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 3b note",
+        "page": 69,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "Note: A tight shot group will fit within a 4 centimeter or less circle."
+      },
+      {
+        "fact": "A zero is confirmed when most rounds from two consecutive groups land in the 4 cm circle or zero offset circle.",
+        "value": "Majority of 2 consecutive groups in 4 cm circle",
+        "pub": "STP 21-1-SMCT",
+        "para": "Task 071-COM-0031, Step 6 note",
+        "page": 74,
+        "file": "STP 21-1-SMCT - Soldier's Manual of Common Tasks, Warrior Skills Level 1 (Govt Only).pdf",
+        "quote": "Note: A zero is confirmed when the majority of rounds from two consecutive groups land within the center 4 centimeter center circle or the zero offset circle."
+      }
+    ]
+  }
+}

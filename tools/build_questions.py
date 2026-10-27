@@ -141,7 +141,7 @@ def build_drills(docs):
 def main(docs):
     topics = load_topics()
     raw = []
-    for p in sorted(glob.glob(os.path.join(ROOT, "content/raw/*.json"))):
+    for p in sorted(glob.glob(os.path.join(ROOT, "content/raw/questions-*.json"))):
         raw.extend(json.load(open(p, encoding="utf8")))
 
     good, review, seen = [], [], set()
