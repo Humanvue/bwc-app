@@ -12,6 +12,8 @@
   var config = window.BWC_FIREBASE_CONFIG;
   var fb = window.firebase;
   if (!config || !config.apiKey || !fb || !fb.firestore || !fb.auth) return;
+  // ?demo in the address runs on this device only, for testing without signing in.
+  if (/[?&]demo\b/.test(location.search)) return;
 
   var Store = BWC.Store;
   var auth, db;
@@ -118,12 +120,13 @@
 
   Store.addPoints = function (entries) {
     var total = entries.reduce(function (s, e) { return s + e.pts; }, 0);
-    if (!total) return Promise.resolve(profile.points || 0);
+    if (!entries.length) return Promise.resolve(profile.points || 0);
+    // Zero-point entries still go in the ledger (e.g. a board sat after the daily points cap).
     var batch = db.batch();
     entries.forEach(function (e) {
       batch.set(userRef().collection('ledger').doc(), Object.assign({}, e, { at: now() }));
     });
-    batch.update(userRef(), { points: inc(total) });
+    if (total) batch.update(userRef(), { points: inc(total) });
     return batch.commit().then(function () {
       profile.points = (profile.points || 0) + total;
       return profile.points;

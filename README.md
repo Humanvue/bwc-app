@@ -5,7 +5,14 @@ Built on the same pattern as Squad Trivia: plain JavaScript, no build step, inst
 
 Phase 1 (this version): Google sign-in with admin approval, roles, a cited question bank, study library,
 flashcards, untimed topic quizzes, Daily 10, mark-as-learned, question error reports, points, app ranks
-PVT → SMA, leaderboard and five themes. The mock board and fitness log are Phase 2 (see the spec).
+PVT → SMA, leaderboard and five themes.
+
+Phase 2 (in progress): **Mock board.** A CSM-led panel of SGMs and 1SGs reads each question aloud; the Soldier
+answers by voice or typing against a timer and is graded on address ("Sergeant Major," / "First Sergeant,"),
+restating the question, and content (`public/js/grading.js`, tested by `node tools/test_grading.js`).
+Board settings and points are in `public/js/config.js` under `board`. Fitness log and discussion board come next.
+
+Add `?demo` to the address (e.g. `http://localhost:8765/?demo`) to test on this device without signing in.
 
 ## Run it on this computer
 

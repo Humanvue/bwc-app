@@ -100,6 +100,12 @@
 
   function award(entries) {
     if (!entries.length) return Promise.resolve();
+    // Points per save are capped by the security rules, so large awards go in chunks.
+    var sum = entries.reduce(function (s, e) { return s + e.pts; }, 0);
+    if (Store.cloud && sum > 100) {
+      var half = Math.ceil(entries.length / 2);
+      return award(entries.slice(0, half)).then(function () { return award(entries.slice(half)); });
+    }
     var before = P.rankFor(points()).rank;
     return Store.addPoints(entries).then(function (total) {
       S.user.points = total;
@@ -219,12 +225,18 @@
       ids.forEach(function (id) { var s = stats[id]; if (s) { tot.total += s.total; tot.seen += s.seen; tot.answered += s.answered; tot.right += s.right; } });
       return { text: tot.answered ? Math.round((tot.right / tot.answered) * 100) + '% right' : tot.total + ' questions', pct: tot.total ? Math.round((tot.seen / tot.total) * 100) : 0 };
     }
+    function boardStat() {
+      var boards = S.ledger.filter(function (e) { return e.kind === 'board-done'; });
+      if (!boards.length) return { text: 'Sit your first board', pct: 0 };
+      var best = Math.max.apply(null, boards.map(function (e) { return e.score || 0; }));
+      return { text: 'Best ' + best + '% · ' + boards.length + ' sat', pct: best };
+    }
     var weapons = group(['rifle', 'pistol', 'machine-guns', 'qualification', 'range-safety']);
     var land = topicStat('land-nav');
     var wtbd = group(['warrior-tasks', 'first-aid', 'call-for-fire', 'cbrn']);
 
     var tiles = [
-      { href: '#/coming/board', name: 'Mock Board', icon: 'mic', soon: 'Coming in Phase 2' },
+      { href: '#/board', name: 'Mock Board', icon: 'mic', stat: boardStat() },
       { href: '#/coming/fitness', name: 'Fitness', icon: 'fitness', soon: 'Coming in Phase 2' },
       { href: '#/topic/land-nav', name: 'Land Nav', icon: 'compass', stat: land },
       { href: '#/study#skills', name: 'Weapons', icon: 'target', stat: weapons },
@@ -608,9 +620,16 @@
     app.innerHTML = header('Not found', '#/') + '<div class="card"><p>That page does not exist.</p><a class="btn" href="#/">Home</a></div>';
   }
 
+  // Helpers shared with screens that live in their own files (board.js).
+  BWC.UI = {
+    S: S, esc: esc, icon: icon, act: act, header: header, toast: toast, award: award,
+    sourceLink: sourceLink, topicById: topicById, displayName: displayName
+  };
+
   // ---------- router ----------
 
   function route() {
+    if (BWC.Board) BWC.Board.stop();
     actions = {};
     applyTheme();
     if (Store.cloud && !S.user) return viewSignIn();
@@ -632,6 +651,7 @@
       case 'leaderboard': return viewLeaderboard();
       case 'me': return viewMe();
       case 'admin': return viewAdmin();
+      case 'board': return BWC.Board.view(parts[1]);
       case 'coming': return viewComing(parts[1]);
       default: return viewNotFound();
     }

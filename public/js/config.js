@@ -71,6 +71,26 @@
       { id: 'SMA', name: 'Sergeant Major of the Army', need: 14000 }
     ],
 
+    // Mock board. The CSM presides from the center seat; each question comes from a
+    // different member, and the Soldier must address that member correctly.
+    // Format, time per question and pass mark are defaults until the board SOP is known.
+    board: {
+      seats: [
+        { title: '1SG', label: 'First Sergeant' },
+        { title: 'SGM', label: 'Sergeant Major' },
+        { title: 'CSM', label: 'Command Sergeant Major', president: true },
+        { title: 'SGM', label: 'Sergeant Major' },
+        { title: '1SG', label: 'First Sergeant' }
+      ],
+      questionCounts: [5, 10, 15],
+      defaultQuestions: 10,
+      secondsOptions: [30, 45, 60, 90],
+      defaultSeconds: 60,
+      passPct: 70,
+      points: { right: 3, partial: 1, format: 1, pass: 10 },
+      boardsPerDayForPoints: 2
+    },
+
     themes: [
       { id: 'black-gold', name: 'Black and Gold' },
       { id: 'desert-storm', name: 'Desert Storm' },
