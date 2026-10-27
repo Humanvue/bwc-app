@@ -340,3 +340,10 @@ pre.draft { white-space: pre-wrap; word-wrap: break-word; font-family: 'JetBrain
 table.admin { width: 100%; border-collapse: collapse; font-size: 14px; }
 table.admin th, table.admin td { text-align: left; padding: 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
 .scroll-x { overflow-x: auto; }
+
+/* Hands-on walkthroughs */
+.guide-step { border-left: 4px solid var(--accent); min-height: 9rem; }
+.guide-do { font-size: 1.25rem; font-weight: 700; line-height: 1.4; margin: 0.4rem 0 0.8rem; }
+.guide-expect { background: var(--surface-2); border-radius: 10px; padding: 0.6rem 0.8rem; color: var(--text); }
+.guide-expect .eyebrow { color: var(--good); margin-right: 0.3rem; }
+.callout-warn { border: 1px solid var(--bad); border-radius: 10px; padding: 0.6rem 0.8rem; background: color-mix(in srgb, var(--bad) 10%, transparent); }

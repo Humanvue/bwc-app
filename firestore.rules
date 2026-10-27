@@ -72,6 +72,19 @@ service cloud.firestore {
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['review', 'reviewedBy']);
       }
 
+      // Hands-on weapons and radio training. The Soldier logs their own sessions (unverified); their
+      // sponsor or a leader may log a session for them, already verified, and may verify or flag.
+      match /handson/{id} {
+        allow read: if canSee(uid);
+        allow create: if approved()
+          && request.resource.data.minutes is number && request.resource.data.minutes > 0 && request.resource.data.minutes <= 600
+          && request.resource.data.loggedBy == me()
+          && ((uid == me() && request.resource.data.review == null)
+              || (uid != me() && (isLeader() || sponsors(uid)) && request.resource.data.review in [null, 'verified']));
+        allow update: if (isLeader() || sponsors(uid)) && uid != me()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['review', 'reviewedBy']);
+      }
+
       match /ledger/{id} {
         allow read: if canSee(uid);
         allow create: if uid == me() && approved()

@@ -62,6 +62,8 @@
 
     var pending = W.filter(function (w) { return w.shot && !w.review; }).length;
     if (pending) out.push({ key: 'verify', level: 'info', text: pending + ' workout screenshot' + (pending === 1 ? '' : 's') + ' to verify' });
+    var hands = (m.handson || []).filter(function (h) { return !h.review; }).length;
+    if (hands) out.push({ key: 'verify-handson', level: 'info', text: hands + ' hands-on session' + (hands === 1 ? '' : 's') + ' to verify' });
 
     var rank = { high: 0, medium: 1, info: 2 };
     return out.sort(function (a, b) { return rank[a.level] - rank[b.level]; });

@@ -677,7 +677,7 @@
     if (S.user.status !== 'approved') return viewPending();
     if (!S.user.name || !S.user.rank) return viewOnboard();
 
-    var hash = location.hash.replace(/^#\/?/, '').split('#')[0];
+    var hash = location.hash.replace(/^#\/?/, '').split('#')[0].split('?')[0];
     var parts = hash.split('/');
     var name = parts[0] || 'home';
     renderNav(name);
@@ -685,6 +685,7 @@
     // Advancement message first; badge unlocks after it so one doesn't replace the other.
     if (name === 'home' && BWC.Collect) setTimeout(BWC.Collect.announce, 3200);
     if (name === 'home' && BWC.Stages) setTimeout(BWC.Stages.awardAdvance, 300);
+    if (name === 'home' && BWC.HandsOn) setTimeout(BWC.HandsOn.awardVerified, 1800);
     switch (name) {
       case 'home': return viewHome();
       case 'study': return viewStudy();
@@ -702,6 +703,7 @@
       case 'landnav': return BWC.LandNav.view(parts[1]);
       case 'drills': return BWC.Drills.view(parts[1], parts[2]);
       case 'collection': return BWC.Collect.view();
+      case 'handson': return BWC.HandsOn.view(parts[1], parts[2]);
       case 'drafts': return isLeader() || S.user.role === 'sponsor' ? BWC.Drafts.view(parts[1]) : viewNotFound();
       case 'sponsorboard': return parts[1] ? BWC.SponsorBoard.sponsor(parts[1].toUpperCase()) : BWC.SponsorBoard.setup();
       case 'linked': return BWC.SponsorBoard.join(parts[1]);
@@ -737,8 +739,8 @@
   window.addEventListener('hashchange', route);
 
   function loadData() {
-    return Promise.all([Store.attempts(), Store.ledger(), Store.learned(), Store.daily(), Store.workouts()]).then(function (r) {
-      S.attempts = r[0]; S.ledger = r[1]; S.learned = r[2]; S.daily = r[3]; S.workouts = r[4];
+    return Promise.all([Store.attempts(), Store.ledger(), Store.learned(), Store.daily(), Store.workouts(), Store.handson()]).then(function (r) {
+      S.attempts = r[0]; S.ledger = r[1]; S.learned = r[2]; S.daily = r[3]; S.workouts = r[4]; S.handson = r[5];
       BWC.Stages.applyContent(S.user);
     }).catch(function (e) { console.warn('Load failed', e); });
   }

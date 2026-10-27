@@ -14,8 +14,8 @@
 
   function loadMember(uid) {
     var S = BWC.Store;
-    return Promise.all([S.attempts(uid), S.ledger(uid), S.workouts(uid), S.memberMeta(uid)]).then(function (r) {
-      return { attempts: r[0], ledger: r[1], workouts: r[2], learned: r[3].learned, daily: r[3].daily };
+    return Promise.all([S.attempts(uid), S.ledger(uid), S.workouts(uid), S.memberMeta(uid), S.handson(uid).catch(function () { return []; })]).then(function (r) {
+      return { attempts: r[0], ledger: r[1], workouts: r[2], learned: r[3].learned, daily: r[3].daily, handson: r[4] };
     });
   }
 
@@ -52,7 +52,7 @@
       last: last,
       quiet: !last || Date.now() - last > 7 * 86400000,
       weak: weak,
-      pendingShots: m.workouts.filter(function (w) { return w.shot && !w.review; }).length
+      pendingShots: m.workouts.filter(function (w) { return w.shot && !w.review; }).length + (m.handson || []).filter(function (h) { return !h.review; }).length
     };
   }
 
@@ -162,6 +162,7 @@
           return '<div class="list-row"><span class="grow">' + new Date(b.at).toLocaleDateString() + '</span><span class="muted small">' + (b.right || 0) + '/' + (b.of || 0) +
             ' right · format ' + (b.format || 0) + '</span><span class="chip' + ((b.score || 0) >= C.board.passPct ? ' good' : '') + '">' + (b.score || 0) + '%</span></div>';
         }).join('') + '</div>' : '<p class="muted">No boards yet.</p>') + '</div>' +
+        handsonCard(uid, m) +
         '<div class="card"><h2>Workouts</h2>' + (workouts.length ? workouts.map(function (w) {
           var t = (C.fitness.types.filter(function (x) { return x.id === w.type; })[0] || {}).name || w.type;
           return '<div class="workout-row"><div class="row wrap"><strong class="grow">' + u.esc(t) + ' · ' + w.minutes + ' min' + (w.miles ? ' · ' + w.miles + ' mi' : '') + '</strong>' +
@@ -174,6 +175,14 @@
         }).join('') : '<p class="muted">No workouts logged.</p>') +
         '<p class="muted small">Flag a screenshot that shows a map or route, or that doesn\'t match the entry. Talk to the Soldier about anything you flag.</p></div>';
 
+      app().querySelectorAll('[data-hreview]').forEach(function (b) {
+        b.addEventListener('click', function () {
+          BWC.Store.reviewHandson(uid, b.getAttribute('data-h'), b.getAttribute('data-hreview')).then(function () {
+            u.toast(b.getAttribute('data-hreview') === 'verified' ? 'Verified' : 'Flagged');
+            viewMember(uid);
+          }).catch(function () { u.toast('Only this Soldier\'s sponsor or a leader can review it.'); });
+        });
+      });
       app().querySelectorAll('[data-review]').forEach(function (b) {
         b.addEventListener('click', function () {
           BWC.Store.reviewWorkout(uid, b.getAttribute('data-w'), b.getAttribute('data-review')).then(function () {
@@ -185,6 +194,21 @@
     }).catch(function () {
       app().innerHTML = u.header('Competitor', '#/team') + '<div class="card"><p>Could not load this competitor. Check your connection.</p></div>';
     });
+  }
+
+  // Hands-on sessions on a competitor's page: verify or flag, or log one as the supervisor.
+  function handsonCard(uid, m) {
+    var u = U();
+    var list = (m.handson || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    var verified = list.filter(function (h) { return h.review === 'verified'; }).reduce(function (s, h) { return s + h.minutes; }, 0);
+    return '<div class="card"><div class="row"><h2 class="grow">Hands-on training</h2><span class="muted small">' + BWC.HandsOn.hours(verified) + ' verified hrs</span></div>' +
+      '<a class="btn ghost" href="#/handson/new/' + encodeURIComponent(uid) + '">' + u.icon('clipboard', 18) + 'Log a session you supervised</a>' +
+      (list.length ? '<div class="list">' + list.slice(0, 15).map(function (h) {
+        return '<div class="list-row" style="flex-wrap:wrap"><div class="grow"><strong>' + u.esc(BWC.HandsOn.equipName(h.equipment)) + '</strong> · ' + h.minutes + ' min · ' + u.esc(h.date) +
+          '<div class="muted small">' + u.esc((h.tasks || []).join(', ')) + (h.supervisor ? ' · with ' + u.esc(h.supervisor) : '') + (h.notes ? ' · ' + u.esc(h.notes) : '') + '</div></div>' +
+          (h.review ? BWC.HandsOn.statusChip(h) : '<button type="button" class="btn small" data-hreview="verified" data-h="' + u.esc(h.id) + '">' + u.icon('check', 16) + 'Verify</button>' +
+            '<button type="button" class="btn small ghost" data-hreview="flagged" data-h="' + u.esc(h.id) + '">Flag</button>') + '</div>';
+      }).join('') + '</div>' : '<p class="muted small">No hands-on sessions yet.</p>') + '</div>';
   }
 
   function view(uid) { return uid ? viewMember(decodeURIComponent(uid)) : viewRoster(); }

@@ -132,6 +132,24 @@
       return Promise.resolve();
     },
 
+    // ---------- hands-on training log ----------
+
+    handson: function () { return Promise.resolve((db.handson || []).slice()); },
+
+    addHandson: function (uid, rec) {
+      db.handson = db.handson || [];
+      var r = Object.assign({ id: newId('h'), at: Date.now() }, rec);
+      db.handson.push(r);
+      save();
+      return Promise.resolve(r);
+    },
+
+    reviewHandson: function (uid, id, review) {
+      (db.handson || []).forEach(function (h) { if (h.id === id) { h.review = review; h.reviewedBy = db.profile.uid; } });
+      save();
+      return Promise.resolve();
+    },
+
     // ---------- linked sponsor board ----------
     // On this device, live boards sync between browser tabs through localStorage events,
     // so the sponsor and Soldier screens can be tested side by side.

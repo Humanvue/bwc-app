@@ -200,6 +200,28 @@
     });
   };
 
+  // ---------- hands-on training log ----------
+  //   users/{uid}/handson/{id}   equipment, tasks, minutes, date, supervisor, loggedBy, review
+
+  Store.handson = function (uid) {
+    return userRef(uid).collection('handson').orderBy('date', 'desc').limit(500).get().then(function (snap) {
+      return snap.docs.map(function (d) {
+        var v = d.data();
+        return Object.assign({ id: d.id }, v, { at: v.at && v.at.toMillis ? v.at.toMillis() : Date.now() });
+      });
+    });
+  };
+
+  // uid: whose log (the Soldier themself, or a competitor when a sponsor logs a session for them).
+  Store.addHandson = function (uid, rec) {
+    var ref = userRef(uid).collection('handson').doc();
+    return ref.set(Object.assign({}, rec, { at: now() })).then(function () { return Object.assign({ id: ref.id, at: Date.now() }, rec); });
+  };
+
+  Store.reviewHandson = function (uid, id, review) {
+    return userRef(uid).collection('handson').doc(id).update({ review: review, reviewedBy: profile.uid });
+  };
+
   // ---------- linked sponsor board ----------
   //   liveBoards/{code}   sponsorUid, soldierUid, question ids, seats, phase, current index,
   //                       timer start, sponsor's GO/NO-GO per question. Readable only by the two of them.

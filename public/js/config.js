@@ -137,6 +137,23 @@
       ]
     },
 
+    // Hands-on training with real weapons and radios. Points come only once a sponsor or leader
+    // verifies a session (or logs it for the Soldier).
+    handson: {
+      equipment: [
+        { id: 'M4', kind: 'weapon', name: 'M4/M16' }, { id: 'M17', kind: 'weapon', name: 'M17 pistol' },
+        { id: 'M249', kind: 'weapon', name: 'M249' }, { id: 'M240', kind: 'weapon', name: 'M240' },
+        { id: 'M2', kind: 'weapon', name: 'M2' }, { id: 'SINCGARS', kind: 'radio', name: 'SINCGARS radio' },
+        { id: 'other-radio', kind: 'radio', name: 'Other radio' }
+      ],
+      tasks: {
+        weapon: ['Clearing', 'Function check', 'Disassembly / assembly', 'Malfunctions and immediate action', 'Loading / unloading', 'Dry fire', 'Live fire'],
+        radio: ['Set up and operate (single channel)', 'Frequency hop operation', 'Presets', 'Radio checks and procedure', 'Troubleshooting']
+      },
+      perMinutes: 15,       // 1 point per 15 verified minutes
+      maxPerSession: 8
+    },
+
     // AI second opinion on board answers (Firebase AI Logic, Gemini Developer API free tier).
     // Keyword grading runs first; only answers it didn't mark right go to the AI.
     ai: {

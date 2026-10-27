@@ -40,7 +40,18 @@ expect('ruck miles add up', M.ruckMiles === 48, M.ruckMiles);
 const nc = D.ncoer(M, { event: 'HHBn Best Warrior Competition', place: '1st' });
 const all = Object.values(nc).flat();
 expect('NCOER produced bullets in several blocks', Object.values(nc).filter((b) => b.length).length >= 3, Object.keys(nc).map((k) => k + ':' + nc[k].length).join(' '));
-const VERBS = /^o (memorized|logged|improved|answered|mastered|earned|placed|competed|sat|completed|performed)\b/;
+const VERBS = /^o (memorized|logged|improved|answered|mastered|earned|placed|competed|sat|completed|performed|trained)\b/;
+
+// Hands-on: only verified sessions inside the period count.
+const ho = D.metrics({ attempts: [], ledger: [], workouts: [], handson: [
+  { equipment: 'M4', minutes: 90, review: 'verified', date: new Date(inside(3)).toISOString().slice(0, 10) },
+  { equipment: 'SINCGARS', minutes: 60, review: 'verified', date: new Date(inside(9)).toISOString().slice(0, 10) },
+  { equipment: 'M240', minutes: 120, review: null, date: new Date(inside(9)).toISOString().slice(0, 10) },
+  { equipment: 'M2', minutes: 120, review: 'verified', date: new Date(before).toISOString().slice(0, 10) }
+] }, questions, names, from, thru);
+expect('hands-on counts only verified sessions inside the period', ho.handsonMin === 150, ho.handsonMin);
+const hoBullet = D.ncoer(ho, null).Achieves.find((b) => /hands-on/.test(b)) || '';
+expect('hands-on bullet names weapons and communications', /2\.5 supervised hours of hands-on weapons and communications training/.test(hoBullet), hoBullet);
 expect('every bullet starts with "o " and an action verb', all.every((b) => VERBS.test(b)), all.find((b) => !VERBS.test(b)));
 expect('"improved" appears once per AFT bullet', all.filter((b) => /improved/.test(b)).every((b) => b.match(/improved/g).length === 1));
 expect('every bullet fits two lines', all.every((b) => b.length <= D.MAX_LEN), Math.max(...all.map((b) => b.length)));

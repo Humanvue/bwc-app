@@ -48,6 +48,10 @@
     W.filter(function (w) { return w.type === 'aft' && w.aft; }).sort(function (a, b) { return a.date < b.date ? -1 : 1; })
       .forEach(function (w) { Object.keys(w.aft).forEach(function (k) { (aft[k] = aft[k] || []).push(w.aft[k]); }); });
 
+    // Only sessions a sponsor or leader verified count toward an evaluation.
+    var HS = (m.handson || []).filter(function (h) { return h.review === 'verified' && inP(new Date(h.date + 'T12:00:00').getTime()); });
+    var radioIds = ['SINCGARS', 'other-radio'];
+
     var weeks = Math.max(1, Math.round((thru - from) / (7 * 86400000)));
     return {
       weeks: weeks,
@@ -68,7 +72,10 @@
       minutes: W.reduce(function (s, w) { return s + (w.minutes || 0); }, 0),
       ruckMiles: Math.round(W.filter(function (w) { return w.type === 'ruck'; }).reduce(function (s, w) { return s + (w.miles || 0); }, 0) * 10) / 10,
       maxRuckLb: W.filter(function (w) { return w.type === 'ruck'; }).reduce(function (s, w) { return Math.max(s, w.weight || 0); }, 0),
-      aft: aft
+      aft: aft,
+      handsonMin: HS.reduce(function (s, h) { return s + (h.minutes || 0); }, 0),
+      handsonWeapons: HS.some(function (h) { return radioIds.indexOf(h.equipment) < 0; }),
+      handsonRadio: HS.some(function (h) { return radioIds.indexOf(h.equipment) >= 0; })
     };
   }
 
@@ -113,6 +120,10 @@
     if (M.boards >= 2) blocks.Achieves.push(bullet('sat ' + M.boards + ' timed mock boards; achieved a best score of ' + M.bestBoard + '%'));
     if (M.sponsorBoards) blocks.Achieves.push(bullet('completed ' + M.sponsorBoards + ' sponsor-scored board' + (M.sponsorBoards === 1 ? '' : 's') + '; best result ' + M.sponsorBest + '% GO'));
     if (M.drillGo >= 5) blocks.Achieves.push(bullet('performed ' + M.drillGo + ' weapons and warrior task drills to standard'));
+    if (M.handsonMin >= 60) {
+      var what = M.handsonWeapons && M.handsonRadio ? 'weapons and communications' : M.handsonRadio ? 'communications equipment' : 'weapons';
+      blocks.Achieves.push(bullet('trained ' + (Math.round(M.handsonMin / 6) / 10) + ' supervised hours of hands-on ' + what + ' training'));
+    }
     return blocks;
   }
 
