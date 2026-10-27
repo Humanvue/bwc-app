@@ -239,7 +239,7 @@
     var tiles = [
       { href: '#/board', name: 'Mock Board', icon: 'mic', stat: boardStat() },
       { href: '#/fitness', name: 'Fitness', icon: 'fitness', stat: BWC.Fitness.homeStat(S.workouts) },
-      { href: '#/topic/land-nav', name: 'Land Nav', icon: 'compass', stat: land },
+      { href: '#/landnav', name: 'Land Nav', icon: 'compass', stat: land },
       { href: '#/study#skills', name: 'Weapons', icon: 'target', stat: weapons },
       { href: '#/study#skills', name: 'WTBDs', icon: 'medic', stat: wtbd },
       { href: '#/study', name: 'Study', icon: 'book', stat: { text: learnedCount + ' learned', pct: Q.length ? Math.round((learnedCount / Q.length) * 100) : 0 } }
@@ -636,6 +636,7 @@
   function route() {
     if (BWC.Board) BWC.Board.stop();
     if (BWC.Audio) BWC.Audio.stop();
+    if (BWC.LandNav) BWC.LandNav.stop();
     actions = {};
     applyTheme();
     if (Store.cloud && !S.user) return viewSignIn();
@@ -661,6 +662,7 @@
       case 'fitness': return BWC.Fitness.view(parts[1]);
       case 'team': return BWC.Team.view(parts[1]);
       case 'audio': return BWC.Audio.view(parts[1]);
+      case 'landnav': return BWC.LandNav.view(parts[1]);
       case 'creeds': return BWC.Creeds.view();
       case 'creed': return BWC.Creeds.view(parts[1], parts[2]);
       case 'squad': return parts[1] === 'new' ? BWC.Discussion.newPost(parts[2]) : BWC.Discussion.list(parts[1]);

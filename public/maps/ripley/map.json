@@ -1,0 +1,11 @@
+{
+  "name": "Camp Ripley Training Center 1:25,000",
+  "source": "CRTC 1:25K GeoPDF (georeferenced frame, WGS 84 / UTM zone 15N)",
+  "width": 4170,
+  "height": 6889,
+  "zmax": 5,
+  "tile": 256,
+  "zone": 15,
+  "corners": [[46.06411, -94.54792], [46.33743, -94.55562], [46.34043, -94.3167], [46.06708, -94.31019]],
+  "playArea": [0.22, 0.06, 0.76, 0.86]
+}

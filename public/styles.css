@@ -265,6 +265,19 @@ button.chip-link:disabled { opacity: 0.4; cursor: default; }
 .audio-btn.big { min-height: 88px; }
 @media (prefers-reduced-motion: reduce) { .audio-answer { transition: none; } }
 
+/* Land nav drills */
+.ln-map { height: 58vh; min-height: 320px; border-radius: 18px; overflow: hidden; border: 2px solid var(--line); background: #ddd; }
+.ln-grid { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 700; font-size: 26px; letter-spacing: 1px; }
+.ln-prompt { gap: 4px; }
+.ln-pin { border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #111; }
+.ln-pin.mine { background: #2563eb; }
+.ln-pin.target { background: #dc2626; }
+.ln-pin.pt { background: #111; color: #fff; display: flex; align-items: center; justify-content: center; font: 700 12px/1 system-ui, sans-serif; }
+.ln-deg { font: 700 11px/16px system-ui, sans-serif; color: #111; text-align: center; text-shadow: 0 0 3px #fff, 0 0 3px #fff; }
+.ln-result { border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+.ln-result.good { background: var(--good); color: var(--on-status); }
+.ln-result.bad { background: var(--bad); color: var(--on-status); }
+
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .swatch { min-height: 64px; border-radius: 14px; border: 3px solid transparent; cursor: pointer; padding: 8px; text-align: left; font-weight: 700; font-size: 13px; display: flex; align-items: flex-end; }
 .swatch.on { border-color: var(--text); }
