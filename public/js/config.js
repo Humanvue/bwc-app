@@ -13,6 +13,16 @@
       { id: 'region', name: 'Region IV Best Warrior', date: '2027-04-28', place: 'Marseilles, IL' }
     ],
 
+    // Season stages. An admin moves a Soldier forward as they advance; each stage unlocks a harder
+    // board level and any content packs tagged for it (a question's optional "stage" field).
+    stages: [
+      { id: 'hhbn', name: 'HHBn', comp: 'hhbn' },
+      { id: 'division', name: '34ID', comp: 'division', board: { name: 'Division board', questions: 15, seconds: 45, minLevel: 2 } },
+      { id: 'state', name: 'MNNG State', comp: 'state', board: { name: 'State board', questions: 15, seconds: 30, minLevel: 2 } },
+      { id: 'region', name: 'Region IV', comp: 'region', board: { name: 'Region IV board', questions: 20, seconds: 30, minLevel: 3 } }
+    ],
+    advanceBonus: 50,
+
     // Study topics, grouped the way the library shows them.
     groups: [
       { id: 'profession', name: 'Profession and Leadership' },

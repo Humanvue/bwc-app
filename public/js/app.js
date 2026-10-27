@@ -298,7 +298,12 @@
 
   function viewStudy() {
     var stats = P.topicStats(Q, S.attempts, S.learned);
+    var locked = BWC.Stages.lockedCounts(S.user);
+    var lockedNote = Object.keys(locked).map(function (st) {
+      return locked[st] + ' questions unlock at ' + BWC.Stages.of({ stage: st }).name;
+    }).join(' · ');
     app.innerHTML = header('Study') +
+      '<div class="row wrap"><span class="chip">Stage: ' + esc(BWC.Stages.of(S.user).name) + '</span>' + (lockedNote ? '<span class="muted small">' + esc(lockedNote) + '</span>' : '') + '</div>' +
       '<p class="muted">Pick a topic to read the source, flip flashcards or take an untimed quiz. Every answer shows where to find it.</p>' +
       '<div class="row wrap"><a class="btn grow" href="#/creeds">' + icon('flag', 18) + 'Creeds and Army Values</a>' +
       '<a class="btn grow" href="#/audio">' + icon('mic', 18) + 'Audio flashcards</a>' +
@@ -609,7 +614,7 @@
       if (!el) return;
       people.sort(function (a, b) { return (a.status === 'pending' ? 0 : 1) - (b.status === 'pending' ? 0 : 1) || (b.points || 0) - (a.points || 0); });
       var sponsors = people.filter(function (p) { return p.role === 'sponsor' || p.role === 'leader' || p.role === 'admin'; });
-      el.innerHTML = '<table class="admin"><thead><tr><th>Person</th><th>Status</th><th>Role</th><th>Sponsor</th><th>Points</th></tr></thead><tbody>' +
+      el.innerHTML = '<table class="admin"><thead><tr><th>Person</th><th>Status</th><th>Role</th><th>Sponsor</th><th>Stage</th><th>Points</th></tr></thead><tbody>' +
         people.map(function (p) {
           var roleSel = isAdmin() ? '<select class="input" data-change="role" data-uid="' + esc(p.uid) + '">' + ['soldier', 'sponsor', 'leader', 'admin'].map(function (r) {
             return '<option' + (r === p.role ? ' selected' : '') + '>' + r + '</option>';
@@ -620,11 +625,14 @@
           return '<tr><td><strong>' + esc(displayName(p)) + '</strong><div class="muted small">' + esc(p.email || '') + '</div><div class="muted small">' + esc(p.unit || '') + '</div></td>' +
             '<td>' + (p.status === 'pending' && isAdmin() ? '<button type="button" class="btn small" data-act="approve" data-arg="' + esc(p.uid) + '">Approve</button>'
               : '<span class="chip' + (p.status === 'approved' ? ' good' : '') + '">' + esc(p.status) + '</span>') + '</td>' +
-            '<td>' + roleSel + '</td><td>' + spSel + '</td><td class="mono">' + (p.points || 0) + '</td></tr>';
+            '<td>' + roleSel + '</td><td>' + spSel + '</td><td>' + (isAdmin() ? '<select class="input" data-change="stage" data-uid="' + esc(p.uid) + '">' + C.stages.map(function (s) {
+              return '<option value="' + s.id + '"' + (s.id === (p.stage || 'hhbn') ? ' selected' : '') + '>' + esc(s.name) + '</option>';
+            }).join('') + '</select>' : esc(BWC.Stages.of(p).name)) + '</td><td class="mono">' + (p.points || 0) + '</td></tr>';
         }).join('') + '</tbody></table>';
       el.querySelectorAll('select[data-change]').forEach(function (sel) {
         sel.addEventListener('change', function () {
-          var field = sel.getAttribute('data-change') === 'role' ? { role: sel.value } : { sponsorUid: sel.value || null };
+          var kind = sel.getAttribute('data-change');
+          var field = kind === 'role' ? { role: sel.value } : kind === 'stage' ? { stage: sel.value } : { sponsorUid: sel.value || null };
           Store.updateUser(sel.getAttribute('data-uid'), field).then(function () { toast('Saved'); }).catch(function () { toast('Not saved: admins only'); });
         });
       });
@@ -674,7 +682,9 @@
     var name = parts[0] || 'home';
     renderNav(name);
     window.scrollTo(0, 0);
-    if (name === 'home' && BWC.Collect) setTimeout(BWC.Collect.announce, 600);
+    // Advancement message first; badge unlocks after it so one doesn't replace the other.
+    if (name === 'home' && BWC.Collect) setTimeout(BWC.Collect.announce, 3200);
+    if (name === 'home' && BWC.Stages) setTimeout(BWC.Stages.awardAdvance, 300);
     switch (name) {
       case 'home': return viewHome();
       case 'study': return viewStudy();
@@ -729,6 +739,7 @@
   function loadData() {
     return Promise.all([Store.attempts(), Store.ledger(), Store.learned(), Store.daily(), Store.workouts()]).then(function (r) {
       S.attempts = r[0]; S.ledger = r[1]; S.learned = r[2]; S.daily = r[3]; S.workouts = r[4];
+      BWC.Stages.applyContent(S.user);
     }).catch(function (e) { console.warn('Load failed', e); });
   }
 

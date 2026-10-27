@@ -127,7 +127,9 @@
   function nextCompetition() {
     var now = Date.now();
     function daysTo(c) { return Math.max(0, Math.ceil((new Date(c.date + 'T00:00:00').getTime() - now) / 86400000)); }
-    var upcoming = C.competitions.filter(function (c) {
+    // Count down to competitions from the Soldier's current stage onward.
+    var list = window.BWC && BWC.Stages && BWC.UI && BWC.UI.S.user ? BWC.Stages.competitionsFor(BWC.UI.S.user) : C.competitions;
+    var upcoming = list.filter(function (c) {
       return !c.date || new Date(c.date + 'T00:00:00').getTime() >= now - 86400000;
     });
     if (!upcoming.length) return null;

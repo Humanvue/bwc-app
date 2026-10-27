@@ -172,7 +172,11 @@ def main(docs):
             review.append({"id": q.get("id"), "q": q.get("q"), "problems": problems})
             continue
         seen.add(q["id"])
-        good.append({k: q.get(k) for k in ("id", "topic", "level", "q", "answer", "wrong", "keywords", "pub", "para", "page", "quote", "why")})
+        item = {k: q.get(k) for k in ("id", "topic", "level", "q", "answer", "wrong", "keywords", "pub", "para", "page", "quote", "why")}
+        # Optional content pack: "division", "state" or "region" questions unlock when a Soldier advances.
+        if q.get("stage") in ("division", "state", "region"):
+            item["stage"] = q["stage"]
+        good.append(item)
 
     sources = sources_from(docs)
     for q in good:

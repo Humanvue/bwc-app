@@ -98,6 +98,11 @@
       '<div class="board-line">"<em>Sergeant Major,</em> the regulation that covers wear and appearance of Army uniforms <em>is</em> AR 670-1."</div>' +
       '<p class="muted small">Address the member who asked: <strong>CSM or SGM → "Sergeant Major"</strong>, <strong>1SG → "First Sergeant"</strong>. Restate the question, then give the answer.</p></div>' +
       '<form class="card" id="bd-setup"><h2>Board settings</h2>' +
+      '<label class="field">Board level<select class="input" id="bd-level"><option value="">Standard (your settings below)</option>' +
+      BWC.Stages.boardLevels(u.S.user).map(function (l) {
+        return '<option value="' + l.id + '"' + (l.open ? '' : ' disabled') + '>' + u.esc(l.name) + ': ' + l.questions + ' questions, ' + l.seconds + ' s' +
+          (l.open ? '' : ' (unlocks when you advance to ' + u.esc(l.stageName) + ')') + '</option>';
+      }).join('') + '</select></label>' +
       '<label class="field">Questions<select class="input" id="bd-n">' + BC.questionCounts.map(function (n) {
         return '<option' + (n === BC.defaultQuestions ? ' selected' : '') + '>' + n + '</option>';
       }).join('') + '</select></label>' +
@@ -121,8 +126,13 @@
       // iPhones only allow speech that starts from a tap; this unlocks it for the board.
       if (canSpeak) BWC.Speech.unlock();
       var n = parseInt(document.getElementById('bd-n').value, 10);
+      var seconds = parseInt(document.getElementById('bd-secs-opt').value, 10);
       var group = document.getElementById('bd-topics').value;
+      // A stage board level sets its own length, time and minimum question difficulty.
+      var level = BWC.Stages.boardLevels(u.S.user).filter(function (l) { return l.id === document.getElementById('bd-level').value && l.open; })[0];
+      if (level) { n = level.questions; seconds = level.seconds; }
       var pool = (window.BWC_QUESTIONS || []).filter(function (q) {
+        if (level && (q.level || 1) < level.minLevel) return false;
         if (group === 'all') return true;
         var t = u.topicById(q.topic);
         return t && t.group === group;
@@ -135,7 +145,8 @@
         seats: list.map(function (_, i) { return order[i % order.length]; }),
         answers: [], times: [], shown: [],
         idx: 0,
-        seconds: parseInt(document.getElementById('bd-secs-opt').value, 10),
+        seconds: seconds,
+        levelName: level ? level.name : null,
         readAloud: canSpeak && !!(document.getElementById('bd-aloud') || {}).checked,
         scored: left > 0,
         report: null,

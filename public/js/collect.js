@@ -18,6 +18,9 @@
 
   // App ribbons in this app's order of precedence (highest first). Stripe colors are the app's own.
   var RIBBONS = [
+    { id: 'adv-region', name: 'Region IV Competitor', how: 'Advance to the Region IV Best Warrior Competition', colors: ['#FFCC33', '#0A0A0D', '#FFCC33', '#0A0A0D', '#FFCC33'] },
+    { id: 'adv-state', name: 'State Competitor', how: 'Advance to the MNNG Best Warrior Competition', colors: ['#0C1E3E', '#FFCC33', '#0C1E3E'] },
+    { id: 'adv-division', name: '34ID Competitor', how: 'Advance to the 34ID Best Warrior Competition', colors: ['#B91C1C', '#0A0A0D', '#B91C1C'] },
     { id: 'sponsor-board', name: 'Board Excellence', how: 'Score 80% or better on a sponsor-scored board', colors: ['#1D3A8A', '#FFCC33', '#FFFFFF', '#FFCC33', '#1D3A8A'] },
     { id: 'board-pass', name: 'Mock Board', how: 'Pass a timed mock board', colors: ['#5B2C83', '#FFFFFF', '#5B2C83'] },
     { id: 'nco-creed', name: 'NCO Creed', how: 'Recite the whole NCO Creed from memory', colors: ['#0A0A0D', '#FFCC33', '#0A0A0D', '#FFCC33', '#0A0A0D'] },
@@ -53,7 +56,11 @@
     var boards = L.filter(function (e) { return e.kind === 'board-done'; });
     var passPct = window.BWC_CONFIG.board.passPct;
 
+    var stageIdx = window.BWC && BWC.Stages ? BWC.Stages.index(S.user && S.user.stage) : 0;
     var earned = {
+      'adv-division': stageIdx >= 1,
+      'adv-state': stageIdx >= 2,
+      'adv-region': stageIdx >= 3,
       'sponsor-board': boards.some(function (b) { return b.sponsored && (b.score || 0) >= 80; }),
       'board-pass': boards.some(function (b) { return !b.sponsored && (b.score || 0) >= passPct; }),
       'nco-creed': ncoWhole >= 0 && creedRef('nco-creed', ncoWhole),

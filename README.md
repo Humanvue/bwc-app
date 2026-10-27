@@ -40,6 +40,13 @@ Gemini through Firebase AI Logic (`public/js/ai.js`, model and SDK version under
 raise a grade, never lower one; if it's unavailable, keyword grading stands. Only the question, reference answer
 and the Soldier's words are sent. Admins can check it under Me → Admin → Test AI grading.
 
+**Competition stages** (Phase 4). Admins set each Soldier's stage under Me → Admin → People: HHBn, 34ID, MNNG
+State or Region IV (Soldiers can't change their own). Advancing unlocks a harder board level (Division: 15 questions,
+45 s, level 2+; State: 15, 30 s; Region IV: 20, 30 s, level 3), moves the countdown to the next competition, awards an
+advancement badge and a one-time +50 points, and unlocks any questions tagged `"stage": "division" | "state" | "region"`
+in `content/raw/*.json` (content packs for the references still missing from the package). Tested by
+`node tools/test_stages.js`.
+
 **Readiness alerts** (Phase 4; sponsors' and leaders' Home screen and competitor roster). Computed in the app from
 each competitor's records (no paid push service): never started, no activity in 7+ days (4+ is a warning), behind on
 Daily 10 or no workouts by Thursday, a topic stuck under 60% that hasn't improved in two weeks, no board in 14+ days
