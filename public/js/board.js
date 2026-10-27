@@ -18,25 +18,11 @@
 
   // ---------- voice ----------
 
-  // Each seat gets its own voice so you hear who is asking.
-  function voices() {
-    if (!canSpeak) return [];
-    return window.speechSynthesis.getVoices().filter(function (v) { return /^en(-|_)/i.test(v.lang); });
-  }
-  if (canSpeak) window.speechSynthesis.onvoiceschanged = function () {};
-
+  // Each seat sounds different (its own voice where the device has several, otherwise pitch)
+  // so you hear who is asking. See speech.js for the iPhone handling.
   function say(text, seatIndex, done) {
     if (!canSpeak || !B || !B.readAloud) { if (done) done(); return; }
-    var synth = window.speechSynthesis;
-    synth.cancel();
-    var u = new SpeechSynthesisUtterance(text);
-    var vs = voices();
-    if (vs.length) u.voice = vs[(seatIndex * 3) % vs.length];
-    u.rate = 0.95;
-    u.pitch = [0.9, 1.0, 0.8, 1.1, 1.0][seatIndex] || 1;
-    u.onend = function () { if (done) done(); };
-    u.onerror = function () { if (done) done(); };
-    synth.speak(u);
+    BWC.Speech.speak(text, { voiceIndex: seatIndex * 3, rate: 0.95, pitch: [0.9, 1.0, 0.8, 1.1, 1.0][seatIndex] || 1, onend: done });
   }
 
   function startListening(textarea, button) {
@@ -72,7 +58,7 @@
   function stop() {
     if (tick) { clearInterval(tick); tick = null; }
     stopListening();
-    if (canSpeak) window.speechSynthesis.cancel();
+    if (canSpeak) BWC.Speech.cancel();
   }
 
   // ---------- pieces ----------
@@ -121,16 +107,18 @@
       '<label class="field">Topics<select class="input" id="bd-topics">' + groups.map(function (g) {
         return '<option value="' + g.id + '">' + u.esc(g.name) + '</option>';
       }).join('') + '</select></label>' +
-      (canSpeak ? '<label class="row small"><input type="checkbox" id="bd-aloud" checked> Read questions aloud (turn your volume up)</label>' : '') +
+      (canSpeak ? '<div class="row wrap"><label class="row small grow"><input type="checkbox" id="bd-aloud" checked> Read questions aloud</label>' + BWC.Speech.testButton('bd-test') + '</div>' +
+        '<p class="muted small">' + u.esc(BWC.Speech.TIP) + '</p>' : '') +
       '<button class="btn" type="submit">' + u.icon('mic', 20) + 'Knock and enter</button>' +
       '<p class="muted small">' + (left ? 'Earns points: ' + BC.points.right + ' per right answer, ' + BC.points.partial + ' if partly right, ' + BC.points.format +
         ' for correct format, +' + BC.points.pass + ' for passing (' + BC.passPct + '%). ' + left + ' scored board' + (left === 1 ? '' : 's') + ' left today.'
         : 'You have sat today\'s ' + BC.boardsPerDayForPoints + ' scored boards. This one is practice only.') + '</p></form>';
 
+    BWC.Speech.wireTest('bd-test', 'Sergeant Major. Voice check. You should hear the board clearly.');
     document.getElementById('bd-setup').addEventListener('submit', function (e) {
       e.preventDefault();
-      // iPhones only allow speech that starts from a tap; speaking once here unlocks it for the board.
-      if (canSpeak) window.speechSynthesis.speak(new SpeechSynthesisUtterance(' '));
+      // iPhones only allow speech that starts from a tap; this unlocks it for the board.
+      if (canSpeak) BWC.Speech.unlock();
       var n = parseInt(document.getElementById('bd-n').value, 10);
       var group = document.getElementById('bd-topics').value;
       var pool = (window.BWC_QUESTIONS || []).filter(function (q) {

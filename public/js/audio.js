@@ -16,11 +16,6 @@
   function U() { return BWC.UI; }
   function app() { return document.getElementById('app'); }
 
-  function voice() {
-    var vs = canSpeak ? synth.getVoices().filter(function (v) { return /^en(-|_)/i.test(v.lang); }) : [];
-    return vs.filter(function (v) { return /en-US/i.test(v.lang); })[0] || vs[0] || null;
-  }
-
   // Speak text as short sentences (some browsers cut off long utterances), then call done.
   function speak(text, done) {
     var id = runId;
@@ -30,17 +25,14 @@
     function next() {
       if (id !== runId) return;
       if (i >= parts.length) { done(); return; }
-      var u = new SpeechSynthesisUtterance(parts[i++].trim());
-      var v = voice();
-      if (v) u.voice = v;
-      u.rate = A ? A.rate : 1;
+      var line = parts[i++].trim();
+      var rate = A ? A.rate : 1;
       // If the browser never fires onend, move on after an estimated reading time.
-      var words = u.text.split(/\s+/).length;
+      var words = line.split(/\s+/).length;
       clearTimeout(guard);
-      guard = setTimeout(function () { if (id === runId) next(); }, (words / 2.5 / (u.rate || 1)) * 1000 + 1500);
-      u.onend = function () { clearTimeout(guard); if (id === runId) next(); };
-      u.onerror = u.onend;
-      synth.speak(u);
+      guard = setTimeout(function () { if (id === runId) next(); }, (words / 2.5 / rate) * 1000 + 1500);
+      // speech.js picks an iPhone-safe voice and works around Safari dropping speech after cancel.
+      BWC.Speech.speak(line, { voiceIndex: 0, rate: rate, onend: function () { clearTimeout(guard); if (id === runId) next(); } });
     }
     next();
   }
@@ -58,7 +50,7 @@
     runId++;
     clearTimeout(timer);
     clearTimeout(guard);
-    if (canSpeak) synth.cancel();
+    if (canSpeak) BWC.Speech.cancel();
   }
 
   // Called on every screen change: silence and release the screen, but keep the session so
@@ -93,13 +85,15 @@
       '<div class="row wrap"><label class="field grow">Speed<select class="input" id="au-rate"><option value="0.85">Slower</option><option value="1" selected>Normal</option><option value="1.15">Faster</option></select></label>' +
       '<label class="row small grow"><input type="checkbox" id="au-cite" checked> Read the source after each answer</label></div>' +
       '<label class="row small"><input type="checkbox" id="au-learned"> Include questions I marked as learned</label>' +
+      (canSpeak ? '<div class="row wrap">' + BWC.Speech.testButton('au-test') + '<span class="muted small grow">' + u.esc(BWC.Speech.TIP) + '</span></div>' : '') +
       '<button class="btn" type="submit"' + (canSpeak ? '' : ' disabled') + '>' + u.icon('mic', 20) + 'Start listening</button>' +
       '<p class="muted small">Use headphones. The app keeps your screen on while playing; turn the brightness down. ' +
       'If you lock the phone, most browsers stop speaking until you come back.</p></form>';
 
+    BWC.Speech.wireTest('au-test', 'Voice check. Question one. What are the Army Values?');
     document.getElementById('au-form').addEventListener('submit', function (e) {
       e.preventDefault();
-      if (canSpeak) synth.speak(new SpeechSynthesisUtterance(' ')); // unlock speech on iPhone (needs a tap)
+      if (canSpeak) BWC.Speech.unlock(); // iPhone: speech must start from a tap
       var src = document.getElementById('au-src').value;
       var withLearned = document.getElementById('au-learned').checked;
       var pool = (window.BWC_QUESTIONS || []).filter(function (q) {
