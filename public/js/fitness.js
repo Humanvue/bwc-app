@@ -98,6 +98,7 @@
         miles.toFixed(1) + ' total ruck miles</div></div>' + u.icon('fitness', 60, 1.8) + '</div>' +
         '<div class="row wrap"><a class="btn grow" href="#/fitness/new">' + u.icon('fitness', 18) + 'Log a workout</a>' +
         '<a class="btn ghost grow" href="#/fitness/aft">AFT practice</a></div>' +
+        '<a class="btn ghost" href="#/audio">' + u.icon('mic', 18) + 'Study while you run or ruck: audio flashcards</a>' +
         '<div class="card"><div class="row"><h2 class="grow">Vehicles</h2><span class="muted small">Unlocked by ruck miles</span></div>' +
         (next ? '<div class="small">' + (next.need - miles).toFixed(1) + ' miles to the <strong>' + u.esc(next.name) + '</strong></div>' +
           '<div class="bar"><span style="width:' + Math.min(100, Math.round(miles / next.need * 100)) + '%"></span></div>' : '<div class="small"><strong>Every vehicle unlocked.</strong></div>') +

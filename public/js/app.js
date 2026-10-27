@@ -134,7 +134,7 @@
   function renderNav(route) {
     var items = [
       { href: '#/', label: 'Home', icon: 'home', on: route === 'home' },
-      { href: '#/study', label: 'Study', icon: 'book', on: route === 'study' || route === 'topic' || route === 'flash' || route === 'creeds' || route === 'creed' },
+      { href: '#/study', label: 'Study', icon: 'book', on: ['study', 'topic', 'flash', 'creeds', 'creed', 'audio'].indexOf(route) >= 0 },
       { href: '#/quiz/daily', label: 'Daily 10', icon: 'flame', on: route === 'quiz' },
       { href: '#/squad', label: 'Squad', icon: 'chat', on: route === 'squad' || route === 'thread' || route === 'leaderboard' },
       { href: '#/me', label: 'Me', icon: 'user', on: route === 'me' || route === 'admin' || route === 'team' }
@@ -299,6 +299,7 @@
     app.innerHTML = header('Study') +
       '<p class="muted">Pick a topic to read the source, flip flashcards or take an untimed quiz. Every answer shows where to find it.</p>' +
       '<div class="row wrap"><a class="btn grow" href="#/creeds">' + icon('flag', 18) + 'Creeds and Army Values</a>' +
+      '<a class="btn grow" href="#/audio">' + icon('mic', 18) + 'Audio flashcards</a>' +
       '<a class="btn ghost grow" href="#/quiz/mixed">' + icon('star', 18) + 'Mixed quiz: 20 from every topic</a></div>' +
       C.groups.map(function (g) {
         var topics = C.topics.filter(function (t) { return t.group === g.id; });
@@ -634,6 +635,7 @@
 
   function route() {
     if (BWC.Board) BWC.Board.stop();
+    if (BWC.Audio) BWC.Audio.stop();
     actions = {};
     applyTheme();
     if (Store.cloud && !S.user) return viewSignIn();
@@ -658,6 +660,7 @@
       case 'board': return BWC.Board.view(parts[1]);
       case 'fitness': return BWC.Fitness.view(parts[1]);
       case 'team': return BWC.Team.view(parts[1]);
+      case 'audio': return BWC.Audio.view(parts[1]);
       case 'creeds': return BWC.Creeds.view();
       case 'creed': return BWC.Creeds.view(parts[1], parts[2]);
       case 'squad': return parts[1] === 'new' ? BWC.Discussion.newPost(parts[2]) : BWC.Discussion.list(parts[1]);

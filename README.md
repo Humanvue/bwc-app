@@ -29,6 +29,11 @@ can be practiced by paragraph. The General Orders come from TRADOC Pamphlet 600-
 exactly as printed. Admins can add more texts (e.g. the Army Song) under Creeds → Texts you added, copied from an
 official source; they train the same way. Matching is tested by `node tools/test_creeds.js`.
 
+**Audio flashcards** (Study → Audio flashcards, or from Fitness). Each question is read aloud, then a pause to
+answer in your head, then the answer and its source. Pick a topic, group or "questions I missed", pause length,
+speed and count. Large controls, screen kept awake while playing (Wake Lock). Browsers generally stop speaking when
+the phone is locked, so the screen stays on. A fallback timer keeps it moving if a phone's speech engine stalls.
+
 **Sponsor dashboard** (Me → My competitor / Competitors). Sponsors see the competitors assigned to them; leaders and
 admins see every approved Soldier. Roster cards flag anyone quiet for 7 days and screenshots waiting for review.
 Each competitor page shows readiness bars (board, knowledge, weapons, land nav, WTBDs, fitness), topics weakest

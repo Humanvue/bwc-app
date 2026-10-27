@@ -254,6 +254,17 @@ input[type="file"] { font-size: 14px; max-width: 100%; }
 button.chip-link { cursor: pointer; font-family: inherit; }
 button.chip-link:disabled { opacity: 0.4; cursor: default; }
 
+/* Audio flashcards: big, glanceable controls for use on the move */
+.audio-card { min-height: 260px; justify-content: center; }
+.audio-answer { padding: 12px 14px; border-radius: 12px; background: var(--surface-2); transition: filter 0.3s ease; }
+.audio-answer.masked { filter: blur(8px); user-select: none; }
+.audio-phase { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: var(--accent); }
+[data-theme="desert-storm"] .audio-phase, [data-theme="arctic-electric"] .audio-phase, [data-theme="tropic-fiesta"] .audio-phase { color: var(--text); }
+.audio-controls { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 12px; }
+.audio-btn { min-height: 76px; border-radius: 20px; }
+.audio-btn.big { min-height: 88px; }
+@media (prefers-reduced-motion: reduce) { .audio-answer { transition: none; } }
+
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .swatch { min-height: 64px; border-radius: 14px; border: 3px solid transparent; cursor: pointer; padding: 8px; text-align: left; font-weight: 700; font-size: 13px; display: flex; align-items: flex-end; }
 .swatch.on { border-color: var(--text); }
