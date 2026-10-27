@@ -91,6 +91,42 @@
       boardsPerDayForPoints: 2
     },
 
+    // Fitness log. Typed entries earn the same base points as entries with a screenshot;
+    // a screenshot adds a Verified-pending badge and a small bonus.
+    fitness: {
+      types: [
+        { id: 'run', name: 'Run', mult: 1 },
+        { id: 'ruck', name: 'Ruck march', mult: 1.5 },
+        { id: 'lift', name: 'Strength', mult: 1 },
+        { id: 'hiit', name: 'HIIT / circuit', mult: 1 },
+        { id: 'swim', name: 'Swim', mult: 1 },
+        { id: 'aft', name: 'AFT practice', mult: 1.25 },
+        { id: 'other', name: 'Other', mult: 1 }
+      ],
+      perTenMinutes: 1,
+      screenshotBonus: 0.1,
+      dailyCap: 15,
+      backdateDays: 7,
+      // Raw results only: the package has no current AFT scoring tables.
+      aftEvents: [
+        { id: 'mdl', name: '3-rep max deadlift', unit: 'lb', better: 'high' },
+        { id: 'hrp', name: 'Hand-release push-up', unit: 'reps', better: 'high' },
+        { id: 'sdc', name: 'Sprint-drag-carry', unit: 'm:ss', better: 'low' },
+        { id: 'plk', name: 'Plank', unit: 'm:ss', better: 'high' },
+        { id: '2mr', name: '2-mile run', unit: 'm:ss', better: 'low' }
+      ],
+      // Vehicles unlock with total ruck miles.
+      vehicles: [
+        { need: 5, name: 'HMMWV', kind: 'truck' },
+        { need: 25, name: 'JLTV', kind: 'truck' },
+        { need: 50, name: 'Stryker', kind: 'apc' },
+        { need: 75, name: 'Bradley', kind: 'tank' },
+        { need: 100, name: 'Abrams', kind: 'tank' },
+        { need: 150, name: 'UH-60 Black Hawk', kind: 'heli' },
+        { need: 200, name: 'AH-64 Apache', kind: 'heli' }
+      ]
+    },
+
     themes: [
       { id: 'black-gold', name: 'Black and Gold' },
       { id: 'desert-storm', name: 'Desert Storm' },

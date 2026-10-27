@@ -10,7 +10,12 @@ PVT → SMA, leaderboard and five themes.
 Phase 2 (in progress): **Mock board.** A CSM-led panel of SGMs and 1SGs reads each question aloud; the Soldier
 answers by voice or typing against a timer and is graded on address ("Sergeant Major," / "First Sergeant,"),
 restating the question, and content (`public/js/grading.js`, tested by `node tools/test_grading.js`).
-Board settings and points are in `public/js/config.js` under `board`. Fitness log and discussion board come next.
+Board settings and points are in `public/js/config.js` under `board`.
+
+**Fitness log.** Workouts with or without a wearable screenshot (shrunk to a small JPEG on the phone, which also
+strips any GPS data; a no-map confirmation is required). Points per 10 minutes with ruck and AFT multipliers and a
+daily cap, vehicle unlocks by ruck miles, and AFT practice trends (raw results for the five AFT events). Settings
+are under `fitness` in `config.js`. The discussion board comes next.
 
 Add `?demo` to the address (e.g. `http://localhost:8765/?demo`) to test on this device without signing in.
 

@@ -58,6 +58,20 @@ service cloud.firestore {
         allow create: if uid == me() && approved();
       }
 
+      // Workouts: the Soldier logs their own; a screenshot thumbnail must stay small.
+      // Sponsors and leaders can only mark one verified or flagged.
+      match /workouts/{id} {
+        allow read: if canSee(uid);
+        allow create: if uid == me() && approved()
+          && request.resource.data.minutes is number && request.resource.data.minutes > 0 && request.resource.data.minutes <= 600
+          && request.resource.data.pts is int && request.resource.data.pts >= 0 && request.resource.data.pts <= 50
+          && (!('shot' in request.resource.data) || request.resource.data.shot == null
+              || (request.resource.data.shot is string && request.resource.data.shot.size() < 300000))
+          && (!('review' in request.resource.data) || request.resource.data.review == null);
+        allow update: if (isLeader() || sponsors(uid)) && uid != me()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['review', 'reviewedBy']);
+      }
+
       match /ledger/{id} {
         allow read: if canSee(uid);
         allow create: if uid == me() && approved()

@@ -151,6 +151,24 @@
     return metaRef().update(upd);
   };
 
+  // ---------- workouts ----------
+
+  Store.workouts = function (uid) {
+    return userRef(uid).collection('workouts').orderBy('date', 'desc').limit(500).get().then(function (snap) {
+      return snap.docs.map(function (d) {
+        var v = d.data();
+        return Object.assign({ id: d.id }, v, { at: v.at && v.at.toMillis ? v.at.toMillis() : Date.now() });
+      });
+    });
+  };
+
+  Store.addWorkout = function (w) {
+    var ref = userRef().collection('workouts').doc();
+    return ref.set(Object.assign({}, w, { at: now() })).then(function () {
+      return Object.assign({ id: ref.id, at: Date.now() }, w);
+    });
+  };
+
   // ---------- question error reports ----------
 
   Store.addReport = function (r) {

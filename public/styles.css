@@ -212,6 +212,16 @@ nav.bottom a.active { background: var(--accent); color: var(--on-accent); }
 .btn.listening { border-color: var(--bad); color: var(--bad); }
 @media (prefers-reduced-motion: reduce) { .seat { transition: none; } .bar.timer > span { transition: none; } }
 
+/* Fitness: vehicle unlock ladder and AFT inputs */
+.vehicles { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+.vehicle { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 10px 6px; border-radius: 14px; text-align: center; background: var(--surface-2); color: var(--muted); border: 1px dashed var(--line); }
+.vehicle .name { font-weight: 700; font-size: 13px; color: var(--text); }
+.vehicle.on { background: var(--accent); color: var(--on-accent); border: 1px solid var(--accent); }
+.vehicle.on .name { color: var(--on-accent); }
+.aft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+input[type="range"] { accent-color: var(--accent); width: 100%; }
+input[type="file"] { font-size: 14px; max-width: 100%; }
+
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .swatch { min-height: 64px; border-radius: 14px; border: 3px solid transparent; cursor: pointer; padding: 8px; text-align: left; font-weight: 700; font-size: 13px; display: flex; align-items: flex-end; }
 .swatch.on { border-color: var(--text); }

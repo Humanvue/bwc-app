@@ -72,6 +72,7 @@
   function points() { return (S.user && S.user.points) || 0; }
 
   function toast(msg) {
+    document.querySelectorAll('.toast').forEach(function (old) { old.remove(); });
     var t = document.createElement('div');
     t.className = 'toast';
     t.setAttribute('role', 'status');
@@ -237,7 +238,7 @@
 
     var tiles = [
       { href: '#/board', name: 'Mock Board', icon: 'mic', stat: boardStat() },
-      { href: '#/coming/fitness', name: 'Fitness', icon: 'fitness', soon: 'Coming in Phase 2' },
+      { href: '#/fitness', name: 'Fitness', icon: 'fitness', stat: BWC.Fitness.homeStat(S.workouts) },
       { href: '#/topic/land-nav', name: 'Land Nav', icon: 'compass', stat: land },
       { href: '#/study#skills', name: 'Weapons', icon: 'target', stat: weapons },
       { href: '#/study#skills', name: 'WTBDs', icon: 'medic', stat: wtbd },
@@ -652,6 +653,7 @@
       case 'me': return viewMe();
       case 'admin': return viewAdmin();
       case 'board': return BWC.Board.view(parts[1]);
+      case 'fitness': return BWC.Fitness.view(parts[1]);
       case 'coming': return viewComing(parts[1]);
       default: return viewNotFound();
     }
@@ -679,8 +681,8 @@
   window.addEventListener('hashchange', route);
 
   function loadData() {
-    return Promise.all([Store.attempts(), Store.ledger(), Store.learned(), Store.daily()]).then(function (r) {
-      S.attempts = r[0]; S.ledger = r[1]; S.learned = r[2]; S.daily = r[3];
+    return Promise.all([Store.attempts(), Store.ledger(), Store.learned(), Store.daily(), Store.workouts()]).then(function (r) {
+      S.attempts = r[0]; S.ledger = r[1]; S.learned = r[2]; S.daily = r[3]; S.workouts = r[4];
     }).catch(function (e) { console.warn('Load failed', e); });
   }
 

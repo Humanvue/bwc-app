@@ -30,8 +30,10 @@
     ledger: [],     // { kind, pts, ref, at } every point earned
     learned: {},    // qid -> true
     reports: [],    // { id, qid, reason, comment, status, at, by }
-    daily: {}       // 'YYYY-MM-DD' -> { done, correct }
+    daily: {},      // 'YYYY-MM-DD' -> { done, correct }
+    workouts: []    // { id, type, date, minutes, miles, weight, effort, notes, aft, shot, pts, at }
   };
+  db.workouts = db.workouts || [];
 
   var listeners = [];
 
@@ -84,6 +86,17 @@
       db.daily[date] = result;
       save();
       return Promise.resolve();
+    },
+
+    // ---------- workouts ----------
+
+    workouts: function () { return Promise.resolve(db.workouts.slice()); },
+
+    addWorkout: function (w) {
+      var rec = Object.assign({ id: newId('w'), at: Date.now() }, w);
+      db.workouts.push(rec);
+      save();
+      return Promise.resolve(rec);
     },
 
     // ---------- question error reports ----------
