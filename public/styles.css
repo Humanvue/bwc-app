@@ -177,6 +177,14 @@ nav.bottom a {
   font-size: 12px; font-weight: 700; color: var(--muted);
 }
 nav.bottom a.active { background: var(--accent); color: var(--on-accent); }
+@media (max-width: 380px) {
+  nav.bottom { padding-left: max(6px, env(safe-area-inset-left, 0px)); padding-right: max(6px, env(safe-area-inset-right, 0px)); }
+  nav.bottom .inner { gap: 2px; }
+  nav.bottom a { font-size: 11px; border-radius: 12px; }
+}
+@media (max-width: 340px) {
+  nav.bottom a { font-size: 10px; letter-spacing: -0.2px; white-space: nowrap; }
+}
 
 /* Modal sheet */
 .sheet-wrap { position: fixed; inset: 0; z-index: 40; background: rgba(0,0,0,0.55); display: flex; align-items: flex-end; justify-content: center; }

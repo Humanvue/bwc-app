@@ -52,10 +52,8 @@
         (zero ? card('#/drills/zero', '25 m zero adjustments', 'zero', 'Read a shot group and give the sight corrections') : '') + '</section>';
     }
     var body = section('weapons', 'Weapons') + section('wtbd', 'Warrior tasks and battle drills');
-    app().innerHTML = u.header('Weapons and WTBD drills', '#/') +
+    app().innerHTML = u.header('Weapons and WTBD drills', '#/activities') +
       '<p class="muted">Hands-on practice from the TCs and the Soldier\'s Manual of Common Tasks. ' + PTS.go + ' points per GO, up to ' + PTS.dailyCap + ' drill points a day.</p>' +
-      '<a class="card roster-card" href="#/handson"><div class="row"><h3 class="grow">Hands-on training</h3><span class="chip">Log</span></div>' +
-      '<p class="muted small">Step-by-step functions checks and radio operation, plus a log of time on real equipment.</p></a>' +
       (body || '<div class="card"><p class="muted">Drills are being added.</p></div>');
     if (group) { var el = document.getElementById(group); if (el) el.scrollIntoView(); }
   }

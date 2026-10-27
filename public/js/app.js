@@ -135,6 +135,7 @@
     var items = [
       { href: '#/', label: 'Home', icon: 'home', on: route === 'home' },
       { href: '#/study', label: 'Study', icon: 'book', on: ['study', 'topic', 'flash', 'creeds', 'creed', 'audio'].indexOf(route) >= 0 },
+      { href: '#/activities', label: 'Activities', icon: 'target', on: ['activities', 'drills', 'landnav', 'handson', 'fitness'].indexOf(route) >= 0 },
       { href: '#/quiz/daily', label: 'Daily 10', icon: 'flame', on: route === 'quiz' },
       { href: '#/squad', label: 'Squad', icon: 'chat', on: route === 'squad' || route === 'thread' || route === 'leaderboard' },
       { href: '#/me', label: 'Me', icon: 'user', on: ['me', 'admin', 'team', 'collection', 'drafts'].indexOf(route) >= 0 }
@@ -322,6 +323,37 @@
       var el = document.getElementById('skills');
       if (el) el.scrollIntoView();
     }
+  }
+
+  // Hands-on and physical training, kept apart from Study (questions, flashcards, creeds).
+  function viewActivities() {
+    var D = window.BWC_DRILLS || { sequences: [], formats: [] };
+    function drillStat(groupId) {
+      var ids = D.sequences.concat(D.formats).filter(function (d) { return d.group === groupId; }).map(function (d) { return d.id; });
+      if (groupId === 'weapons') ids.push('zero');
+      var go = S.ledger.filter(function (e) { return e.kind === 'drill' && e.ok && ids.indexOf(e.ref) >= 0; });
+      var done = {};
+      go.forEach(function (e) { done[e.ref] = true; });
+      return { text: go.length ? go.length + ' GO' : ids.length + ' drills', pct: ids.length ? Math.round(Object.keys(done).length / ids.length * 100) : 0 };
+    }
+    var nav = S.ledger.filter(function (e) { return e.kind === 'landnav'; });
+    var navOk = nav.filter(function (e) { return e.ok; }).length;
+    var verified = (S.handson || []).filter(function (h) { return h.review === 'verified'; }).reduce(function (n, h) { return n + (h.minutes || 0); }, 0);
+    var tiles = [
+      { href: '#/drills#weapons', name: 'Weapons drills', icon: 'target', stat: drillStat('weapons') },
+      { href: '#/drills#wtbd', name: 'WTBD drills', icon: 'medic', stat: drillStat('wtbd') },
+      { href: '#/landnav', name: 'Land Nav', icon: 'compass', stat: { text: nav.length ? navOk + ' of ' + nav.length + ' GO' : 'Plot, measure, navigate', pct: nav.length ? Math.round(navOk / nav.length * 100) : 0 } },
+      { href: '#/handson', name: 'Hands-on training', icon: 'clipboard', stat: { text: BWC.HandsOn.hours(verified) + ' verified hrs', pct: Math.min(100, Math.round(verified / 6)) } },
+      { href: '#/fitness', name: 'Fitness', icon: 'fitness', stat: BWC.Fitness.homeStat(S.workouts) }
+    ];
+    app.innerHTML = header('Activities') +
+      '<p class="muted">Hands-on and physical training: weapons and warrior task drills, land navigation, time on real equipment, and workouts.</p>' +
+      '<div class="tiles">' + tiles.map(function (t) {
+        return '<a class="tile" href="' + t.href + '">' + icon(t.icon, 28, 2.2) + '<span class="name">' + esc(t.name) + '</span>' +
+          '<span class="stat">' + esc(t.stat.text) + '</span><span class="tbar"><span style="width:' + t.stat.pct + '%"></span></span></a>';
+      }).join('') + '</div>' +
+      '<div class="row wrap"><a class="btn grow" href="#/handson/new">' + icon('clipboard', 18) + 'Log hands-on training</a>' +
+      '<a class="btn ghost grow" href="#/fitness/new">' + icon('fitness', 18) + 'Log a workout</a></div>';
   }
 
   function viewTopic(id) {
@@ -689,6 +721,7 @@
     switch (name) {
       case 'home': return viewHome();
       case 'study': return viewStudy();
+      case 'activities': return viewActivities();
       case 'topic': return viewTopic(parts[1]);
       case 'flash': return viewFlash(parts[1]);
       case 'quiz': return viewQuiz(parts[1] || 'daily', parts[2] || '10');

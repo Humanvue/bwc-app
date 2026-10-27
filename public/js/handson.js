@@ -41,7 +41,7 @@
     var verifiedMin = list.filter(function (h) { return h.review === 'verified'; }).reduce(function (s, h) { return s + h.minutes; }, 0);
     var waiting = list.filter(function (h) { return !h.review; }).length;
     var G = guides();
-    app().innerHTML = u.header('Hands-on training', '#/') +
+    app().innerHTML = u.header('Hands-on training', '#/activities') +
       '<div class="banner"><div class="grow"><div class="eyebrow">Verified hands-on time</div><div class="big">' + hours(verifiedMin) + ' HRS</div>' +
       '<div class="small" style="font-weight:700">' + list.length + ' session' + (list.length === 1 ? '' : 's') + ' logged' + (waiting ? ' · ' + waiting + ' waiting for your sponsor' : '') + '</div></div>' + u.icon('target', 56, 1.8) + '</div>' +
       '<a class="btn" href="#/handson/new">' + u.icon('clipboard', 18) + 'Log a session</a>' +

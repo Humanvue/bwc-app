@@ -83,7 +83,7 @@
 
   function viewSummary() {
     var u = U();
-    app().innerHTML = u.header('Fitness', '#/') + '<div class="card"><p class="muted">Loading…</p></div>';
+    app().innerHTML = u.header('Fitness', '#/activities') + '<div class="card"><p class="muted">Loading…</p></div>';
     load().then(function (list) {
       var week = P.weekDates();
       var thisWeek = list.filter(function (w) { return week.indexOf(w.date) >= 0; });
@@ -92,7 +92,7 @@
       var next = F.vehicles.filter(function (v) { return miles < v.need; })[0];
       var recent = list.slice().sort(function (a, b) { return (b.date + b.at) > (a.date + a.at) ? 1 : -1; }).slice(0, 15);
 
-      app().innerHTML = u.header('Fitness', '#/') +
+      app().innerHTML = u.header('Fitness', '#/activities') +
         '<div class="banner"><div class="grow"><div class="eyebrow">This week</div><div class="big">' + minutes + ' MIN</div>' +
         '<div class="small" style="font-weight:700">' + thisWeek.length + ' workout' + (thisWeek.length === 1 ? '' : 's') + ' · ' +
         miles.toFixed(1) + ' total ruck miles</div></div>' + u.icon('fitness', 60, 1.8) + '</div>' +
