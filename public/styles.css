@@ -243,6 +243,17 @@ input[type="file"] { font-size: 14px; max-width: 100%; }
 .workout-row:last-of-type { border-bottom: none; }
 .shot { max-width: 200px; max-height: 320px; border-radius: 12px; border: 1px solid var(--line); object-fit: contain; }
 
+/* Creed trainer */
+.creed-text { font-size: 18px; line-height: 1.7; }
+.creed-text.memory { align-items: center; text-align: center; padding: 28px 16px; }
+.blank { font-family: 'JetBrains Mono', ui-monospace, monospace; color: var(--accent); letter-spacing: 1px; }
+.creed-check { line-height: 1.7; }
+.w-ok { color: var(--text); }
+.w-miss { color: var(--bad); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; }
+.card.pass { border: 2px solid var(--good); }
+button.chip-link { cursor: pointer; font-family: inherit; }
+button.chip-link:disabled { opacity: 0.4; cursor: default; }
+
 .theme-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
 .swatch { min-height: 64px; border-radius: 14px; border: 3px solid transparent; cursor: pointer; padding: 8px; text-align: left; font-weight: 700; font-size: 13px; display: flex; align-items: flex-end; }
 .swatch.on { border-color: var(--text); }

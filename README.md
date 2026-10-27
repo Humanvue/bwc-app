@@ -22,6 +22,11 @@ WTBDs, General), threads, replies, @mentions, Hooahs, and a **Discuss** button o
 opens one shared thread per question. Leaders pin and hide (hidden posts are kept for review); anyone can report a
 post to the leaders' queue. There are no private messages.
 
+**Creed trainer** (Study → Creeds and Army Values). The Soldier's Creed, Warrior Ethos and NCO Creed from FM 1
+(May 2025) Appendix D, and the Army Values from ADP 6-22 para 1-71, word for word. Levels hide 25%, 50%, 75%, then
+all words; the Soldier recites by typing or speaking and every word is checked in order (pass 97%). The NCO Creed
+can be practiced by paragraph. Matching is tested by `node tools/test_creeds.js`.
+
 **Sponsor dashboard** (Me → My competitor / Competitors). Sponsors see the competitors assigned to them; leaders and
 admins see every approved Soldier. Roster cards flag anyone quiet for 7 days and screenshots waiting for review.
 Each competitor page shows readiness bars (board, knowledge, weapons, land nav, WTBDs, fitness), topics weakest

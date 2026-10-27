@@ -352,5 +352,10 @@
     return viewSetup();
   }
 
-  BWC.Board = { view: view, stop: stop };
+  BWC.Board = {
+    view: view, stop: stop,
+    // Shared with the creed trainer: dictate into a textarea with a toggle button.
+    canListen: !!Rec, listen: startListening, stopListening: stopListening,
+    isListening: function () { return !!rec; }
+  };
 })();
