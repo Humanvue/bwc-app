@@ -115,6 +115,25 @@
       return Promise.resolve();
     },
 
+    // ---------- admin-entered study texts (e.g. the Army Song) ----------
+
+    texts: function () { return Promise.resolve((db.texts || []).slice()); },
+
+    saveText: function (t) {
+      db.texts = db.texts || [];
+      var id = t.id || newId('x');
+      db.texts = db.texts.filter(function (x) { return x.id !== id; });
+      db.texts.push(Object.assign({}, t, { id: id, at: Date.now() }));
+      save();
+      return Promise.resolve(id);
+    },
+
+    deleteText: function (id) {
+      db.texts = (db.texts || []).filter(function (x) { return x.id !== id; });
+      save();
+      return Promise.resolve();
+    },
+
     // ---------- discussion board ----------
 
     threads: function (channel) {

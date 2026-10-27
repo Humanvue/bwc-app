@@ -79,6 +79,15 @@ service cloud.firestore {
       }
     }
 
+    // Study texts admins add for the creed trainer (e.g. the Army Song from an official source).
+    match /texts/{id} {
+      allow read: if approved();
+      allow create, update: if isAdmin()
+        && request.resource.data.name is string && request.resource.data.name.size() > 0 && request.resource.data.name.size() <= 80
+        && request.resource.data.text is string && request.resource.data.text.size() > 0 && request.resource.data.text.size() <= 8000;
+      allow delete: if isAdmin();
+    }
+
     // Discussion board. No private messages: every thread is visible to everyone approved.
     // Only leaders post in Announcements, pin, or hide. Hidden posts are kept, not deleted.
     function hooahOnly() {

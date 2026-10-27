@@ -194,6 +194,22 @@
     });
   };
 
+  // ---------- admin-entered study texts ----------
+  //   texts/{id}   name, source, text (admins write; everyone approved reads)
+
+  Store.texts = function () {
+    return db.collection('texts').get().then(function (snap) {
+      return snap.docs.map(function (d) { return Object.assign({ id: d.id }, d.data()); });
+    });
+  };
+
+  Store.saveText = function (t) {
+    var ref = t.id ? db.collection('texts').doc(t.id) : db.collection('texts').doc();
+    return ref.set({ name: t.name, source: t.source, text: t.text, by: profile.uid, at: now() }).then(function () { return ref.id; });
+  };
+
+  Store.deleteText = function (id) { return db.collection('texts').doc(id).delete(); };
+
   // ---------- discussion board ----------
   //   threads/{id}                 channel, title, body, author, reply count, Hooahs, pinned, hidden
   //   threads/{id}/replies/{rid}   body, author, Hooahs, hidden

@@ -25,7 +25,9 @@ post to the leaders' queue. There are no private messages.
 **Creed trainer** (Study → Creeds and Army Values). The Soldier's Creed, Warrior Ethos and NCO Creed from FM 1
 (May 2025) Appendix D, and the Army Values from ADP 6-22 para 1-71, word for word. Levels hide 25%, 50%, 75%, then
 all words; the Soldier recites by typing or speaking and every word is checked in order (pass 97%). The NCO Creed
-can be practiced by paragraph. Matching is tested by `node tools/test_creeds.js`.
+can be practiced by paragraph. The General Orders come from TRADOC Pamphlet 600-4 (C1, 27 Oct 2014) para 10-4,
+exactly as printed. Admins can add more texts (e.g. the Army Song) under Creeds → Texts you added, copied from an
+official source; they train the same way. Matching is tested by `node tools/test_creeds.js`.
 
 **Sponsor dashboard** (Me → My competitor / Competitors). Sponsors see the competitors assigned to them; leaders and
 admins see every approved Soldier. Roster cards flag anyone quiet for 7 days and screenshots waiting for review.

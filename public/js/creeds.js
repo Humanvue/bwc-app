@@ -53,6 +53,15 @@
       ].join('\n') }]
     }
   ];
+  // General Orders exactly as printed in TRADOC Pamphlet 600-4 (C1, 27 Oct 2014), para 10-4.
+  CREEDS.push({
+    id: 'general-orders', name: 'General Orders', pub: 'TP 600-4', para: '10-4 (C1, 27 Oct 2014)', page: 176,
+    sections: [{ name: 'All three', text: [
+      'I will guard everything within the limits of my post and quit my post only when properly relieved.',
+      'I will obey my special orders and perform all my duties in a military manner.',
+      'I will report violations on my special orders, emergencies, and anything not covered in my instructions to the commander of relief.'
+    ].join('\n') }]
+  });
   // The NCO Creed is also practiced whole once each paragraph is down.
   CREEDS[2].sections.push({ name: 'Whole creed', text: CREEDS[2].sections.map(function (s) { return s.text; }).join('\n\n') });
 
@@ -134,7 +143,18 @@
     }).join('<br>');
   }
 
-  function creedById(id) { return CREEDS.filter(function (c) { return c.id === id; })[0]; }
+  // Texts admins add (e.g. the Army Song) become trainer entries like the built-in creeds.
+  function customCreeds() {
+    return (U().S.customTexts || []).map(function (x) {
+      return { id: 'custom-' + x.id, textId: x.id, custom: true, name: x.name, pub: x.source || 'Added by an admin', para: '', sections: [{ name: 'Whole text', text: x.text }] };
+    });
+  }
+  function allCreeds() { return CREEDS.concat(customCreeds()); }
+  function loadCustom() {
+    return BWC.Store.texts().then(function (list) { U().S.customTexts = list; }).catch(function () { U().S.customTexts = U().S.customTexts || []; });
+  }
+  function creedById(id) { return allCreeds().filter(function (c) { return c.id === id; })[0]; }
+  function isAdmin() { return U().S.user.role === 'admin'; }
   function key(c, si, lvl) { return c.id + ':' + si + ':' + lvl; }
 
   function bestLevel(c, si) {
@@ -149,18 +169,81 @@
 
   function viewList() {
     var u = U();
+    app().innerHTML = u.header('Creeds', '#/study') + '<div class="card"><p class="muted">Loading…</p></div>';
+    loadCustom().then(renderList);
+  }
+
+  function renderList() {
+    var u = U();
+    var custom = customCreeds();
     app().innerHTML = u.header('Creeds', '#/study') +
       '<p class="muted">Boards expect these word for word. Each level hides more words until you recite it from memory, typed or out loud.</p>' +
-      '<div class="tiles">' + CREEDS.map(function (c) {
+      '<div class="tiles">' + allCreeds().map(function (c) {
         var done = c.sections.filter(function (s, i) { return bestLevel(c, i) >= 4; }).length;
         var pct = Math.round(c.sections.reduce(function (s, x, i) { return s + bestLevel(c, i); }, 0) / (c.sections.length * 4) * 100);
         return '<a class="tile" href="#/creed/' + c.id + '">' + u.icon('flag', 26, 2.2) + '<span class="name">' + u.esc(c.name) + '</span>' +
           '<span class="stat">' + (done === c.sections.length ? 'Mastered' : pct + '% learned') + '</span><span class="tbar"><span style="width:' + pct + '%"></span></span></a>';
       }).join('') + '</div>' +
-      '<p class="muted small">Army Song and General Orders will be added once their official text is in the source package.</p>';
+      (isAdmin() ? adminTexts(custom) : (custom.length ? '' : '<p class="muted small">Admins can add more texts here, such as the Army Song.</p>'));
+    wireAdmin();
+  }
+
+  // Admin: add, edit or remove texts. Copy them exactly from an official source and name it.
+  function adminTexts(custom) {
+    var u = U();
+    return '<div class="card"><h2>Texts you added</h2>' +
+      (custom.length ? '<div class="list">' + custom.map(function (c) {
+        return '<div class="list-row"><span class="grow"><strong>' + u.esc(c.name) + '</strong><span class="muted small"> · ' + u.esc(c.pub) + '</span></span>' +
+          '<button type="button" class="btn small ghost" data-edit-text="' + u.esc(c.textId) + '">Edit</button>' +
+          '<button type="button" class="btn small ghost" data-del-text="' + u.esc(c.textId) + '">Remove</button></div>';
+      }).join('') + '</div>' : '<p class="muted small">None yet.</p>') +
+      '<form class="stack" id="tx-form"><h3 id="tx-heading">Add a text</h3>' +
+      '<input type="hidden" id="tx-id">' +
+      '<label class="field">Name<input class="input" id="tx-name" maxlength="80" required placeholder="e.g. The Army Song"></label>' +
+      '<label class="field">Official source<input class="input" id="tx-source" maxlength="120" required placeholder="Publication or page you copied it from"></label>' +
+      '<label class="field">Text (word for word; one line per line)<textarea class="input" id="tx-text" rows="8" maxlength="8000" required></textarea></label>' +
+      '<div class="row wrap"><button class="btn grow" type="submit">Save text</button><button class="btn ghost" type="button" id="tx-clear">Clear</button></div>' +
+      '<p class="muted small">Soldiers are graded against exactly what you enter, so copy it from the official source.</p></form></div>';
+  }
+
+  function wireAdmin() {
+    var u = U();
+    var form = document.getElementById('tx-form');
+    if (!form) return;
+    var $ = function (id) { return document.getElementById(id); };
+    function fill(t) {
+      $('tx-id').value = t ? t.id : '';
+      $('tx-name').value = t ? t.name : '';
+      $('tx-source').value = t ? t.source || '' : '';
+      $('tx-text').value = t ? t.text : '';
+      $('tx-heading').textContent = t ? 'Edit "' + t.name + '"' : 'Add a text';
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      BWC.Store.saveText({ id: $('tx-id').value || null, name: $('tx-name').value.trim(), source: $('tx-source').value.trim(), text: $('tx-text').value.trim() })
+        .then(function () { u.toast('Saved'); return loadCustom(); }).then(renderList)
+        .catch(function () { u.toast('Not saved: admins only.'); });
+    });
+    $('tx-clear').addEventListener('click', function () { fill(null); });
+    app().querySelectorAll('[data-edit-text]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var t = (u.S.customTexts || []).filter(function (x) { return x.id === b.getAttribute('data-edit-text'); })[0];
+        fill(t);
+        form.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+    app().querySelectorAll('[data-del-text]').forEach(function (b) {
+      var armed = false;
+      b.addEventListener('click', function () {
+        // Two taps to remove, so a stray tap can't delete it.
+        if (!armed) { armed = true; b.textContent = 'Tap again to remove'; return; }
+        BWC.Store.deleteText(b.getAttribute('data-del-text')).then(loadCustom).then(renderList);
+      });
+    });
   }
 
   function viewCreed(id, sectionArg) {
+    if (id.indexOf('custom-') === 0 && !U().S.customTexts) { loadCustom().then(function () { viewCreed(id, sectionArg); }); return; }
     var u = U();
     var c = creedById(id);
     if (!c) { location.hash = '#/creeds'; return; }
@@ -192,7 +275,7 @@
           u.esc(l.name) + (i > 0 && i <= best ? ' ✓' : '') + '</button>';
       }).join('') + '</div>' +
       '<div class="card creed-text' + (L.hide >= 1 ? ' memory' : '') + '">' + (L.hide >= 1 ? '<p class="muted">Recite the whole thing from memory.</p>' : '<div>' + display + '</div>') +
-      '<div class="cite">' + u.esc(c.pub) + ', ' + u.esc(c.para) + '</div></div>' +
+      '<div class="cite">' + u.esc(c.pub) + (c.para ? ', ' + u.esc(c.para) : '') + '</div></div>' +
       (lvl === 0 ? '<button type="button" class="btn" id="cr-ready">I\'ve read it. Start Level 1</button>' :
         '<div class="card"><label class="field" for="cr-answer">Recite ' + (L.hide >= 1 ? 'it' : 'the whole text, filling in the blanks') + '</label>' +
         '<textarea class="input" id="cr-answer" rows="6" placeholder="Type it, or tap Speak and say it out loud."></textarea>' +
